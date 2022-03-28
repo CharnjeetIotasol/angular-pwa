@@ -1,10 +1,11 @@
 {
-  "name": "angular-pwa",
-  "short_name": "angular-pwa",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "Redeemable Voucher | Customer AR Engagement Platform",
+  "short_name": "Redeemable Voucher",
+  "theme_color": "#1e006e",
+  "background_color": "#1e006e",
   "display": "standalone",
   "scope": "./",
+  "id": "./",
   "start_url": "./",
   "icons": [
     {

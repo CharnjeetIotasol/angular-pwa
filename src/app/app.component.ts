@@ -11,7 +11,6 @@ export class AppComponent {
 
   constructor(private swUpdateService: SwUpdate) {
     this.swUpdateService.checkForUpdate().then((response) => {
-      alert("Yes, Update availble");
       console.log(response);
     })
   }
