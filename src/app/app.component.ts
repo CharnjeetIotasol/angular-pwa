@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-pwa';
+
+  constructor(private swUpdateService: SwUpdate) {
+    this.swUpdateService.checkForUpdate().then((response) => {
+      alert("Yes, Update availble");
+      console.log(response);
+    })
+  }
 }

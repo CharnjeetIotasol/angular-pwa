@@ -1,8 +1,8 @@
 {
-  "name": "angular-pwa",
+  "name": "Redeemable Voucher",
   "short_name": "angular-pwa",
   "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "background_color": "#1e006d",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
