@@ -18,6 +18,17 @@ export class AppUpdateService {
         }
 
     }
+    checkForUpdate() {
+        console.log("Here");
+        console.log(this.updates.isEnabled);
+        if (this.updates.isEnabled) {
+            this.updates.checkForUpdate().then(() => {
+                console.log('Checking for updates...');
+            }).catch((err) => {
+                console.error('Error when checking for update', err);
+            });
+        }
+    }
     showAppUpdateAlert() {
         const header = 'App Update available';
         const message = 'Choose Ok to update';

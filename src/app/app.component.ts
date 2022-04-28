@@ -1,5 +1,5 @@
-import { ApplicationRef, Component, HostListener, OnInit } from '@angular/core';
-import { SwUpdate } from '@angular/service-worker';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { AppUpdateService } from 'src/services/app-update.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,11 +9,12 @@ export class AppComponent implements OnInit {
   title = 'angular-pwa';
   deferredPrompt: any;
   showButton = false;
-  constructor(appRef: ApplicationRef, privateswUpdateService: SwUpdate) {
+  constructor(private appUpdateService: AppUpdateService) {
 
   }
 
   ngOnInit(): void {
+    this.appUpdateService.checkForUpdate();
   }
 
   @HostListener('window:beforeinstallprompt', ['$event'])
