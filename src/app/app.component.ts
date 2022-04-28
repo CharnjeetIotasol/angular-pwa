@@ -17,12 +17,12 @@ export class AppComponent implements OnInit {
     this.appUpdateService.checkForUpdate();
   }
 
-  @HostListener('window:beforeinstallprompt', ['$event'])
-  onbeforeinstallprompt(e: any) {
-    e.preventDefault();
-    this.deferredPrompt = e;
-    this.showButton = true;
-  }
+  // @HostListener('window:beforeinstallprompt', ['$event'])
+  // onbeforeinstallprompt(e: any) {
+  //   e.preventDefault();
+  //   this.deferredPrompt = e;
+  //   this.showButton = true;
+  // }
 
   addToHomeScreen() {
     this.showButton = false;
