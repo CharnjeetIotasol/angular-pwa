@@ -1,2 +1,11 @@
 $primary: #1e006d;
 $secondary: #f2f1f6;
+@import "~@angular/material/theming";
+$custom-typography: mat-typography-config(
+    $font-family: "Montserrat",
+);
+@include angular-material-typography($custom-typography);
+
+@import "assets/scss/common";
+@import "assets/scss/login";
+@import "assets/scss/dashboard-layout";

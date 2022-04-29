@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppUpdateService } from 'src/services/app-update.service';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialAppModule } from './material.module';
 import { LoginComponent } from './pages/login/login.component';
-import { RegisterComponent } from './pages/register/register.component';
 import { OnboardingComponent } from './pages/onboarding/onboarding.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { OnboardingComponent } from './pages/onboarding/onboarding.component';
       // or after 30 seconds (whichever comes first).
       // registrationStrategy: 'registerWhenStable:30000'
     }),
+    MaterialAppModule,
     BrowserAnimationsModule
   ],
   providers: [AppUpdateService],
