@@ -42,9 +42,18 @@
         }
         .social-button-container {
             text-align: center;
-            button {
+            .social-login-button {
                 margin-left: 5px;
                 margin-right: 5px;
+                background-color: #f5f5f5;
+                height: 58px;
+                width: 58px;
+                border-radius: 10px;
+                border: 1px solid #cbcbcb;
+                box-shadow: 0px 3px 5px #00000029;
+                img {
+                    margin-top: -2px;
+                }
             }
         }
     }
