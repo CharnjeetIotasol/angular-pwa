@@ -6,6 +6,46 @@ $custom-typography: mat-typography-config(
 );
 @include angular-material-typography($custom-typography);
 
+// below defines your custom color to build a theme palette from
+$my-blue: (
+    50: #1e006d,
+    100: #1e006d,
+    200: #1e006d,
+    300: #1e006d,
+    400: #1e006d,
+    500: #1e006d,
+    600: #1e006d,
+    700: #1e006d,
+    800: #1e006d,
+    900: #1e006d,
+    A100: #1e006d,
+    A200: #1e006d,
+    A400: #1e006d,
+    A700: #1e006d,
+    contrast: (
+        50: white,
+        100: white,
+        200: white,
+        300: white,
+        400: white,
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: white,
+        A200: white,
+        A400: white,
+        A700: white,
+    ),
+);
+
+// below creates a primary palette with three shades of blue
+$my-primary: mat-palette($my-blue, 100, 50, 200);
+$my-app-accent: mat-palette($mat-pink, 500, 900, A100);
+$my-app-warn: mat-palette($mat-deep-orange);
+$my-app-theme: mat-light-theme($my-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
 @import "assets/scss/common";
 @import "assets/scss/login";
 @import "assets/scss/dashboard-layout";

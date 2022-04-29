@@ -25,5 +25,27 @@
     }
     .login-body-container {
         padding: 20px 30px;
+        .forgot-password-link {
+            text-align: right;
+            margin-bottom: 20px;
+            a {
+                font-size: 13px;
+                font-weight: 600;
+                color: $primary;
+            }
+        }
+        .or-label {
+            text-align: center;
+            color: #9d9999;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .social-button-container {
+            text-align: center;
+            button {
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+        }
     }
 }

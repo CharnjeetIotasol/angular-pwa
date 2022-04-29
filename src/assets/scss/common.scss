@@ -373,6 +373,7 @@ body {
 a {
     cursor: pointer !important;
     text-decoration: none !important;
+    color: $primary;
 }
 
 .primary-color-text {
@@ -416,4 +417,13 @@ input.mat-input-element {
 .mat-form-field-appearance-outline .mat-form-field-prefix,
 .mat-form-field-appearance-outline .mat-form-field-suffix {
     top: 0.1em !important;
+}
+
+.site-button {
+    &.full-width {
+        width: 100%;
+    }
+    &.large-button {
+        min-height: 56px;
+    }
 }
