@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { interval } from 'rxjs';
+import { filter } from 'rxjs/operators';
 @Injectable({
     providedIn: 'root'
 })
@@ -14,9 +15,12 @@ export class AppUpdateService {
             interval(6 * 60 * 60).subscribe(() => updates.checkForUpdate()
                 .then(() => {
                     console.log('checking for updates')
-                    this.updates.available.subscribe(event => {
-                        this.showAppUpdateAlert();
-                    });
+                    this.updates.versionUpdates
+                        .pipe(filter((evt) => evt.type === 'VERSION_READY'))
+                        .subscribe(event => {
+                            console.log(event);
+                            this.showAppUpdateAlert();
+                        });
                 }));
         }
 
