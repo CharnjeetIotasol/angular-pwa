@@ -1,0 +1,13 @@
+<mat-dialog-content>
+    <div class="available-app" *ngIf="view==='AVAILABLE'">New version of app is available</div>
+    <div class="installing-app" *ngIf="view==='INSTALL'">
+        <div>Installing latest version</div>
+        <mat-spinner *ngIf="view==='INSTALL'" [color]="color" [diameter]="40" [mode]="'determinate'" [value]="value">
+        </mat-spinner>
+    </div>
+
+    <div class="update-popup-actions" *ngIf="view==='AVAILABLE'">
+        <button mat-button [mat-dialog-close]="false">Cancel</button>
+        <button mat-button (click)="installApp()" cdkFocusInitial>Install</button>
+    </div>
+</mat-dialog-content>

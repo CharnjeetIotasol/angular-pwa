@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialAppModule } from './material.module';
+import { ConfirmationDialogComponent } from './pages/common/confirmation-dialog/confirmation-dialog.component';
 import { LoginComponent } from './pages/login/login.component';
 import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -24,7 +25,8 @@ import { SharedModuleModule } from './shared/shared-module.module';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    OnboardingComponent
+    OnboardingComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +77,9 @@ import { SharedModuleModule } from './shared/shared-module.module';
         }
       } as SocialAuthServiceConfig,
     }
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
   ],
   bootstrap: [AppComponent]
 })

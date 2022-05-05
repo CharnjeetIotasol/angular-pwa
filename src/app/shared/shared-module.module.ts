@@ -19,10 +19,10 @@ import { ValidationMessageComponent } from './validation-message/validation-mess
     }),
   ],
   declarations: [
-    ValidationMessageComponent
+    ValidationMessageComponent,
   ],
   exports: [
     ValidationMessageComponent
-  ]
+  ],
 })
 export class SharedModuleModule { }

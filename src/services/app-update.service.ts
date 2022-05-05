@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { SwUpdate } from '@angular/service-worker';
 import { interval } from 'rxjs';
+import { ConfirmationDialogComponent } from 'src/app/pages/common/confirmation-dialog/confirmation-dialog.component';
 @Injectable({
     providedIn: 'root'
 })
 export class AppUpdateService {
     shownAlert: boolean;
-    constructor(private readonly updates: SwUpdate) {
-        console.log("Here Setting False");
+    constructor(private readonly updates: SwUpdate, private dialog: MatDialog) {
         this.shownAlert = false;
-        console.log(updates.isEnabled);
         if (updates.isEnabled) {
             interval(6 * 60 * 60).subscribe(() => updates.checkForUpdate()
                 .then(() => {
@@ -24,8 +24,6 @@ export class AppUpdateService {
 
     }
     checkForUpdate() {
-        console.log("Here checkForUpdate");
-        console.log(this.updates.isEnabled);
         if (this.updates.isEnabled) {
             this.updates.checkForUpdate().then(() => {
                 console.log('Checking for updates...');
@@ -39,18 +37,26 @@ export class AppUpdateService {
             return;
         }
         this.shownAlert = true;
-        const header = 'App Update available';
-        const message = 'Choose Ok to update';
-        const action = this.doAppUpdate;
-        if (confirm(header)) {
-            this.updates.activateUpdate().then(() => {
-                this.shownAlert = false;
-                document.location.reload();
-            });
-        }
+        this.openUpdateConfirmationDialog();
+    }
+
+    openUpdateConfirmationDialog() {
+        const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+            width: "90%",
+            position: { bottom: "50px" },
+            panelClass: "custom-update-popup"
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.doAppUpdate();
+            }
+        });
     }
 
     doAppUpdate() {
-        this.updates.activateUpdate().then(() => document.location.reload());
+        this.updates.activateUpdate().then(() => {
+            this.shownAlert = false;
+            document.location.reload();
+        });
     }
 }

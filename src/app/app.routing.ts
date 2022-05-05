@@ -6,19 +6,19 @@ import { RegisterComponent } from './pages/register/register.component';
 export const ROUTES: Routes = [
   {
     path: '',
-    redirectTo: 'acccount/register',
+    redirectTo: 'account/register',
     pathMatch: 'full'
   },
   {
-    path: 'acccount/login',
+    path: 'account/login',
     component: LoginComponent
   },
   {
-    path: 'acccount/register',
+    path: 'account/register',
     component: RegisterComponent
   },
   {
-    path: 'acccount/onboarding',
+    path: 'account/onboarding',
     component: OnboardingComponent
   },
   // {
@@ -28,6 +28,6 @@ export const ROUTES: Routes = [
   // },
   {
     path: '**',
-    redirectTo: '/acccount/login'
+    redirectTo: '/account/login'
   }
 ];
