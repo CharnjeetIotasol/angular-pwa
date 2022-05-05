@@ -51,6 +51,11 @@ import { SharedModuleModule } from './shared/shared-module.module';
       // or after 30 seconds (whichever comes first).
       // registrationStrategy: 'registerWhenStable:30000'
     }),
+    MaterialAppModule,
+    BrowserAnimationsModule
+  ],
+  providers: [
+    AppUpdateService,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
@@ -64,13 +69,13 @@ import { SharedModuleModule } from './shared/shared-module.module';
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider(environment.FacebookKey)
           }
-        ]
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
       } as SocialAuthServiceConfig,
-    },
-    MaterialAppModule,
-    BrowserAnimationsModule
+    }
   ],
-  providers: [AppUpdateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
