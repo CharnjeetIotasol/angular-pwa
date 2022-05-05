@@ -1,3 +1,4 @@
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'angular-2-local-storage';
@@ -20,14 +21,20 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private router: Router,
     private localStorageService: LocalStorageService,
-    private loadingService: LoadingService) {
+    private loadingService: LoadingService,
+    private socialAuthService: SocialAuthService) {
     this.fieldType = "password";
   }
-
 
   ngOnInit(): void {
     this.onClickValidation = false;
     this.data = new Login();
+    this.socialAuthService.authState.subscribe((user) => {
+      if (!user) {
+        return;
+      }
+      this.processSocialLogin(user);
+    });
   }
 
   togglePasswordField() {
@@ -64,5 +71,17 @@ export class LoginComponent implements OnInit {
       this.loadingService.hide();
       this.toastService.error(e.message);
     }
+  }
+
+  loginWithGoogle(): void {
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  }
+
+  loginWithFacebook(): void {
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  async processSocialLogin(user: any) {
+    console.log(user);
   }
 }

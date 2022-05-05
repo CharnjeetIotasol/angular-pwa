@@ -1,3 +1,4 @@
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -32,6 +33,7 @@ import { SharedModuleModule } from './shared/shared-module.module';
     AppRoutingModule,
     SharedModuleModule,
     BrowserAnimationsModule,
+    SocialLoginModule,
     LocalStorageModule.forRoot({
       prefix: 'rv-pwa',
       storageType: 'localStorage'
@@ -49,6 +51,22 @@ import { SharedModuleModule } from './shared/shared-module.module';
       // or after 30 seconds (whichever comes first).
       // registrationStrategy: 'registerWhenStable:30000'
     }),
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(environment.GoogleKey)
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider(environment.FacebookKey)
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    },
     MaterialAppModule,
     BrowserAnimationsModule
   ],

@@ -42,10 +42,12 @@
                     <span>OR</span>
                 </div>
                 <div class="social-button-container">
-                    <button mat-stroked-button class="social-login-button" aria-label="Google Login">
+                    <button mat-stroked-button class="social-login-button" aria-label="Google Login"
+                        (click)="loginWithGoogle()">
                         <img src="/assets/images/icons/google.svg" />
                     </button>
-                    <button mat-stroked-button class="social-login-button" aria-label="Facebook Login">
+                    <button mat-stroked-button class="social-login-button" aria-label="Facebook Login"
+                        (click)="loginWithFacebook()">
                         <img src="/assets/images/icons/facebook.svg" />
                     </button>
                     <button mat-stroked-button class="social-login-button" aria-label="Apple Login">
