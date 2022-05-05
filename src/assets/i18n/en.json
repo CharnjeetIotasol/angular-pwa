@@ -1,0 +1,24 @@
+{
+	"LOGIN": {
+		"email": "Email Address",
+		"password": "Password",
+		"forgotPassword": "Forgot password",
+		"signIn": "Log In",
+		"backToLogin": "Back to login",
+		"reset": "Reset",
+		"recoverPassword": "Recover Password"
+	},
+	"COMMON": {
+		"REQUIRED_SELECT_VALIDATION_MESSAGE": "Please select a valid value.",
+		"REQUIRED_INPUT_VALIDATION_MESSAGE": "Please provide a valid value.",
+		"REQUIRED_EMAIL_VALIDATION_MESSAGE": "Please provide a valid email address.",
+		"REQUIRED_MOBILE_VALIDATION_MESSAGE": "Please provide a valid mobile.",
+		"REQUIRED_PATTERN_VALIDATION_MESSAGE": "Please provide a valid value.",
+		"REQUIRED_FILE_VALIDATION_MESSAGE": "Please upload a file",
+		"REQUIRED_INPUT_MIN_VALIDATION_MESSAGE": "Please provide a valid value. Min allowed value: ",
+		"REQUIRED_INPUT_MAX_VALIDATION_MESSAGE": "Please provide a valid value. Max allowed value: ",
+		"REQUIRED_MASK_VALIDATION_MESSAGE": "Please provide a valid value. Value will be like: ",
+		"YEAR_INPUT_VALIDATION_MESSAGE": "Please provide a valid year value.",
+		"MONTH_INPUT_VALIDATION_MESSAGE": "Please provide a valid month value."
+	}
+}

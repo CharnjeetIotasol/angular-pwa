@@ -1,41 +1,67 @@
 <div class="login-container">
-    <div class="login-header-container">
-        <div class="left-side-info-section">
-            <h2>Hello,</h2>
-            <p>Login to your account</p>
+    <div class="login-inner-container">
+        <div class="login-header-container">
+            <div class="left-side-info-section">
+                <h2>Hello,</h2>
+                <p>Login to your account</p>
+            </div>
+            <img src="/assets/images/app-logo.svg" class="app-logo" />
         </div>
-        <img src="/assets/images/app-logo.svg" class="app-logo" />
-    </div>
-    <div class="login-body-container">
-        <form class="site-form">
-            <mat-form-field class="site-form-field" appearance="fill" appearance="outline">
-                <mat-label>Email Address</mat-label>
-                <input matInput placeholder="Email Address">
-            </mat-form-field>
-            <mat-form-field class="site-form-field" appearance="fill" appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput placeholder="Password">
-                <mat-icon matSuffix>visibility</mat-icon>
-            </mat-form-field>
-            <div class="forgot-password-link">
-                <a color="primary">Forgot Password?</a>
-            </div>
-            <button mat-raised-button color="primary" class="site-button large-button full-width">Sign In &
-                Continue</button>
-            <div class="or-label">
-                <span>OR</span>
-            </div>
-            <div class="social-button-container">
-                <button mat-stroked-button class="social-login-button" aria-label="Google Login">
-                    <img src="/assets/images/icons/google.svg" />
+        <div class="login-body-container">
+            <form class="site-form" novalidate="novalidate" #loginForm="ngForm">
+                <mat-form-field class="site-form-field" appearance="fill" appearance="outline"
+                    [ngClass]="{'mat-form-field-invalid':!userEmail.valid && onClickValidation}">
+                    <mat-label>Email Address</mat-label>
+                    <input matInput placeholder="Email Address" required="required" name="userEmail"
+                        #userEmail="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="data.email">
+                    <mat-hint class="error-text" *ngIf="onClickValidation && userEmail?.errors?.required">
+                        {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
+                    </mat-hint>
+                    <mat-hint class="error-text" *ngIf="onClickValidation && userEmail?.errors?.pattern">
+                        {{"COMMON.REQUIRED_PATTERN_VALIDATION_MESSAGE" | translate}}
+                    </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="site-form-field" appearance="fill" appearance="outline"
+                    [ngClass]="{'mat-form-field-invalid':userPassword.invalid && onClickValidation}">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="fieldType" placeholder="Password" name="userPassword"
+                        #userPassword="ngModel" [(ngModel)]="data.password" required="required">
+                    <mat-icon matSuffix (click)="togglePasswordField()">visibility</mat-icon>
+                    <mat-hint class="error-text" *ngIf="onClickValidation && userPassword?.errors?.required">
+                        {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
+                    </mat-hint>
+                </mat-form-field>
+                <div class="forgot-password-link">
+                    <a color="primary">Forgot Password?</a>
+                </div>
+                <button mat-raised-button color="primary" class="site-button large-button full-width"
+                    (click)="login(loginForm.form)">
+                    Sign In & Continue
                 </button>
-                <button mat-stroked-button class="social-login-button" aria-label="Facebook Login">
-                    <img src="/assets/images/icons/facebook.svg" />
-                </button>
-                <button mat-stroked-button class="social-login-button" aria-label="Apple Login">
-                    <img src="/assets/images/icons/apple.svg" />
-                </button>
-            </div>
-        </form>
+                <div class="or-label">
+                    <span>OR</span>
+                </div>
+                <div class="social-button-container">
+                    <button mat-stroked-button class="social-login-button" aria-label="Google Login">
+                        <img src="/assets/images/icons/google.svg" />
+                    </button>
+                    <button mat-stroked-button class="social-login-button" aria-label="Facebook Login">
+                        <img src="/assets/images/icons/facebook.svg" />
+                    </button>
+                    <button mat-stroked-button class="social-login-button" aria-label="Apple Login">
+                        <img src="/assets/images/icons/apple.svg" />
+                    </button>
+                </div>
+                <div class="text-center margin-top-30">
+                    <div class="create-account-label">
+                        Don`t have an account? <a>Create On</a>
+                    </div>
+                    <p class="privacy-policy-label">
+                        By signing in, creating an account, you are agreeing to our <a href="#">Terms</a> of Use and our
+                        <a href="#">Privacy Policy</a>
+                    </p>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

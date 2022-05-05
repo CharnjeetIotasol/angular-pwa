@@ -2,7 +2,7 @@
   "name": "Redeemable Voucher",
   "short_name": "Redeemable Voucher",
   "theme_color": "#1e006e",
-  "background_color": "#1e006e",
+  "background_color": "#fff",
   "display": "standalone",
   "scope": "./",
   "id": "./",

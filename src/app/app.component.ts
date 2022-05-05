@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { AppUpdateService } from 'src/services/app-update.service';
 @Component({
   selector: 'app-root',
@@ -9,7 +10,8 @@ export class AppComponent implements OnInit {
   title = 'angular-pwa';
   deferredPrompt: any;
   showButton = false;
-  constructor(private appUpdateService: AppUpdateService) {
+  constructor(private translate: TranslateService, private appUpdateService: AppUpdateService) {
+    translate.setDefaultLang('en');
   }
 
   ngOnInit(): void {

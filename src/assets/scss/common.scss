@@ -389,6 +389,7 @@ a {
 
 .site-form-field {
     width: 100%;
+    margin-bottom: 10px;
     .site-form-field {
         font-size: 16px;
     }
@@ -402,7 +403,7 @@ input.mat-input-element {
     .mat-input-server:focus
     + .mat-form-field-label-wrapper
     .mat-form-field-label {
-    transform: translateY(-2.3em) scale(0.75);
+    transform: translateY(-2.25em) scale(0.75);
     width: 133.3333333333%;
 }
 .mat-form-field-appearance-outline .mat-form-field-flex {
@@ -426,4 +427,9 @@ input.mat-input-element {
     &.large-button {
         min-height: 56px;
     }
+}
+
+.error-text {
+    color: #ff5722;
+    font-size: 11.5px;
 }
