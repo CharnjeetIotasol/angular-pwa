@@ -83,5 +83,6 @@ export class LoginComponent implements OnInit {
 
   async processSocialLogin(user: any) {
     console.log(user);
+    this.router.navigate(['/acccount/onboarding']);
   }
 }

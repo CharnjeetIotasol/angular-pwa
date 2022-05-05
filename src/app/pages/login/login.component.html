@@ -43,20 +43,20 @@
                 </div>
                 <div class="social-button-container">
                     <button mat-stroked-button class="social-login-button" aria-label="Google Login"
-                        (click)="loginWithGoogle()">
+                        (click)="loginWithGoogle()" type="button">
                         <img src="/assets/images/icons/google.svg" />
                     </button>
                     <button mat-stroked-button class="social-login-button" aria-label="Facebook Login"
-                        (click)="loginWithFacebook()">
+                        (click)="loginWithFacebook()" type="button">
                         <img src="/assets/images/icons/facebook.svg" />
                     </button>
-                    <button mat-stroked-button class="social-login-button" aria-label="Apple Login">
+                    <button mat-stroked-button class="social-login-button" aria-label="Apple Login" type="button">
                         <img src="/assets/images/icons/apple.svg" />
                     </button>
                 </div>
                 <div class="text-center margin-top-30">
                     <div class="create-account-label">
-                        Don`t have an account? <a>Create On</a>
+                        Don`t have an account? <a [routerLink]="['/account/register']">Create On</a>
                     </div>
                     <p class="privacy-policy-label">
                         By signing in, creating an account, you are agreeing to our <a href="#">Terms</a> of Use and our
