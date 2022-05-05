@@ -18,9 +18,11 @@
             }
             p {
                 margin-top: 5px;
+                font-size: 16px;
                 line-height: 27px;
                 color: #787878;
                 margin-bottom: 0px;
+                font-family: "gilroy-regular", sans-serif !important;
             }
         }
     }
@@ -64,7 +66,8 @@
             color: #000;
             a {
                 color: #ee8264;
-                text-decoration: underline;
+                text-decoration: underline !important;
+                font-weight: 600;
             }
         }
         .privacy-policy-label {
@@ -80,10 +83,67 @@
     }
 }
 
+.register-container {
+    background-color: #fff;
+    min-height: 100vh;
+    .register-header-container {
+        padding: 40px 25px 15px 25px;
+        padding-top: 60px;
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            line-height: 29px;
+            margin-bottom: 0px;
+            font-family: "gilroy-bold", sans-serif !important;
+        }
+        p {
+            margin-top: 5px;
+            line-height: 27px;
+            color: #787878;
+            margin-bottom: 0px;
+            font-size: 16px;
+            font-family: "gilroy-regular", sans-serif !important;
+        }
+    }
+    .register-body-container {
+        padding: 0px 25px;
+        padding-bottom: 20px;
+        .create-account-label {
+            font-size: 14px;
+            line-height: 20px;
+            text-align: center;
+            color: #000;
+            a {
+                color: $primary;
+                text-decoration: underline !important;
+                font-weight: 600;
+            }
+        }
+        .privacy-policy-label {
+            margin-top: 30px;
+            font-size: 12px;
+            text-align: center;
+            color: #6a6a6a;
+            a {
+                color: #000;
+                font-weight: 600;
+            }
+        }
+    }
+}
 @media screen and (min-width: 992px) {
     .login-container {
         padding: 4vh;
         .login-inner-container {
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0px 0px 5px 0px #00000029;
+            min-height: 92vh;
+        }
+    }
+    .register-container {
+        padding: 4vh;
+        .register-inner-container {
             max-width: 500px;
             margin: 0 auto;
             box-shadow: 0px 0px 5px 0px #00000029;

@@ -16,6 +16,14 @@ export class LoginService extends HttpServiceRequests<IResourceWithId> {
         return this.saveRecord('/app/customer/login', data);
     }
 
+    socialLogin(data: any): Promise<RestResponse> {
+        return this.saveRecord('/api/account/user/social/register', data);
+    }
+
+    register(data: any): Promise<RestResponse> {
+        return this.saveRecord('/app/customer', data);
+    }
+
     resetPassword(data: any): Promise<RestResponse> {
         return this.saveRecord('/api/account/forgot/password', data);
     }

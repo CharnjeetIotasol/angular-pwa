@@ -6,6 +6,7 @@ import { Login } from 'src/app/models/login';
 import { LoadingService } from 'src/app/services/loading.service';
 import { LoginService } from 'src/app/services/login.service';
 import { RestResponse } from 'src/app/shared/auth.model';
+import { CommonUtil } from 'src/app/shared/common.util';
 import { ToastService } from 'src/app/shared/toast.service';
 
 @Component({
@@ -59,14 +60,20 @@ export class LoginComponent implements OnInit {
       }
       const response = data.data;
       response.token.expires_at = new Date(response.token.expires).getTime();
-      if (response.user) {
-        response.user.businessName = response.businessName;
+      if (response.user.isOnboardingCompleted) {
+        this.localStorageService.set('token', response.token);
+        this.localStorageService.set('user', response.user);
+      } else {
+        this.localStorageService.set('temp-token', response.token);
+        this.localStorageService.set('temp-user', response.user);
       }
-      this.localStorageService.set('token', response.token);
-      this.localStorageService.set('user', response.user);
       setTimeout(() => {
-        this.router.navigate(['/dashboard']);
-      });
+        if (response.user.isOnboardingCompleted) {
+          this.router.navigate(['/dashboard']);
+        } else {
+          this.router.navigate(['/account/on-boarding']);
+        }
+      }, 500);
     } catch (e: any) {
       this.loadingService.hide();
       this.toastService.error(e.message);
@@ -82,7 +89,55 @@ export class LoginComponent implements OnInit {
   }
 
   async processSocialLogin(user: any) {
-    console.log(user);
-    this.router.navigate(['/account/onboarding']);
+    const input = new Login();
+    input.firstName = user.firstName;
+    input.lastName = user.lastName;
+    input.email = user.email;
+    if (user.provider === "GOOGLE") {
+      input.googleId = user.id;
+    } else if (user.provider === "FACEBOOK") {
+      input.facebookId = user.id;
+    }
+    if (!this.isValidSocialRegisterRequest(input)) {
+      return;
+    }
+    try {
+      const data: RestResponse = await this.loginService.socialLogin(input);
+      if (!data.status) {
+        this.toastService.error(data.message);
+        return;
+      }
+      const response = data.data;
+      response.token.expires_at = new Date(response.token.expires).getTime();
+      if (response.user.isOnboardingCompleted) {
+        this.localStorageService.set('token', response.token);
+        this.localStorageService.set('user', response.user);
+      } else {
+        this.localStorageService.set('temp-token', response.token);
+        this.localStorageService.set('temp-user', response.user);
+      }
+      setTimeout(() => {
+        this.socialAuthService.signOut();
+        if (response.user.isOnboardingCompleted) {
+          this.router.navigate(['/dashboard']);
+        } else {
+          this.router.navigate(['/account/on-boarding']);
+        }
+      }, 500);
+    } catch (e: any) {
+      this.toastService.error(e.message);
+    }
+  }
+
+  isValidSocialRegisterRequest(input: Login) {
+    if (CommonUtil.isNullOrUndefined(input.firstName) || input.firstName.trim() === '') {
+      this.toastService.error("First Name is required");
+      return false;
+    }
+    if (CommonUtil.isNullOrUndefined(input.email) || input.email.trim() === '') {
+      this.toastService.error("Sorry, We are unable to fetch email address from social. Please change setting in social account to access your email address.");
+      return false;
+    }
+    return true;
   }
 }

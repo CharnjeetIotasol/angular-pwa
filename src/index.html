@@ -13,10 +13,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    .loader-container {
+      width: 100vw;
+      height: 100vh;
+      background: white;
+      display: flex;
+      align-items: center;
+      position: fixed;
+      z-index: 999999999;
+      top: 0;
+    }
+
+    .loader-container .loader {
+      margin: 0px auto;
+    }
+  </style>
 </head>
 
 <body class="mat-typography">
-  <app-root></app-root>
+  <app-root>
+  </app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
 

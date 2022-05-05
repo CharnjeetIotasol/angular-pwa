@@ -427,6 +427,10 @@ input.mat-input-element {
     &.large-button {
         min-height: 56px;
     }
+    &.site-second-color {
+        background-color: #ee8264 !important;
+        color: #fff !important;
+    }
 }
 
 .error-text {
@@ -465,4 +469,8 @@ input.mat-input-element {
     .mat-spinner circle {
         stroke: #fff !important;
     }
+}
+
+.loading-container {
+    
 }

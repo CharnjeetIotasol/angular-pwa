@@ -19,6 +19,8 @@
 		"REQUIRED_INPUT_MAX_VALIDATION_MESSAGE": "Please provide a valid value. Max allowed value: ",
 		"REQUIRED_MASK_VALIDATION_MESSAGE": "Please provide a valid value. Value will be like: ",
 		"YEAR_INPUT_VALIDATION_MESSAGE": "Please provide a valid year value.",
-		"MONTH_INPUT_VALIDATION_MESSAGE": "Please provide a valid month value."
+		"MONTH_INPUT_VALIDATION_MESSAGE": "Please provide a valid month value.",
+		"PASSWORD_NOT_MATCH_VALIDATION_MESSAGE": "Password does not match",
+		"REQUIRED_TC_VALIDATION_MESSAGE": "Please accept term and conditions"
 	}
 }

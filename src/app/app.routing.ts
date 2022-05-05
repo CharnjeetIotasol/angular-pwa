@@ -21,6 +21,10 @@ export const ROUTES: Routes = [
     path: 'account/onboarding',
     component: OnboardingComponent
   },
+  {
+    path: 'account/forgot/password',
+    component: LoginComponent
+  },
   // {
   //   path: 'dashboard',
   //   loadChildren: () => import('./pages/layout/layout.module').then(m => m.LayoutModule),
