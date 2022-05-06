@@ -29,10 +29,6 @@ export class RegisterComponent implements OnInit {
     this.fieldPasswordType = this.fieldConfirmPasswordType = "password";
     this.data = new Login();
     this.onClickValidation = false;
-    this.loadingService.show();
-    setTimeout(() => {
-      this.loadingService.hide();
-    }, 60000);
   }
 
   togglePasswordField() {

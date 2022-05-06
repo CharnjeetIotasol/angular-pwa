@@ -472,5 +472,16 @@ input.mat-input-element {
 }
 
 .loading-container {
-    
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    position: fixed;
+    z-index: 999999999;
+    top: 0;
+
+    .loader {
+        margin: 0px auto;
+    }
 }

@@ -10,10 +10,12 @@ export class LoadingService {
     }
 
     show() {
-        $(".loader-container").show();
+        $("body").css({ "overflow": "hidden" });
+        $("#loading").show();
     }
 
     hide() {
-        $(".loader-container").fadeOut(1000);
+        $("body").css({ "overflow": "auto" });
+        $("#loading").fadeOut(1000);
     }
 }
