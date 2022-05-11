@@ -14,9 +14,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialAppModule } from './material.module';
 import { ConfirmationDialogComponent } from './pages/common/confirmation-dialog/confirmation-dialog.component';
+import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { LoginComponent } from './pages/login/login.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { HttpAuthInterceptor } from './shared/http.interceptor';
 import { SharedModuleModule } from './shared/shared-module.module';
 
@@ -27,7 +31,11 @@ import { SharedModuleModule } from './shared/shared-module.module';
     LoginComponent,
     RegisterComponent,
     OnboardingComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    ForbiddenComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

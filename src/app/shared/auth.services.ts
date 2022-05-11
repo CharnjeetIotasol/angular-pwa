@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from 'angular-2-local-storage';
-import { Constant } from '../config/constants';
 import { IResourceWithId } from './auth.model';
 import { CommonUtil } from './common.util';
 import { HttpServiceRequests } from './http.service';
@@ -81,29 +80,5 @@ export class AuthService extends HttpServiceRequests<IResourceWithId> {
             resolve({ hasAccess: this.hasValidToken(), hasRoleAccess: roles.some(x => this.getRoles().indexOf(x) !== -1) });
         });
         return promise;
-    }
-
-    isAccessible(ENTITY, VIEW) {
-        const userRoles = this.getUser().roles;
-        if (CommonUtil.isNullOrUndefined(ENTITY) || CommonUtil.isNullOrUndefined(VIEW)) {
-            return false;
-        }
-        const allowedRoles = Constant.VIEW_USER_MAPPING[ENTITY + '_ACCESS'][VIEW];
-        if (CommonUtil.isNullOrUndefined(allowedRoles)) {
-            return false;
-        }
-        return allowedRoles.SHOW_TO_ROLE.some((ele) => userRoles.includes(ele));
-    }
-
-    isDisabled(ENTITY, VIEW) {
-        const userRoles = this.getUser().roles;
-        if (CommonUtil.isNullOrUndefined(ENTITY) || CommonUtil.isNullOrUndefined(VIEW)) {
-            return false;
-        }
-        const allowedRoles = Constant.VIEW_USER_MAPPING[ENTITY + '_ACCESS'][VIEW];
-        if (CommonUtil.isNullOrUndefined(allowedRoles)) {
-            return true;
-        }
-        return !allowedRoles.ENABLED_FOR_ROLE.some((ele) => userRoles.includes(ele));
     }
 }

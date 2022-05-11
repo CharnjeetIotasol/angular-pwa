@@ -112,10 +112,8 @@ export class LoginComponent implements OnInit {
       const response = data.data;
       response.token.expires_at = new Date(response.token.expires).getTime();
       if (response.user.isOnboardingCompleted) {
-        // this.localStorageService.set('token', response.token);
-        // this.localStorageService.set('user', response.user);
-        this.localStorageService.set('temp-token', response.token);
-        this.localStorageService.set('temp-user', response.user);
+        this.localStorageService.set('token', response.token);
+        this.localStorageService.set('user', response.user);
       } else {
         this.localStorageService.set('temp-token', response.token);
         this.localStorageService.set('temp-user', response.user);
@@ -123,8 +121,7 @@ export class LoginComponent implements OnInit {
       setTimeout(() => {
         this.socialAuthService.signOut();
         if (response.user.isOnboardingCompleted) {
-          //this.router.navigate(['/dashboard']);
-          this.router.navigate(['/account/onboarding']);
+          this.router.navigate(['/dashboard']);
         } else {
           this.router.navigate(['/account/onboarding']);
         }

@@ -14,14 +14,12 @@ export class HttpAuthInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("jere");
     const token: any = this.localStorageService.get('token');
     if (token && token.accessToken && token.expires_at && token.expires_at > new Date().getTime()) {
       const authReq = req.clone({ setHeaders: { Authorization: 'Bearer ' + token.accessToken } });
       req = authReq;
     }
     const tempToken: any = this.localStorageService.get('temp-token');
-    console.log(tempToken);
     if (tempToken && tempToken.accessToken && tempToken.expires_at && tempToken.expires_at > new Date().getTime()) {
       const authReq = req.clone({ setHeaders: { Authorization: 'Bearer ' + tempToken.accessToken } });
       req = authReq;
