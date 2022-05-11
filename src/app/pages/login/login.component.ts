@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
         if (response.user.isOnboardingCompleted) {
           this.router.navigate(['/dashboard']);
         } else {
-          this.router.navigate(['/account/on-boarding']);
+          this.router.navigate(['/account/onboarding']);
         }
       }, 500);
     } catch (e: any) {
@@ -101,8 +101,10 @@ export class LoginComponent implements OnInit {
     if (!this.isValidSocialRegisterRequest(input)) {
       return;
     }
+    this.loadingService.show();
     try {
       const data: RestResponse = await this.loginService.socialLogin(input);
+      this.loadingService.hide();
       if (!data.status) {
         this.toastService.error(data.message);
         return;
@@ -110,8 +112,10 @@ export class LoginComponent implements OnInit {
       const response = data.data;
       response.token.expires_at = new Date(response.token.expires).getTime();
       if (response.user.isOnboardingCompleted) {
-        this.localStorageService.set('token', response.token);
-        this.localStorageService.set('user', response.user);
+        // this.localStorageService.set('token', response.token);
+        // this.localStorageService.set('user', response.user);
+        this.localStorageService.set('temp-token', response.token);
+        this.localStorageService.set('temp-user', response.user);
       } else {
         this.localStorageService.set('temp-token', response.token);
         this.localStorageService.set('temp-user', response.user);
@@ -119,12 +123,14 @@ export class LoginComponent implements OnInit {
       setTimeout(() => {
         this.socialAuthService.signOut();
         if (response.user.isOnboardingCompleted) {
-          this.router.navigate(['/dashboard']);
+          //this.router.navigate(['/dashboard']);
+          this.router.navigate(['/account/onboarding']);
         } else {
-          this.router.navigate(['/account/on-boarding']);
+          this.router.navigate(['/account/onboarding']);
         }
       }, 500);
     } catch (e: any) {
+      this.loadingService.hide();
       this.toastService.error(e.message);
     }
   }

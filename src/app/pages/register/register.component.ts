@@ -81,9 +81,10 @@ export class RegisterComponent implements OnInit {
     }
     setTimeout(() => {
       if (response.user.isOnboardingCompleted) {
-        this.router.navigate(['/dashboard']);
+        //this.router.navigate(['/dashboard']);
+        this.router.navigate(['/account/onboarding']);
       } else {
-        this.router.navigate(['/account/on-boarding']);
+        this.router.navigate(['/account/onboarding']);
       }
     });
   }

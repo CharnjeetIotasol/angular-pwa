@@ -50,3 +50,18 @@ $my-app-theme: mat-light-theme($my-primary, $my-app-accent, $my-app-warn);
 @import "assets/scss/common";
 @import "assets/scss/login";
 @import "assets/scss/dashboard-layout";
+
+.style-success {
+    color: #000;
+    background-color: #69f0ae;
+}
+.style-success .mat-simple-snackbar-action {
+    color: #000;
+}
+.style-error {
+    color: #fff;
+    background-color: #ff5722;
+}
+.style-error .mat-simple-snackbar-action {
+    color: #fff;
+}
