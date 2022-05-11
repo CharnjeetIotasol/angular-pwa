@@ -6,14 +6,14 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 })
 export class ToastService {
 
-  configSuccess: MatSnackBarConfig = {
+  private configSuccess: MatSnackBarConfig = {
     panelClass: ['style-success'],
     horizontalPosition: "center",
     verticalPosition: "bottom",
     duration: 10000
   };
 
-  errorSuccess: MatSnackBarConfig = {
+  private errorSuccess: MatSnackBarConfig = {
     panelClass: ['style-error'],
     horizontalPosition: "center",
     verticalPosition: "bottom",

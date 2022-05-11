@@ -1,5 +1,5 @@
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +17,7 @@ import { ConfirmationDialogComponent } from './pages/common/confirmation-dialog/
 import { LoginComponent } from './pages/login/login.component';
 import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { HttpAuthInterceptor } from './shared/http.interceptor';
 import { SharedModuleModule } from './shared/shared-module.module';
 
 
@@ -58,6 +59,11 @@ import { SharedModuleModule } from './shared/shared-module.module';
   ],
   providers: [
     AppUpdateService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpAuthInterceptor,
+      multi: true
+    },
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
