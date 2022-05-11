@@ -8,13 +8,39 @@
 </mat-tab-group> -->
 
 <mat-tab-group dynamicHeight headerPosition="below">
-    <mat-tab label="Short tab">
-        <div class="example-small-box mat-elevation-z4">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <img src="/assets/images/icons/home-icon.svg" />
+            <div>HOME</div>
+        </ng-template>
+        <div class="tab-page-container mat-elevation-z4">
             Small content
         </div>
     </mat-tab>
-    <mat-tab label="Long tab">
-        <div class="example-large-box mat-elevation-z4">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <img src="/assets/images/icons/my-voucher-icon.svg" />
+            <div>MY VOUCHERS</div>
+        </ng-template>
+        <div class="tab-page-container mat-elevation-z4">
+            Large content
+        </div>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <img src="/assets/images/icons/leaderboard-icon.svg" />
+            <div>LEADBOARD</div>
+        </ng-template>
+        <div class="tab-page-container mat-elevation-z4">
+            Large content
+        </div>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <img src="/assets/images/icons/setting-icon.svg" />
+            <div>SETTINGS</div>
+        </ng-template>
+        <div class="tab-page-container mat-elevation-z4">
             Large content
         </div>
     </mat-tab>

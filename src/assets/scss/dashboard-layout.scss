@@ -5,6 +5,18 @@ mat-toolbar {
         font-weight: 500;
     }
 }
+.mat-tab-label {
+    padding: 10px 17.3px !important;
+    height: 75px !important;
+}
+.mat-tab-label-content {
+    flex-direction: column;
+    font-size: 11px;
+    font-weight: 500;
+}
+.tab-page-container {
+    height: calc(100vh - 131px) !important;
+}
 .mat-tab-body-content {
-    height: calc(100vh - 104px) !important;
+    height: calc(100vh - 131px) !important;
 }
