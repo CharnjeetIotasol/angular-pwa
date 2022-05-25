@@ -24,12 +24,12 @@ export class LoginService extends HttpServiceRequests<IResourceWithId> {
         return this.saveRecord('/app/customer', data);
     }
 
-    resetPassword(data: any): Promise<RestResponse> {
-        return this.saveRecord('/api/account/forgot/password', data);
+    forgotPassword(data: any): Promise<RestResponse> {
+        return this.saveRecord('/app/customer/forgotpassword', data);
     }
 
     recoverPassword(data: any): Promise<RestResponse> {
-        return this.saveRecord('/api/account/reset/password', data);
+        return this.saveRecord('/app/customer/resetpassword', data);
     }
 
     fetchCompanies(data: any): Promise<RestResponse> {

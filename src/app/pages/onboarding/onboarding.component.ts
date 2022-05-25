@@ -66,7 +66,7 @@ export class OnboardingComponent implements OnInit {
           this._toastService.error(response.message);
           return;
         }
-        this._toastService.success("Interest Successfully Updated");
+        this._toastService.success("Profile saved successfully");
         this._localStorageService.set('user', this._localStorageService.get('temp-user'));
         this._localStorageService.set('token', this._localStorageService.get('temp-token'));
         this._localStorageService.remove('temp-user');

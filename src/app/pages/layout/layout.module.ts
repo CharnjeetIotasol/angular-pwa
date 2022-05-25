@@ -10,6 +10,8 @@ import { SharedModuleModule } from 'src/app/shared/shared-module.module';
 import { LandingComponent } from '../landing/landing.component';
 import { LayoutComponent } from './layout.component';
 import { LAYOUTROUTING } from './layout.routing';
+import { AgmOverlays } from "agm-overlays"
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
 	declarations: [
@@ -28,7 +30,11 @@ import { LAYOUTROUTING } from './layout.routing';
 				deps: [HttpClient]
 			}
 		}),
-		RouterModule.forChild(LAYOUTROUTING)
+		RouterModule.forChild(LAYOUTROUTING),
+		AgmOverlays,
+		AgmCoreModule.forRoot({
+			apiKey: 'AIzaSyApoDaDS76qQ-1hMuVMIOx63AwSW85EZhE'
+		}),
 	],
 	providers: [
 	]

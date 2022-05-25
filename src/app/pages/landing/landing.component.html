@@ -1,25 +1,47 @@
-<mat-toolbar class="text-center">
+<!-- <mat-toolbar class="text-center">
     <span>FIND VOUCHERS</span>
-</mat-toolbar>
-<!-- <mat-tab-group headerPosition="below">
-    <mat-tab label="First"> Content 1 </mat-tab>
-    <mat-tab label="Second"> Content 2 </mat-tab>
-    <mat-tab label="Third"> Content 3 </mat-tab>
-</mat-tab-group> -->
-
+</mat-toolbar> -->
 <mat-tab-group dynamicHeight headerPosition="below">
     <mat-tab>
         <ng-template mat-tab-label>
-            <img src="/assets/images/icons/home-icon.svg" />
+            <div class="icon-container">
+                <img src="/assets/images/icons/home-icon.svg" class="active-icon" />
+                <img src="/assets/images/icons/home-icon-dark.svg" class="non-active-icon" />
+            </div>
             <div>HOME</div>
         </ng-template>
         <div class="tab-page-container mat-elevation-z4">
-            Small content
+            <div class="find-voucher-header-title text-center">
+                <span>FIND VOUCHERS</span>
+            </div>
+            <agm-map [zoom]="11" [disableDefaultUI]="false" [fitBounds]="true" (mapReady)="onMapReady($event)">
+                <agm-overlay [latitude]="marker.latitude" [longitude]="marker.longitude"
+                    *ngFor="let marker of markers;let i=index">
+                    <div class="marker-main-info">
+                        <img class="placeholder-image" src="/assets/images/icons/map-pin-default-small.png"
+                            *ngIf="marker.type === 'DISCOUNT' || marker.type === 'VOUCHER'">
+                        <!-- <img class="placeholder-image" src="/assets/images/icons/map-pin-hunt-primary-small.png"
+                            *ngIf="marker.type === 'HUNT'">
+                        <img class="placeholder-image" src="/assets/images/icons/map-pin-trivia-primary-small.png"
+                            *ngIf="marker.type === 'TRIVIA'"> -->
+                        <img class="client-logo"
+                            [src]="marker.logo?marker.logo[0].path:'/assets/images/icons/map-pin-default-small.png'"
+                            *ngIf="marker.type === 'DISCOUNT' || marker.type === 'VOUCHER'">
+                    </div>
+                </agm-overlay>
+                <agm-marker [agmFitBounds]="true" [latitude]="marker.latitude" [longitude]="marker.longitude"
+                    [openInfoWindow]="true" [iconUrl]="marker.finalIcon" *ngFor="let marker of markers;let i=index"
+                    [label]="'3'" [animation]="'DROP'" [visible]="false">
+                </agm-marker>
+            </agm-map>
         </div>
     </mat-tab>
     <mat-tab>
         <ng-template mat-tab-label>
-            <img src="/assets/images/icons/my-voucher-icon.svg" />
+            <div class="icon-container">
+                <img src="/assets/images/icons/my-voucher-icon.svg" class="active-icon" />
+                <img src="/assets/images/icons/my-voucher-icon-dark.svg" class="non-active-icon" />
+            </div>
             <div>MY VOUCHERS</div>
         </ng-template>
         <div class="tab-page-container mat-elevation-z4">
@@ -28,7 +50,10 @@
     </mat-tab>
     <mat-tab>
         <ng-template mat-tab-label>
-            <img src="/assets/images/icons/leaderboard-icon.svg" />
+            <div class="icon-container">
+                <img src="/assets/images/icons/leaderboard-icon.svg" class="active-icon" />
+                <img src="/assets/images/icons/leaderboard-icon-dark.svg" class="non-active-icon" />
+            </div>
             <div>LEADBOARD</div>
         </ng-template>
         <div class="tab-page-container mat-elevation-z4">
@@ -37,7 +62,10 @@
     </mat-tab>
     <mat-tab>
         <ng-template mat-tab-label>
-            <img src="/assets/images/icons/setting-icon.svg" />
+            <div class="icon-container">
+                <img src="/assets/images/icons/setting-icon.svg" class="active-icon" />
+                <img src="/assets/images/icons/setting-icon-dark.svg" class="non-active-icon" />
+            </div>
             <div>SETTINGS</div>
         </ng-template>
         <div class="tab-page-container mat-elevation-z4">

@@ -31,8 +31,9 @@
                 <mat-form-field class="site-form-field" appearance="fill" appearance="outline"
                     [ngClass]="{'mat-form-field-invalid':!userAddress.valid && onClickValidation}">
                     <mat-label>Address</mat-label>
-                    <input matInput placeholder="Address" required="required" name="userAddress" #userAddress="ngModel"
-                        [(ngModel)]="data.address">
+                    <input matInput ngx-google-places-autocomplete [options]="options" placeholder="Address"
+                        required="required" name="userAddress" #userAddress="ngModel" [(ngModel)]="data.uiAddress"
+                        (onAddressChange)="onAddressChange($event)">
                     <mat-hint class="error-text" *ngIf="onClickValidation && userAddress?.errors?.required">
                         {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
                     </mat-hint>

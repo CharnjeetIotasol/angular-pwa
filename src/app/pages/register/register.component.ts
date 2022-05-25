@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   fieldPasswordType: string;
   fieldConfirmPasswordType: string;
   agreeTermAndCondition: boolean;
+  options: any;
   constructor(private toastService: ToastService,
     private loginService: LoginService,
     private localStorageService: LocalStorageService,
@@ -25,6 +26,9 @@ export class RegisterComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    this.options = {
+      types: []
+    };
     this.agreeTermAndCondition = false;
     this.fieldPasswordType = this.fieldConfirmPasswordType = "password";
     this.data = new Login();
@@ -86,5 +90,9 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/account/onboarding']);
       }
     });
+  }
+
+  onAddressChange(address: any) {
+    this.data.address = address.formatted_address;
   }
 }

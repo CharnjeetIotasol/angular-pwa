@@ -23,7 +23,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { HttpAuthInterceptor } from './shared/http.interceptor';
 import { SharedModuleModule } from './shared/shared-module.module';
-
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   declarations: [
@@ -63,7 +63,8 @@ import { SharedModuleModule } from './shared/shared-module.module';
       // registrationStrategy: 'registerWhenStable:30000'
     }),
     MaterialAppModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    GooglePlaceModule
   ],
   providers: [
     AppUpdateService,
