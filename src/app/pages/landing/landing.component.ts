@@ -52,7 +52,7 @@ export class LandingComponent implements OnInit {
     const input = {} as any;
     input.latitude = coords.latitude;
     input.longitude = coords.longitude;
-    input.requestDistance = 100;
+    input.requestDistance = 500;
     this.mapService.fetchVocuherNearMe(input)
       .then((response: RestResponse) => {
         this.loadingService.hide();

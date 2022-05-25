@@ -89,7 +89,8 @@ agm-map {
 
 .find-voucher-header-title {
     height: 56px;
-    background: linear-gradient(194deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.3) 100%);
+    // background: linear-gradient(194deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.3) 100%);
+    background: url("/assets/images/find-voucher-header.svg");
     position: absolute;
     z-index: 99999;
     width: 100%;
