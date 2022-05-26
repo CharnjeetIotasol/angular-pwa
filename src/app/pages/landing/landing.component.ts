@@ -21,15 +21,19 @@ export class LandingComponent implements OnInit {
 
 
   fetchMyLocations(): void {
-    navigator.geolocation.getCurrentPosition(position => {
-      this.fetchMarkers(position.coords);
-    }, error => {
-      this.toastService.error(this.locationError(error));
-    }, {
-      timeout: 2000,
-      maximumAge: 20000,
-      enableHighAccuracy: true
-    });
+    navigator.permissions.query({ name: 'geolocation' })
+      .then((response) => {
+        console.log(response);
+        navigator.geolocation.getCurrentPosition(position => {
+          this.fetchMarkers(position.coords);
+        }, error => {
+          this.toastService.error(this.locationError(error));
+        }, {
+          timeout: 2000,
+          maximumAge: 20000,
+          enableHighAccuracy: true
+        });
+      })
   }
 
   locationError(error: any): string {
