@@ -1,7 +1,7 @@
 <!-- <mat-toolbar class="text-center">
     <span>FIND VOUCHERS</span>
 </mat-toolbar> -->
-<mat-tab-group dynamicHeight headerPosition="below">
+<mat-tab-group dynamicHeight headerPosition="below" (selectedTabChange)="onTabChanged($event);">
     <mat-tab>
         <ng-template mat-tab-label>
             <div class="icon-container">

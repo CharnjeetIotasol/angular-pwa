@@ -11,47 +11,76 @@ import { ToastService } from 'src/app/shared/toast.service';
 })
 export class LandingComponent implements OnInit {
   markers: Array<any>;
+  currentTab = "VOCUHER_VIEW";
+  watchLocationId: any;
+  options: any;
+  lastUpdateTime: any;
+  minFrequency: number;
+  lastCoords: any;
   constructor(private loadingService: LoadingService,
     private toastService: ToastService,
     private mapService: MapService) { }
 
   ngOnInit(): void {
-    this.fetchMyLocations();
+    this.options = {
+      timeout: 5000,
+      maximumAge: 0,
+      enableHighAccuracy: true
+    };
+    this.requestPermissions();
   }
 
 
-  fetchMyLocations(): void {
+  requestPermissions(): void {
+    this.lastUpdateTime = undefined;
+    this.minFrequency = 2000;
     navigator.permissions.query({ name: 'geolocation' })
       .then((permissionStatus) => {
         console.log('geolocation permission state is ', permissionStatus.state);
-        navigator.geolocation.getCurrentPosition((position) => {
-          console.log('Geolocation permissions granted');
-          console.log('Latitude:' + position.coords.latitude);
-          console.log('Longitude:' + position.coords.longitude);
-          this.fetchMarkers(position.coords);
-        }, (error) => {
-          this.toastService.error(this.locationError(error));
-        }, {
-          timeout: 20000,
-          maximumAge: 20000,
-          enableHighAccuracy: true
-        });
-
+        this.fetchWatchLocations();
       });
+  }
 
-    // navigator.permissions.query({ name: 'geolocation' })
-    //   .then((response) => {
-    //     console.log(response);
-    //     navigator.geolocation.getCurrentPosition(position => {
-    //       this.fetchMarkers(position.coords);
-    //     }, error => {
-    //       this.toastService.error(this.locationError(error));
-    //     }, {
-    //       timeout: 2000,
-    //       maximumAge: 20000,
-    //       enableHighAccuracy: true
-    //     });
-    //   })
+  fetchWatchLocations() {
+    console.log("Watching position....");
+    if (this.watchLocationId) {
+      console.log("Watching position already active....", this.watchLocationId);
+      this.clearWatchLocations();
+      setTimeout(() => {
+        this.fetchWatchLocations();
+      }, 200);
+      return;
+    }
+    this.watchLocationId = navigator.geolocation.watchPosition((position) => {
+      console.log("Fetch new position from geolocation watch");
+      const now = new Date();
+      if (this.lastUpdateTime && now.getTime() - this.lastUpdateTime.getTime() < Number(this.minFrequency)) {
+        console.log("Skipping postion due to min frequency time");
+        return;
+      }
+      const distance = this.distance(position.coords, this.lastCoords);
+      this.toastService.success("Distance: " + distance);
+      if (this.lastCoords && distance <= 5) {
+        console.log("Skipping postion due to min distance");
+        return;
+      }
+      this.lastCoords = position.coords;
+      this.lastUpdateTime = now;
+      this.fetchMarkers(position.coords);
+    }, (error) => {
+      this.toastService.error(this.locationError(error));
+    }, this.options);
+  }
+
+  clearWatchLocations() {
+    console.log('Clearing watch position', this.watchLocationId);
+    if (!this.watchLocationId) {
+      return;
+    }
+    navigator.geolocation.clearWatch(this.watchLocationId);
+    this.watchLocationId = undefined;
+    this.lastUpdateTime = undefined;
+    this.lastCoords = undefined;
   }
 
   locationError(error: any): string {
@@ -73,12 +102,13 @@ export class LandingComponent implements OnInit {
   }
 
   fetchMarkers(coords: any) {
+    console.log("Fetching available vouchers from source...");
     this.markers = new Array<any>();
     this.loadingService.show();
     const input = {} as any;
     input.latitude = coords.latitude;
     input.longitude = coords.longitude;
-    input.requestDistance = 500;
+    input.requestDistance = 80;
     this.mapService.fetchVocuherNearMe(input)
       .then((response: RestResponse) => {
         this.loadingService.hide();
@@ -90,7 +120,13 @@ export class LandingComponent implements OnInit {
         this.markers.forEach((marker) => {
           marker.latitude = Number(marker.latitude);
           marker.longitude = Number(marker.longitude);
-        })
+        });
+        if (this.markers.length <= 0) {
+          const marker = {} as any;
+          marker.latitude = coords.latitude;
+          marker.longitude = coords.longitude;
+          this.markers.push(marker);
+        }
       }, (error) => {
         this.loadingService.hide();
         this.toastService.error(error.message);
@@ -105,5 +141,42 @@ export class LandingComponent implements OnInit {
       streetViewControl: false,
       fullscreenControl: false
     });
+  }
+
+  onTabChanged($event: any) {
+    this.currentTab = $event.index === 0 ? "VOCUHER_VIEW"
+      : $event.index === 1 ? "MY_VOUCHER_VIEW"
+        : $event.index === 2 ? "LEADERBOARD_VIEW"
+          : $event.index === 3 ? "ACCOUNT_SETTING_VIEW"
+            : "OTHER";
+
+    if (this.currentTab === "VOCUHER_VIEW") {
+      this.requestPermissions();
+    } else if (this.currentTab === "MY_VOUCHER_VIEW") {
+      this.clearWatchLocations();
+    } else if (this.currentTab === "LEADERBOARD_VIEW") {
+      this.clearWatchLocations();
+    } else if (this.currentTab === "ACCOUNT_SETTING_VIEW") {
+      this.clearWatchLocations();
+    }
+  }
+
+  distance(coords: any, eCoords: any): Number {
+    if (!coords || !eCoords) {
+      return 0;
+    }
+    const earthRadius = 6371000; // meters
+    const dLat = this.toRad(eCoords.latitude - coords.latitude);
+    const dLng = this.toRad(eCoords.longitude - coords.longitude);
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(this.toRad(coords.latitude)) * Math.cos(this.toRad(eCoords.latitude)) *
+      Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const dist = (earthRadius * c);
+    return Number(dist);
+  }
+
+  toRad(deg: any) {
+    return deg * (Math.PI / 180);
   }
 }
