@@ -22,18 +22,36 @@ export class LandingComponent implements OnInit {
 
   fetchMyLocations(): void {
     navigator.permissions.query({ name: 'geolocation' })
-      .then((response) => {
-        console.log(response);
-        navigator.geolocation.getCurrentPosition(position => {
+      .then((permissionStatus) => {
+        console.log('geolocation permission state is ', permissionStatus.state);
+        navigator.geolocation.getCurrentPosition((position) => {
+          console.log('Geolocation permissions granted');
+          console.log('Latitude:' + position.coords.latitude);
+          console.log('Longitude:' + position.coords.longitude);
           this.fetchMarkers(position.coords);
-        }, error => {
+        }, (error) => {
           this.toastService.error(this.locationError(error));
         }, {
           timeout: 2000,
           maximumAge: 20000,
           enableHighAccuracy: true
         });
-      })
+
+      });
+
+    // navigator.permissions.query({ name: 'geolocation' })
+    //   .then((response) => {
+    //     console.log(response);
+    //     navigator.geolocation.getCurrentPosition(position => {
+    //       this.fetchMarkers(position.coords);
+    //     }, error => {
+    //       this.toastService.error(this.locationError(error));
+    //     }, {
+    //       timeout: 2000,
+    //       maximumAge: 20000,
+    //       enableHighAccuracy: true
+    //     });
+    //   })
   }
 
   locationError(error: any): string {
