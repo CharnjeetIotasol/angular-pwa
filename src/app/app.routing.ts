@@ -16,23 +16,33 @@ export const ROUTES: Routes = [
   },
   {
     path: 'account/login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ROLE_ANONYMOUS'] }
   },
   {
     path: 'account/register',
-    component: RegisterComponent
+    component: RegisterComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ROLE_ANONYMOUS'] }
   },
   {
     path: 'account/onboarding',
-    component: OnboardingComponent
+    component: OnboardingComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ROLE_ANONYMOUS'] }
   },
   {
     path: 'account/forgot/password',
-    component: ForgotPasswordComponent
+    component: ForgotPasswordComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ROLE_ANONYMOUS'] }
   },
   {
     path: 'account/recover/:code',
-    component: ResetPasswordComponent
+    component: ResetPasswordComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ROLE_ANONYMOUS'] }
   },
   {
     path: 'dashboard',

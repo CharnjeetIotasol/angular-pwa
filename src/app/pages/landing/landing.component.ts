@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Login } from 'src/app/models/login';
 import { LoadingService } from 'src/app/services/loading.service';
 import { MapService } from 'src/app/services/map.service';
 import { RestResponse } from 'src/app/shared/auth.model';
@@ -18,12 +19,14 @@ export class LandingComponent implements OnInit {
   minFrequency: number;
   lastCoords: any;
   selectedTabIndex: number;
+  user: Login;
+  onClickValidation: boolean;
   constructor(private loadingService: LoadingService,
     private toastService: ToastService,
     private mapService: MapService) { }
 
   ngOnInit(): void {
-    this.selectedTabIndex = 1;
+    this.selectedTabIndex = 3;
     this.currentTab = "MY_VOUCHER_VIEW";
     this.options = {
       timeout: 5000,
@@ -31,7 +34,8 @@ export class LandingComponent implements OnInit {
       enableHighAccuracy: true
     };
     //this.requestPermissions();
-    this.fetchMyVouchers();
+    //this.fetchMyVouchers();
+    this.fetchMyDetail();
   }
 
 
@@ -56,6 +60,7 @@ export class LandingComponent implements OnInit {
       return;
     }
     this.watchLocationId = navigator.geolocation.watchPosition((position) => {
+      const hasLoading = !this.lastCoords;
       console.log("Fetch new position from geolocation watch");
       const now = new Date();
       if (this.lastUpdateTime && now.getTime() - this.lastUpdateTime.getTime() < Number(this.minFrequency)) {
@@ -70,7 +75,7 @@ export class LandingComponent implements OnInit {
       }
       this.lastCoords = position.coords;
       this.lastUpdateTime = now;
-      this.fetchMarkers(position.coords);
+      this.fetchMarkers(position.coords, hasLoading);
     }, (error) => {
       this.toastService.error(this.locationError(error));
     }, this.options);
@@ -105,10 +110,12 @@ export class LandingComponent implements OnInit {
     return "Somethings went wrong. Please try after sometime";
   }
 
-  fetchMarkers(coords: any) {
+  fetchMarkers(coords: any, hasLoading: boolean) {
     console.log("Fetching available vouchers from source...");
     this.markers = new Array<any>();
-    this.loadingService.show();
+    if (hasLoading) {
+      this.loadingService.show();
+    }
     const input = {} as any;
     input.latitude = coords.latitude;
     input.longitude = coords.longitude;
@@ -178,6 +185,7 @@ export class LandingComponent implements OnInit {
     } else if (this.currentTab === "LEADERBOARD_VIEW") {
       this.clearWatchLocations();
     } else if (this.currentTab === "ACCOUNT_SETTING_VIEW") {
+      this.fetchMyDetail();
       this.clearWatchLocations();
     }
   }
@@ -199,5 +207,13 @@ export class LandingComponent implements OnInit {
 
   toRad(deg: any) {
     return deg * (Math.PI / 180);
+  }
+
+  fetchMyDetail() {
+    this.user = new Login();
+  }
+
+  onAddressChange(address: any) {
+    this.user.address = address.formatted_address;
   }
 }

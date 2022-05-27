@@ -243,3 +243,43 @@ agm-map {
         }
     }
 }
+
+.profile-pic-image-container {
+    position: relative;
+    max-width: 120px;
+    .user-profile-pic {
+        box-shadow: 0px 3px 6px #00000029;
+        border-radius: 16px;
+        margin-bottom: 20px;
+        max-width: 120px;
+    }
+    .user-profile-setting {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        z-index: 99999;
+        cursor: pointer;
+    }
+}
+.change-password-link {
+    margin-bottom: 20px;
+    a {
+        font-size: 13px;
+        font-weight: 600;
+        color: $primary;
+    }
+}
+.update-interest-button {
+    background-color: transparent !important;
+    color: $primary !important;
+    border: 1px dashed rgba(41, 6, 108, 0.22) !important;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+        border: 1px dashed rgb(41, 6, 108) !important;
+    }
+}

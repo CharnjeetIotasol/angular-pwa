@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
         return true;
       }
       if (!response.hasAccess) {
-        this.router.navigate(['login'], { queryParams: { redirectTo: state.url } });
+        this.router.navigate(['account/login'], { queryParams: { redirectTo: state.url } });
         return false;
       }
       if (!response.hasRoleAccess) {
