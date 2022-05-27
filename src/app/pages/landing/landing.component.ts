@@ -17,17 +17,21 @@ export class LandingComponent implements OnInit {
   lastUpdateTime: any;
   minFrequency: number;
   lastCoords: any;
+  selectedTabIndex: number;
   constructor(private loadingService: LoadingService,
     private toastService: ToastService,
     private mapService: MapService) { }
 
   ngOnInit(): void {
+    this.selectedTabIndex = 1;
+    this.currentTab = "MY_VOUCHER_VIEW";
     this.options = {
       timeout: 5000,
       maximumAge: 0,
       enableHighAccuracy: true
     };
-    this.requestPermissions();
+    //this.requestPermissions();
+    this.fetchMyVouchers();
   }
 
 
@@ -59,8 +63,8 @@ export class LandingComponent implements OnInit {
         return;
       }
       const distance = this.distance(position.coords, this.lastCoords);
-      this.toastService.success("Distance: " + distance);
       if (this.lastCoords && distance <= 5) {
+        this.toastService.success("Distance: " + distance);
         console.log("Skipping postion due to min distance");
         return;
       }
@@ -133,6 +137,22 @@ export class LandingComponent implements OnInit {
       });
   }
 
+  fetchMyVouchers() {
+    this.loadingService.show();
+    this.mapService.fetchMyVouchers()
+      .subscribe((response: RestResponse) => {
+        this.loadingService.hide();
+        if (!response.status) {
+          this.toastService.error(response.message);
+          return;
+        }
+        console.log(response.data);
+      }, (error) => {
+        this.loadingService.hide();
+        this.toastService.error(error.message);
+      });
+  }
+
   onMapReady(map?: google.maps.Map) {
     if (!map) {
       return;
@@ -154,6 +174,7 @@ export class LandingComponent implements OnInit {
       this.requestPermissions();
     } else if (this.currentTab === "MY_VOUCHER_VIEW") {
       this.clearWatchLocations();
+      this.fetchMyVouchers();
     } else if (this.currentTab === "LEADERBOARD_VIEW") {
       this.clearWatchLocations();
     } else if (this.currentTab === "ACCOUNT_SETTING_VIEW") {

@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { IResourceWithId, RestResponse } from "../shared/auth.model";
 import { HttpServiceRequests } from "../shared/http.service";
 
@@ -14,5 +15,9 @@ export class MapService extends HttpServiceRequests<IResourceWithId> {
 
     fetchVocuherNearMe(data: any): Promise<RestResponse> {
         return this.saveRecord('/app/customer/marker/nearme', data);
+    }
+
+    fetchMyVouchers(): Observable<RestResponse> {
+        return this.getRecord('/app/customer/vouchers/collected');
     }
 }

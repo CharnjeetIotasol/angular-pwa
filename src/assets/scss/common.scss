@@ -427,6 +427,9 @@ input.mat-input-element {
     &.large-button {
         min-height: 56px;
     }
+    &.medium-button {
+        min-height: 45px;
+    }
     &.site-second-color {
         background-color: #ee8264 !important;
         color: #fff !important;
@@ -485,4 +488,3 @@ input.mat-input-element {
         margin: 0px auto;
     }
 }
-
