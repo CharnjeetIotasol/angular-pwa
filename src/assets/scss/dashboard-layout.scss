@@ -190,6 +190,13 @@ agm-map {
         padding: 20px;
         background-color: #fff;
         border-radius: 16px;
+        &.has-image {
+            padding: 0px;
+            background: url("/assets/images/my-voucher-background.svg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 172px;
+        }
 
         .my-voucher-body-inner {
             height: 153px;
