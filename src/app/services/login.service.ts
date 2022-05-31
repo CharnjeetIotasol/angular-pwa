@@ -33,6 +33,10 @@ export class LoginService extends HttpServiceRequests<IResourceWithId> {
     }
 
     fetchCompanies(data: any): Promise<RestResponse> {
-        return this.saveRecord('/api/account/GetCompanies', data);
+        return this.saveRecord('/api/account/getcompanies', data);
+    }
+
+    changePassword(data: any): Promise<RestResponse> {
+        return this.saveRecord('/app/customer/changepassword', data);
     }
 }

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { FilterParam } from '../models/filterparam';
 import { IResourceWithId, RestResponse } from '../shared/auth.model';
 import { HttpServiceRequests } from '../shared/http.service';
@@ -19,5 +20,13 @@ export class DataService extends HttpServiceRequests<IResourceWithId> {
 
     saveCategories(categories: any): Promise<RestResponse> {
         return this.saveRecord('/app/customer/categories', categories);
+    }
+
+    fetchMyDetail(): Observable<RestResponse> {
+        return this.getRecord('/app/customer');
+    }
+
+    updateMyDetail(input: any): Promise<RestResponse> {
+        return this.updateRecord('/app/customer', input);
     }
 }

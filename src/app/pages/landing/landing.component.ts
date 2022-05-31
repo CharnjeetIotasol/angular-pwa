@@ -1,5 +1,6 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { Login } from 'src/app/models/login';
+import { DataService } from 'src/app/services/data.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { MapService } from 'src/app/services/map.service';
 import { RestResponse } from 'src/app/shared/auth.model';
@@ -8,7 +9,20 @@ import { ToastService } from 'src/app/shared/toast.service';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  styleUrls: ['./landing.component.scss'],
+  animations: [
+    trigger(
+      'enterAnimation', [
+      transition(':enter', [
+        style({ transform: 'translateY(100%)', opacity: 0 }),
+        animate('500ms', style({ transform: 'translateY(0)', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        style({ transform: 'translateY(0)', opacity: 1 }),
+        animate('0ms', style({ transform: 'translateY(100%)', opacity: 0 }))
+      ])
+    ])
+  ],
 })
 export class LandingComponent implements OnInit {
   markers: Array<any>;
@@ -19,15 +33,16 @@ export class LandingComponent implements OnInit {
   minFrequency: number;
   lastCoords: any;
   selectedTabIndex: number;
-  user: Login;
-  onClickValidation: boolean;
+  tabView: string;
   constructor(private loadingService: LoadingService,
     private toastService: ToastService,
-    private mapService: MapService) { }
+    private mapService: MapService,
+    private dataService: DataService) { }
 
   ngOnInit(): void {
     this.selectedTabIndex = 3;
     this.currentTab = "MY_VOUCHER_VIEW";
+    this.tabView = "PROFILE_VIEW";
     this.options = {
       timeout: 5000,
       maximumAge: 0,
@@ -35,7 +50,6 @@ export class LandingComponent implements OnInit {
     };
     //this.requestPermissions();
     //this.fetchMyVouchers();
-    this.fetchMyDetail();
   }
 
 
@@ -185,8 +199,8 @@ export class LandingComponent implements OnInit {
     } else if (this.currentTab === "LEADERBOARD_VIEW") {
       this.clearWatchLocations();
     } else if (this.currentTab === "ACCOUNT_SETTING_VIEW") {
-      this.fetchMyDetail();
       this.clearWatchLocations();
+      this.tabView = "PROFILE_VIEW";
     }
   }
 
@@ -209,11 +223,13 @@ export class LandingComponent implements OnInit {
     return deg * (Math.PI / 180);
   }
 
-  fetchMyDetail() {
-    this.user = new Login();
-  }
-
-  onAddressChange(address: any) {
-    this.user.address = address.formatted_address;
+  onCompleteEvent($event: any) {
+    if ($event.status === "COMPLETED") {
+      this.tabView = "PROFILE_VIEW";
+      return;
+    } else if ($event.status === "CHANGE_PASSWORD_REQUESTED") {
+      this.tabView = "CHANGE_PASSWORD_VIEW";
+      return;
+    }
   }
 }

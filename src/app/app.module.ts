@@ -8,6 +8,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LocalStorageModule } from 'angular-2-local-storage';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { AppUpdateService } from 'src/services/app-update.service';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,19 +19,16 @@ import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { HttpAuthInterceptor } from './shared/http.interceptor';
 import { SharedModuleModule } from './shared/shared-module.module';
-import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    OnboardingComponent,
     ConfirmationDialogComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,

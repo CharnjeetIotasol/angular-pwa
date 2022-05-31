@@ -1,6 +1,3 @@
-<!-- <mat-toolbar class="text-center">
-    <span>FIND VOUCHERS</span>
-</mat-toolbar> -->
 <mat-tab-group dynamicHeight headerPosition="below" [(selectedIndex)]="selectedTabIndex"
     (selectedTabChange)="onTabChanged($event);">
     <mat-tab>
@@ -200,68 +197,10 @@
             </div>
             <div>SETTINGS</div>
         </ng-template>
-        <div class="tab-page-container mat-elevation-z4">
-            <div class="register-container">
-                <div class="register-inner-container">
-                    <div class="register-header-container">
-                        <h2>Profile Settings</h2>
-                        <p>There are many variation have suffered</p>
-                    </div>
-                    <div class="register-body-container">
-                        <form class="site-form" novalidate="novalidate" #userForm="ngForm">
-                            <div class="profile-pic-image-container">
-                                <img class="user-profile-setting" src="/assets/images/icons/profile-pic-icon.svg">
-                                <img class="user-profile-pic" src="/assets/images/icons/user-profile.png">
-                            </div>
-                            <mat-form-field class="site-form-field no-margin-bottom" appearance="fill"
-                                appearance="outline"
-                                [ngClass]="{'mat-form-field-invalid':!userName.valid && onClickValidation}">
-                                <mat-label>Name</mat-label>
-                                <input matInput placeholder="Name" required="required" name="userName"
-                                    #userName="ngModel" [(ngModel)]="user.name">
-                                <mat-hint class="error-text" *ngIf="onClickValidation && userName?.errors?.required">
-                                    {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
-                                </mat-hint>
-                            </mat-form-field>
-                            <mat-form-field class="site-form-field no-margin-bottom" appearance="fill"
-                                appearance="outline"
-                                [ngClass]="{'mat-form-field-invalid':!userEmail.valid && onClickValidation}">
-                                <mat-label>Email Address</mat-label>
-                                <input matInput placeholder="Email Address" required="required" name="userEmail"
-                                    #userEmail="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                                    [(ngModel)]="user.email">
-                                <mat-hint class="error-text" *ngIf="onClickValidation && userEmail?.errors?.required">
-                                    {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
-                                </mat-hint>
-                                <mat-hint class="error-text" *ngIf="onClickValidation && userEmail?.errors?.pattern">
-                                    {{"COMMON.REQUIRED_PATTERN_VALIDATION_MESSAGE" | translate}}
-                                </mat-hint>
-                            </mat-form-field>
-                            <mat-form-field class="site-form-field no-margin-bottom" appearance="fill"
-                                appearance="outline"
-                                [ngClass]="{'mat-form-field-invalid':!userAddress.valid && onClickValidation}">
-                                <mat-label>Address</mat-label>
-                                <input matInput ngx-google-places-autocomplete placeholder="Address" required="required"
-                                    name="userAddress" #userAddress="ngModel" [(ngModel)]="user.uiAddress"
-                                    (onAddressChange)="onAddressChange($event)">
-                                <mat-hint class="error-text" *ngIf="onClickValidation && userAddress?.errors?.required">
-                                    {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
-                                </mat-hint>
-                            </mat-form-field>
-                            <div class="change-password-link">
-                                <a color="primary" [routerLink]="['/account/change/password']">Change Password?</a>
-                            </div>
-                            <button mat-raised-button color="primary" class="site-button large-button full-width">
-                                Save
-                            </button>
-                            <button mat-flat-button color="primary" type="button" [routerLink]="['/account/interest']"
-                                class="site-button large-button full-width margin-top-20 update-interest-button">
-                                Update Your Interest
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <div class="tab-page-container">
+            <app-profile *ngIf="tabView==='PROFILE_VIEW'" (completeEvent)="onCompleteEvent($event)"></app-profile>
+            <app-change-password *ngIf="tabView==='CHANGE_PASSWORD_VIEW'" (completeEvent)="onCompleteEvent($event)"></app-change-password>
+            <app-onboarding *ngIf="tabView==='INTEREST_VIEW'"></app-onboarding>
         </div>
     </mat-tab>
 </mat-tab-group>

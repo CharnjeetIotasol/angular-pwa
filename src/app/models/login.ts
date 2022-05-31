@@ -15,6 +15,9 @@ export class Login {
   code: string;
   uniqueCode: string;
   uiAddress: string;
+  fullName: string;
+  profilePic: string;
+  oldPassword: string;
   constructor() {
   }
 
@@ -33,6 +36,26 @@ export class Login {
   isValidForgotPasswordRequest(form: any) {
     if (CommonUtil.isNullOrUndefined(this.email) || this.email.trim() === '') {
       form.controls.remail.setErrors({ invalid: true });
+      return false;
+    }
+    return true;
+  }
+
+  isValidChangePasswordRequest(form: any) {
+    if (CommonUtil.isNullOrUndefined(this.oldPassword) || this.oldPassword.trim() === '') {
+      form.controls.currentPassword.setErrors({ invalid: true });
+      return false;
+    }
+    if (CommonUtil.isNullOrUndefined(this.password) || this.password.trim() === '') {
+      form.controls.userPassword.setErrors({ invalid: true });
+      return false;
+    }
+    if (CommonUtil.isNullOrUndefined(this.confirmPassword) || this.confirmPassword.trim() === '') {
+      form.controls.userCofirmPassword.setErrors({ invalid: true });
+      return false;
+    }
+    if (this.password && this.confirmPassword && this.confirmPassword !== this.password) {
+      form.controls.userCofirmPassword.setErrors({ invalid: true });
       return false;
     }
     return true;

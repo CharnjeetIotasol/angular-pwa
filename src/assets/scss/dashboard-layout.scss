@@ -66,6 +66,7 @@ mat-tab-body {
     .tab-page-container {
         height: calc(100vh - 76px) !important;
         box-shadow: none !important;
+        overflow-y: auto;
 
         &.my-vouchers-container {
             padding: 20px;
