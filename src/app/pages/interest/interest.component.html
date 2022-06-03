@@ -1,0 +1,27 @@
+<div class="onboarding-container height-auto">
+    <div class="onboarding-inner-container">
+        <div class="onboarding-header-container">
+            <div class="left-side-info-section">
+                <h2>Choose Your Interests</h2>
+                <p>There are many variation have suffered alteration</p>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="onboarding-body-container login-user-view">
+            <div class="category-item" [ngClass]="{'selected':category.selected}" *ngFor="let category of categories"
+                (click)="toggleCategory(category)">
+                <img class="selected-category-icon" src="/assets/images/icons/selected-category-icon.svg">
+                <div class="category-item-icon">
+                    <img [src]="category.icon[0]?.path" width="70" />
+                </div>
+                <div class="category-label">{{category.name}}</div>
+            </div>
+        </div>
+        <div class="onboarding-footer-container">
+            <button mat-raised-button color="primary" class="site-button large-button full-width" (click)="complete()"
+                *ngIf="categories.length>0">
+                Save
+            </button>
+        </div>
+    </div>
+</div>

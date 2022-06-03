@@ -49,7 +49,7 @@
                     (click)="updateProfile(userForm.form)">
                     Save
                 </button>
-                <button mat-flat-button color="primary" type="button" [routerLink]="['/account/interest']"
+                <button mat-flat-button color="primary" type="button" (click)="onInterest()"
                     class="site-button large-button full-width margin-top-20 update-interest-button">
                     Update Your Interest
                 </button>

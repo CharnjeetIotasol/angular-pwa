@@ -77,4 +77,8 @@ export class ProfileComponent implements OnInit {
   onChangePassword() {
     this.completeEvent.emit({ "status": "CHANGE_PASSWORD_REQUESTED", "messgae": "" });
   }
+
+  onInterest() {
+    this.completeEvent.emit({ "status": "INTEREST_REQUESTED", "messgae": "" });
+  }
 }

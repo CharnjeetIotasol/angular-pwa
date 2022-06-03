@@ -42,72 +42,9 @@
             <div>MY VOUCHERS</div>
         </ng-template>
         <div class="tab-page-container my-vouchers-container mat-elevation-z4">
-            <div class="my-voucher-item">
-                <div class="my-voucher-header">
-                    <div class="my-voucher-logo">
-                        <img src="https://redvoucherblobstorage.blob.core.windows.net/images/mY9xFgLayer_71.png">
-                    </div>
-                    <div class="my-voucher-info-detail">
-                        <div class="my-voucher-info-title">Puma</div>
-                        <div class="my-voucher-info-category">Clothing & Apparels</div>
-                    </div>
-                    <div class="left-circle"></div>
-                    <div class="right-circle"></div>
-                </div>
-                <hr class="divider" />
-                <div class="my-voucher-body">
-                    <div class="my-voucher-body-inner">
-                        <!-- <img src="/assets/images/my-voucher-background.svg" class="voucher-background"> -->
-                        <div class="my-voucher-offer-detail">
-                            <img src="/assets/images/icons/discount-icon.svg">
-                            <div class="offer-amount">$80 off*</div>
-                        </div>
-                        <div class="term-condition-label">
-                            *Terms and Conditions Applied
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="my-voucher-footer">
-                    <button mat-stroked-button class="site-button medium-button share-button">
-                        <mat-icon>share</mat-icon> Share
-                    </button>
-                    <button mat-raised-button class="site-button medium-button site-second-color">
-                        Redeem
-                    </button>
-                </div> -->
-            </div>
-            <div class="my-voucher-item">
-                <div class="my-voucher-header">
-                    <div class="my-voucher-logo">
-                        <img src="https://redvoucherblobstorage.blob.core.windows.net/images/mY9xFgLayer_71.png">
-                    </div>
-                    <div class="my-voucher-info-detail">
-                        <div class="my-voucher-info-title">The Burger King</div>
-                        <div class="my-voucher-info-category">Clothing & Apparels</div>
-                    </div>
-                    <div class="left-circle"></div>
-                    <div class="right-circle"></div>
-                </div>
-                <hr class="divider" />
-                <div class="my-voucher-body">
-                    <div class="my-voucher-body-inner">
-                        <div class="my-voucher-offer-detail">
-                            <img src="/assets/images/icons/discount-icon.svg">
-                            <div class="offer-amount">$80 off*</div>
-                        </div>
-                        <div class="term-condition-label">
-                            *Terms and Conditions Applied
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="my-voucher-footer">
-                    <button mat-stroked-button class="site-button medium-button share-button">
-                        <mat-icon>share</mat-icon> Share
-                    </button>
-                    <button mat-raised-button class="site-button medium-button site-second-color">
-                        Redeem
-                    </button>
-                </div> -->
+            <div class="my-voucher-no-item-preview" *ngIf="!loading && myVouchers.length<=0">
+                Still haven't grabbed any vouchers? Let's search voucher around you <a (click)="loadFindVoucher()">Click
+                    Here</a>
             </div>
             <div class="my-voucher-item">
                 <div class="my-voucher-header">
@@ -142,39 +79,7 @@
                     </button>
                 </div>
             </div>
-            <div class="my-voucher-item">
-                <div class="my-voucher-header">
-                    <div class="my-voucher-logo">
-                        <img src="https://redvoucherblobstorage.blob.core.windows.net/images/mY9xFgLayer_71.png">
-                    </div>
-                    <div class="my-voucher-info-detail">
-                        <div class="my-voucher-info-title">Puma</div>
-                        <div class="my-voucher-info-category">Clothing & Apparels</div>
-                    </div>
-                    <div class="left-circle"></div>
-                    <div class="right-circle"></div>
-                </div>
-                <hr class="divider" />
-                <div class="my-voucher-body">
-                    <div class="my-voucher-body-inner">
-                        <div class="my-voucher-offer-detail">
-                            <img src="/assets/images/icons/discount-icon.svg">
-                            <div class="offer-amount">$80 off*</div>
-                        </div>
-                        <div class="term-condition-label">
-                            *Terms and Conditions Applied
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="my-voucher-footer">
-                    <button mat-stroked-button class="site-button medium-button share-button">
-                        <mat-icon>share</mat-icon> Share
-                    </button>
-                    <button mat-raised-button class="site-button medium-button site-second-color">
-                        Redeem
-                    </button>
-                </div> -->
-            </div>
+
         </div>
     </mat-tab>
     <mat-tab>
@@ -199,8 +104,9 @@
         </ng-template>
         <div class="tab-page-container">
             <app-profile *ngIf="tabView==='PROFILE_VIEW'" (completeEvent)="onCompleteEvent($event)"></app-profile>
-            <app-change-password *ngIf="tabView==='CHANGE_PASSWORD_VIEW'" (completeEvent)="onCompleteEvent($event)"></app-change-password>
-            <app-onboarding *ngIf="tabView==='INTEREST_VIEW'"></app-onboarding>
+            <app-change-password *ngIf="tabView==='CHANGE_PASSWORD_VIEW'" (completeEvent)="onCompleteEvent($event)">
+            </app-change-password>
+            <app-interest *ngIf="tabView==='INTEREST_VIEW'" (completeEvent)="onCompleteEvent($event)"></app-interest>
         </div>
     </mat-tab>
 </mat-tab-group>

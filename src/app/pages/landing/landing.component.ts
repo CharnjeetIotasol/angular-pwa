@@ -26,7 +26,7 @@ import { ToastService } from 'src/app/shared/toast.service';
 })
 export class LandingComponent implements OnInit {
   markers: Array<any>;
-  currentTab = "VOCUHER_VIEW";
+  currentTab: string;
   watchLocationId: any;
   options: any;
   lastUpdateTime: any;
@@ -34,13 +34,15 @@ export class LandingComponent implements OnInit {
   lastCoords: any;
   selectedTabIndex: number;
   tabView: string;
+  myVouchers: Array<any>;
+  loading: boolean;
   constructor(private loadingService: LoadingService,
     private toastService: ToastService,
     private mapService: MapService,
     private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.selectedTabIndex = 3;
+    this.selectedTabIndex = 1;
     this.currentTab = "MY_VOUCHER_VIEW";
     this.tabView = "PROFILE_VIEW";
     this.options = {
@@ -49,7 +51,7 @@ export class LandingComponent implements OnInit {
       enableHighAccuracy: true
     };
     //this.requestPermissions();
-    //this.fetchMyVouchers();
+    this.fetchMyVouchers();
   }
 
 
@@ -83,10 +85,10 @@ export class LandingComponent implements OnInit {
       }
       const distance = this.distance(position.coords, this.lastCoords);
       if (this.lastCoords && distance <= 5) {
-        this.toastService.success("Distance: " + distance);
         console.log("Skipping postion due to min distance");
         return;
       }
+      this.toastService.success("Distance: " + distance);
       this.lastCoords = position.coords;
       this.lastUpdateTime = now;
       this.fetchMarkers(position.coords, hasLoading);
@@ -160,6 +162,8 @@ export class LandingComponent implements OnInit {
 
   fetchMyVouchers() {
     this.loadingService.show();
+    this.myVouchers = new Array<any>();
+    this.loading = true;
     this.mapService.fetchMyVouchers()
       .subscribe((response: RestResponse) => {
         this.loadingService.hide();
@@ -167,8 +171,10 @@ export class LandingComponent implements OnInit {
           this.toastService.error(response.message);
           return;
         }
-        console.log(response.data);
+        this.myVouchers = response.data;
+        this.loading = false;
       }, (error) => {
+        this.loading = false;
         this.loadingService.hide();
         this.toastService.error(error.message);
       });
@@ -204,6 +210,12 @@ export class LandingComponent implements OnInit {
     }
   }
 
+  loadFindVoucher() {
+    this.currentTab = "VOCUHER_VIEW";
+    this.selectedTabIndex = 0;
+    this.requestPermissions();
+  }
+
   distance(coords: any, eCoords: any): Number {
     if (!coords || !eCoords) {
       return 0;
@@ -229,6 +241,9 @@ export class LandingComponent implements OnInit {
       return;
     } else if ($event.status === "CHANGE_PASSWORD_REQUESTED") {
       this.tabView = "CHANGE_PASSWORD_VIEW";
+      return;
+    } else if ($event.status === "INTEREST_REQUESTED") {
+      this.tabView = "INTEREST_VIEW";
       return;
     }
   }

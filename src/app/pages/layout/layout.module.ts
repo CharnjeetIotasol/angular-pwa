@@ -11,6 +11,7 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { MaterialAppModule } from 'src/app/material.module';
 import { SharedModuleModule } from 'src/app/shared/shared-module.module';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { InterestComponent } from '../interest/interest.component';
 import { LandingComponent } from '../landing/landing.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { LayoutComponent } from './layout.component';
@@ -21,7 +22,8 @@ import { LAYOUTROUTING } from './layout.routing';
 		LayoutComponent,
 		LandingComponent,
 		ProfileComponent,
-		ChangePasswordComponent
+		ChangePasswordComponent,
+		InterestComponent
 	],
 	imports: [
 		CommonModule,

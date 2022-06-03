@@ -18,6 +18,6 @@ export class MapService extends HttpServiceRequests<IResourceWithId> {
     }
 
     fetchMyVouchers(): Observable<RestResponse> {
-        return this.getRecord('/app/customer/vouchers/collected');
+        return this.getRecord('/app/customer/vouchers/all');
     }
 }

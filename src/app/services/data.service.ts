@@ -15,7 +15,11 @@ export class DataService extends HttpServiceRequests<IResourceWithId> {
     }
 
     fetchCategories(): Promise<RestResponse> {
-        return this.getRecords('/api/categories', new FilterParam());
+        return this.getRecords('/app/categories', new FilterParam());
+    }
+
+    fetchMyCategories(): Observable<RestResponse> {
+        return this.getRecord('/app/customer/categories');
     }
 
     saveCategories(categories: any): Promise<RestResponse> {
