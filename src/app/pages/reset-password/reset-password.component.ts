@@ -32,9 +32,7 @@ export class ResetPasswordComponent implements OnInit {
     this.confirmFieldType = "password";
     this.route.queryParams.subscribe(params => {
       this.data.code = encodeURIComponent(params.p);
-      console.log(this.data.code);
       this.data.uniqueCode = this.route.snapshot.params.code;
-      console.log(this.data.uniqueCode);
       if (CommonUtil.isNullOrUndefined(this.data.code) || this.data.code === '') {
         this.router.navigate(['404']);
       }

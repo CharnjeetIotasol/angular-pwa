@@ -6,9 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AgmOverlays } from "agm-overlays";
+import { FileUploadModule } from 'ng2-file-upload';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { ImageCropperModule } from 'ngx-image-cropper';
 import { HttpLoaderFactory } from 'src/app/app.module';
 import { MaterialAppModule } from 'src/app/material.module';
+import { FileCropperComponent } from 'src/app/shared/file-cropper/file-cropper.component';
 import { SharedModuleModule } from 'src/app/shared/shared-module.module';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { InterestComponent } from '../interest/interest.component';
@@ -23,7 +26,8 @@ import { LAYOUTROUTING } from './layout.routing';
 		LandingComponent,
 		ProfileComponent,
 		ChangePasswordComponent,
-		InterestComponent
+		InterestComponent,
+		FileCropperComponent
 	],
 	imports: [
 		CommonModule,
@@ -42,7 +46,9 @@ import { LAYOUTROUTING } from './layout.routing';
 		AgmCoreModule.forRoot({
 			apiKey: 'AIzaSyApoDaDS76qQ-1hMuVMIOx63AwSW85EZhE'
 		}),
-		GooglePlaceModule
+		GooglePlaceModule,
+		FileUploadModule,
+		ImageCropperModule
 	],
 	providers: [
 	]

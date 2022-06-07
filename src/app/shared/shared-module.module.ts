@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../app.module';
-import { OnboardingComponent } from '../pages/onboarding/onboarding.component';
 import { ValidationMessageComponent } from './validation-message/validation-message.component';
 
 
@@ -20,12 +19,10 @@ import { ValidationMessageComponent } from './validation-message/validation-mess
     }),
   ],
   declarations: [
-    ValidationMessageComponent,
-    OnboardingComponent
+    ValidationMessageComponent
   ],
   exports: [
-    ValidationMessageComponent,
-    OnboardingComponent
+    ValidationMessageComponent
   ],
 })
 export class SharedModuleModule { }

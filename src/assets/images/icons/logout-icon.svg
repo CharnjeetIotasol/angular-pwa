@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50.214" height="50.213" viewBox="0 0 50.214 50.213">
+  <g id="Btn" transform="translate(-122.455 -381.132)">
+    <g id="log_out" data-name="log out" transform="translate(122.455 381.132)">
+      <g id="icon" transform="translate(0 0)" style="mix-blend-mode: normal;isolation: isolate">
+        <path id="bg" d="M0,0H50.213V50.213H0Z" fill="none"/>
+        <path id="path" d="M20.1,20.259l6.926-6.926a1.826,1.826,0,0,0-2.582-2.582L14.4,20.794a1.826,1.826,0,0,0,0,2.582L24.446,33.419a1.826,1.826,0,0,0,2.582-2.582L20.1,23.911h20.25a1.826,1.826,0,0,0,0-3.652ZM23.911,5.652a1.826,1.826,0,0,0,0-3.652H6.573A4.57,4.57,0,0,0,2,6.571V37.6a4.571,4.571,0,0,0,4.573,4.571H23.911a1.826,1.826,0,0,0,0-3.652H6.573a.919.919,0,0,1-.921-.919V6.571a.918.918,0,0,1,.921-.919Z" transform="translate(2.772 3.021)" fill="#360f6d"/>
+      </g>
+    </g>
+  </g>
+</svg>

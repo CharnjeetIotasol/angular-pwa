@@ -19,9 +19,8 @@ export class AuthService extends HttpServiceRequests<IResourceWithId> {
     logout() {
         this.localStorageService.remove('token');
         this.localStorageService.remove('user');
-        this.localStorageService.remove('project');
-        this.localStorageService.remove('admin-token');
-        this.localStorageService.remove('admin-user');
+        this.localStorageService.remove('temp-token');
+        this.localStorageService.remove('temp-user');
         this.router.navigate(['login']);
     }
 

@@ -1,14 +1,21 @@
 <div class="register-container">
     <div class="register-inner-container">
-        <div class="register-header-container">
-            <h2>Profile Settings</h2>
-            <p>There are many variation have suffered</p>
+        <div class="register-header-main-container">
+            <div class="register-header-container no-padding">
+                <h2>Profile Settings</h2>
+                <p>There are many variation have suffered</p>
+            </div>
+            <img class="logout-icon" src="/assets/images/icons/logout-icon.svg" (click)="logout()">
         </div>
+        <div class="clearfix"></div>
         <div class="register-body-container">
             <form class="site-form" novalidate="novalidate" #userForm="ngForm">
                 <div class="profile-pic-image-container">
-                    <img class="user-profile-setting" src="/assets/images/icons/profile-pic-icon.svg">
+                    <img class="user-profile-setting" src="/assets/images/icons/profile-pic-icon.svg"
+                        (click)="openFileUploaderPopup()">
                     <img class="user-profile-pic" [src]="user.profilePic || '/assets/images/icons/user-profile.png'">
+                    <input class="hidden" #profilePicUploaderElement type="file" (change)="onFileChangeEvent($event)"
+                        *ngIf="!isOpenCropPopup" />
                 </div>
                 <mat-form-field class="site-form-field no-margin-bottom" appearance="fill" appearance="outline"
                     [ngClass]="{'mat-form-field-invalid':!userName.valid && onClickValidation}">

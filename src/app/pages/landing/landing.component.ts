@@ -42,8 +42,8 @@ export class LandingComponent implements OnInit {
     private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.selectedTabIndex = 1;
-    this.currentTab = "MY_VOUCHER_VIEW";
+    this.selectedTabIndex = 0;
+    this.currentTab = "VOCUHER_VIEW";
     this.tabView = "PROFILE_VIEW";
     this.options = {
       timeout: 5000,
