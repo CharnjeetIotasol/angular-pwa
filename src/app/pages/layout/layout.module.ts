@@ -16,6 +16,7 @@ import { SharedModuleModule } from 'src/app/shared/shared-module.module';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { InterestComponent } from '../interest/interest.component';
 import { LandingComponent } from '../landing/landing.component';
+import { LeaderBoardComponent } from '../leader-board/leader-board.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { LayoutComponent } from './layout.component';
 import { LAYOUTROUTING } from './layout.routing';
@@ -27,7 +28,8 @@ import { LAYOUTROUTING } from './layout.routing';
 		ProfileComponent,
 		ChangePasswordComponent,
 		InterestComponent,
-		FileCropperComponent
+		FileCropperComponent,
+		LeaderBoardComponent
 	],
 	imports: [
 		CommonModule,

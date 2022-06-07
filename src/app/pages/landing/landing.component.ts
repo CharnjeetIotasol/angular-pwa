@@ -50,8 +50,8 @@ export class LandingComponent implements OnInit {
       maximumAge: 0,
       enableHighAccuracy: true
     };
-    //this.requestPermissions();
-    this.fetchMyVouchers();
+    this.myVouchers = new Array<any>();
+    this.requestPermissions();
   }
 
 
@@ -135,7 +135,7 @@ export class LandingComponent implements OnInit {
     const input = {} as any;
     input.latitude = coords.latitude;
     input.longitude = coords.longitude;
-    input.requestDistance = 80;
+    input.requestDistance = 500;
     this.mapService.fetchVocuherNearMe(input)
       .then((response: RestResponse) => {
         this.loadingService.hide();
