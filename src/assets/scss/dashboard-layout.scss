@@ -169,7 +169,7 @@ agm-map {
         border-bottom: 1px dashed #dadada;
         padding: 0px;
         width: 90%;
-        margin: 0 auto;
+        margin: -2px auto;
         border: 1px dashed #dadada;
         opacity: 0.55;
     }
@@ -235,6 +235,15 @@ agm-map {
         .voucher-background {
             width: 100%;
         }
+        .voucher-description {
+            font-size: 14px;
+            letter-spacing: -0.12px;
+            color: #010101;
+            text-align: left;
+            padding-top: 2rem;
+            line-height: 25px;
+            margin: 0px;
+        }
     }
     .my-voucher-footer {
         padding: 20px;
@@ -289,5 +298,273 @@ agm-map {
     &:active,
     &:focus {
         border: 1px dashed rgb(41, 6, 108) !important;
+    }
+}
+
+.leaderboard-container {
+    background-color: #f5f5f5;
+    min-height: calc(100vh - 124px) !important;
+    padding: 20px;
+
+    .leaderboard-header-items {
+        width: 300px;
+        padding: 10px;
+        background-color: #fff;
+        margin: 0 auto;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        .leaderboard-header-item {
+            background: #fff;
+            width: 110px;
+            padding: 14px 20px;
+            display: inline-block;
+            vertical-align: middle;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            &.selected {
+                background-color: #ee8264;
+                box-shadow: 0px 3px 6px #00000029;
+                color: #fff;
+            }
+        }
+    }
+    .leaderboard-winners {
+        display: flex;
+        justify-content: space-between;
+        &.center-winner{
+            justify-content: center;
+        }
+        .winner-user {
+            .winner-name {
+                padding-top: 16px;
+                color: #010101;
+                font-size: 12px;
+                text-align: center;
+            }
+            .winner-image {
+                position: relative;
+                max-width: 100px !important;
+                margin: 0 auto;
+                img {
+                    box-shadow: 0px 3px 6px #00000029;
+                    border-radius: 20px;
+                    max-width: 100px !important;
+                }
+                .winner-badge {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                    background-color: #ee8264;
+                    position: absolute;
+                    left: 50%;
+                    margin-left: -16px;
+                    bottom: -10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 11px;
+                    font-weight: 500;
+                }
+            }
+            &.first {
+                .winner-name {
+                    padding-top: 22px;
+                }
+                .winner-image {
+                    max-width: 110px !important;
+                    img {
+                        max-width: 110px !important;
+                    }
+                    .winner-badge {
+                        width: 44px;
+                        height: 44px;
+                        border-radius: 50%;
+                        background-color: #ee8264;
+                        margin-left: -22px;
+                        bottom: -16px;
+                    }
+                }
+            }
+            &.second,
+            &.third {
+                margin-top: 100px;
+            }
+        }
+    }
+    .leaderboard-users {
+        margin-top: 40px;
+        .leaderboard-user-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+            padding: 14px 20px;
+            border-bottom: 1px solid rgba(112, 112, 112, 0.05);
+            .leaderboard-user-item-image {
+                // width: 78px;
+                text-align: left;
+                img {
+                    border-radius: 50%;
+                    margin-right: 5px;
+                }
+                img,
+                span {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                span {
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+            }
+            .leaderboard-user-item-name {
+                min-width: 170px;
+                text-align: left;
+            }
+            .leaderboard-user-item-amount {
+                font-size: 14px;
+                font-weight: 600;
+                color: #010101;
+                width: 40px;
+                text-align: right;
+            }
+
+            &:first-child {
+                border-radius: 17px 17px 0px 0px;
+            }
+            &:last-child {
+                border-radius: 0px 0px 17px 17px;
+            }
+
+            &.my-rank {
+                background-color: #ee8264;
+                color: #fff;
+                .leaderboard-user-item-amount {
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+.voucher-detail-container {
+    background-color: #f5f5f5;
+    min-height: calc(100vh - 84px) !important;
+    position: relative;
+
+    .back-button {
+        position: absolute;
+        z-index: 99999;
+        left: 15px;
+        top: 15px;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    .voucher-detail-header {
+        height: 300px;
+        background-color: #d33e34;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            transform: translateY(-25px);
+            opacity: 0.5;
+        }
+    }
+    .voucher-detail-body {
+        padding: 20px;
+        margin-top: -170px;
+        .left-circle,
+        .right-circle {
+            background-color: #d33e34;
+        }
+        .my-voucher-body {
+            min-height: 345px;
+        }
+    }
+}
+.voucher-main-detail-container {
+    background-color: #fff;
+    min-height: calc(100vh - 84px) !important;
+    position: relative;
+
+    &.full-detail-page {
+        min-height: 100vh !important;
+    }
+    .back-button {
+        position: absolute;
+        z-index: 99999;
+        left: 15px;
+        top: 15px;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    .voucher-detail-header {
+        height: 250px;
+        background-color: #d33e34;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        img {
+            transform: translate(-35px, 15px);
+            opacity: 0.5;
+        }
+    }
+    .voucher-detail-body {
+        padding: 20px 30px;
+        padding-top: 0px;
+        .voucher-detail-page-inner-container {
+            .voucher-detail-inner-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                margin-top: -49px;
+                .voucher-logo {
+                    width: 98px;
+                    height: 98px;
+                    box-shadow: 0px 3px 6px #00000029;
+                    background: #7aaf0d;
+                    border-radius: 16px;
+                    border: 2px solid #ffffff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img {
+                        max-width: 65px;
+                    }
+                }
+                .voucher-expire-date {
+                    letter-spacing: -0.11px;
+                    color: #010101;
+                    margin-bottom: 10px;
+                }
+            }
+            .voucher-info-detail {
+                margin-top: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .voucher-info-title {
+                    font-size: 22px;
+                    font-weight: 600;
+                }
+                .voucher-info-category {
+                    font-size: 12px;
+                    margin-top: 7px;
+                }
+                .redeemed-image{
+                    max-width: 60px;
+                }
+            }
+            .voucher-description {
+                margin-top: 20px;
+                padding: 10px 20px;
+                background: #f3f3f3;
+                border-radius: 20px;
+                color: #010101;
+            }
+        }
     }
 }

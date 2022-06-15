@@ -1,0 +1,64 @@
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoadingService } from 'src/app/services/loading.service';
+import { MapService } from 'src/app/services/map.service';
+import { RestResponse } from 'src/app/shared/auth.model';
+import { ToastService } from 'src/app/shared/toast.service';
+
+@Component({
+  selector: 'app-voucher-detail',
+  templateUrl: './voucher-detail.component.html',
+  styleUrls: ['./voucher-detail.component.scss']
+})
+export class VoucherDetailComponent implements OnInit {
+  @Input()
+  voucherId: string;
+  @Output()
+  completeEvent = new EventEmitter<any>();
+  voucher: any;
+  isDetailPage: boolean;
+  constructor(private loadingService: LoadingService,
+    private toastService: ToastService,
+    private mapService: MapService,
+    private dialog: MatDialog,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
+
+  ngOnInit(): void {
+    this.isDetailPage = false;
+    if (!this.voucherId) {
+      this.isDetailPage = true;
+      this.voucherId = this.activatedRoute.snapshot.paramMap.get('id') as string;
+    }
+    this.fetchVoucherDetail();
+  }
+
+  fetchVoucherDetail() {
+    this.loadingService.show();
+    this.mapService.fetchVoucherDetail(this.voucherId)
+      .subscribe((response: RestResponse) => {
+        this.loadingService.hide();
+        if (!response.status) {
+          this.toastService.error(response.message);
+          return;
+        }
+        this.voucher = response.data;
+        if (this.voucher.categoryDetail && this.voucher.categoryDetail.icon && this.voucher.categoryDetail.icon.length > 0) {
+          this.voucher.categoryDetail.selectedIcon = this.voucher.categoryDetail.icon[0];
+        }
+      }, (error) => {
+        this.loadingService.hide();
+        this.toastService.error(error.message);
+      })
+  }
+
+  back() {
+    if (this.isDetailPage) {
+      this.router.navigate(["/dashboard"]);
+      return;
+    } else {
+      this.completeEvent.emit({ "status": "MY_VOUCHER_REQUESTED", "messgae": "" });
+    }
+  }
+}

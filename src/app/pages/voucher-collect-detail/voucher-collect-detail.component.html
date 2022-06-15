@@ -1,0 +1,40 @@
+<div class="voucher-detail-container" *ngIf="voucher">
+    <mat-icon class="back-button" (click)="back()">arrow_back</mat-icon>
+    <div class="voucher-detail-header" [style.background-color]="voucher.backgroundColor">
+        <img [src]="voucher.categoryDetail?.selectedIcon?.path">
+    </div>
+    <div class="voucher-detail-body">
+        <div class="my-voucher-item">
+            <div class="my-voucher-header">
+                <div class="my-voucher-logo">
+                    <img [src]="voucher.categoryDetail?.selectedIcon?.path">
+                </div>
+                <div class="my-voucher-info-detail">
+                    <div class="my-voucher-info-title">{{voucher.name}}</div>
+                    <div class="my-voucher-info-category">{{voucher.categoryDetail?.name}}</div>
+                </div>
+                <div class="left-circle" [style.background-color]="voucher.backgroundColor"></div>
+                <div class="right-circle" [style.background-color]="voucher.backgroundColor"></div>
+            </div>
+            <hr class="divider" />
+            <div class="my-voucher-body">
+                <div class="my-voucher-body-inner">
+                    <div class="my-voucher-offer-detail">
+                        <img src="/assets/images/icons/discount-icon.svg">
+                        <div class="offer-amount">${{voucher.discount}} off*</div>
+                    </div>
+                    <div class="term-condition-label">
+                        *Terms and Conditions Applied
+                    </div>
+                </div>
+                <p class="voucher-description">
+                    {{voucher.description}}
+                </p>
+            </div>
+        </div>
+        <button mat-raised-button class="site-button large-button full-width site-second-color margin-top-30"
+            (click)="collect()">
+            Collect
+        </button>
+    </div>
+</div>

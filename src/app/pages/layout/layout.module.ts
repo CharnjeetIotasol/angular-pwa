@@ -14,10 +14,15 @@ import { MaterialAppModule } from 'src/app/material.module';
 import { FileCropperComponent } from 'src/app/shared/file-cropper/file-cropper.component';
 import { SharedModuleModule } from 'src/app/shared/shared-module.module';
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { FindVoucherComponent } from '../find-voucher/find-voucher.component';
 import { InterestComponent } from '../interest/interest.component';
 import { LandingComponent } from '../landing/landing.component';
 import { LeaderBoardComponent } from '../leader-board/leader-board.component';
+import { MyVouchersComponent } from '../my-vouchers/my-vouchers.component';
 import { ProfileComponent } from '../profile/profile.component';
+import { TriviaComponent } from '../trivia/trivia.component';
+import { VoucherCollectDetailComponent } from '../voucher-collect-detail/voucher-collect-detail.component';
+import { VoucherDetailComponent } from '../voucher-detail/voucher-detail.component';
 import { LayoutComponent } from './layout.component';
 import { LAYOUTROUTING } from './layout.routing';
 
@@ -29,7 +34,12 @@ import { LAYOUTROUTING } from './layout.routing';
 		ChangePasswordComponent,
 		InterestComponent,
 		FileCropperComponent,
-		LeaderBoardComponent
+		LeaderBoardComponent,
+		FindVoucherComponent,
+		TriviaComponent,
+		VoucherCollectDetailComponent,
+		VoucherDetailComponent,
+		MyVouchersComponent
 	],
 	imports: [
 		CommonModule,

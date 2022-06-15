@@ -474,6 +474,12 @@ input.mat-input-element {
     }
 }
 
+.custom-message-popup{
+    .mat-dialog-container{
+        border-radius: 16px;
+    }
+}
+
 .loading-container {
     width: 100vw;
     height: 100vh;

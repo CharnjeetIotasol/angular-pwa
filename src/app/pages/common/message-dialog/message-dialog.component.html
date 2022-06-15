@@ -1,0 +1,6 @@
+<div class="main-message-container">
+    <mat-icon class="close-icon" (click)="close()">close</mat-icon>
+    <img class="icon-image" [src]="data.icon" *ngIf="data.icon">
+    <h3 class="message-title" *ngIf="data.title">{{data.title}}</h3>
+    <p class="message-sub-title" *ngIf="data.subTitle">{{data.subTitle}}</p>
+</div>

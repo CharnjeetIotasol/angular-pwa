@@ -33,4 +33,9 @@ export class DataService extends HttpServiceRequests<IResourceWithId> {
     updateMyDetail(input: any): Promise<RestResponse> {
         return this.updateRecord('/app/customer', input);
     }
+
+    fetchLeaderboards(input: any): Promise<RestResponse> {
+        return this.getRecords('/api/leaderboard', input);
+    }
+
 }

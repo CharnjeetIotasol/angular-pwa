@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialAppModule } from './material.module';
 import { ConfirmationDialogComponent } from './pages/common/confirmation-dialog/confirmation-dialog.component';
+import { MessageDialogComponent } from './pages/common/message-dialog/message-dialog.component';
 import { ForbiddenComponent } from './pages/forbidden/forbidden.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -31,6 +32,7 @@ import { SharedModuleModule } from './shared/shared-module.module';
     LoginComponent,
     RegisterComponent,
     ConfirmationDialogComponent,
+    MessageDialogComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
     ForbiddenComponent,
@@ -94,7 +96,8 @@ import { SharedModuleModule } from './shared/shared-module.module';
     }
   ],
   entryComponents: [
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    MessageDialogComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,21 @@
+.main-message-container {
+    text-align: center;
+    position: relative;
+    .close-icon {
+        position: absolute;
+        right: 0px;
+        top: 5px;
+        cursor: pointer;
+    }
+    .icon-image {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .message-title {
+        font-size: 24px;
+        font-weight: 600;
+    }
+    .message-sub-title {
+        font-size: 12px;
+    }
+}
