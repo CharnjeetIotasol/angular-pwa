@@ -74,7 +74,6 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
         console.log("Skipping postion due to min distance");
         return;
       }
-      this.toastService.success("Distance: " + distance);
       this.lastCoords = position.coords;
       this.lastUpdateTime = now;
       this.fetchMarkers(position.coords, hasLoading);
