@@ -10,7 +10,7 @@
                     <img [src]="voucher.categoryDetail?.selectedIcon?.path">
                 </div>
                 <div class="my-voucher-info-detail">
-                    <div class="my-voucher-info-title">{{voucher.name}}</div>
+                    <div class="my-voucher-info-title">{{voucher.voucher?.name}}</div>
                     <div class="my-voucher-info-category">{{voucher.categoryDetail?.name}}</div>
                 </div>
                 <div class="left-circle" [style.background-color]="voucher.backgroundColor"></div>
@@ -21,14 +21,14 @@
                 <div class="my-voucher-body-inner">
                     <div class="my-voucher-offer-detail">
                         <img src="/assets/images/icons/discount-icon.svg">
-                        <div class="offer-amount">${{voucher.discount}} off*</div>
+                        <div class="offer-amount">${{voucher.voucher?.discount}} off*</div>
                     </div>
                     <div class="term-condition-label">
                         *Terms and Conditions Applied
                     </div>
                 </div>
                 <p class="voucher-description">
-                    {{voucher.description}}
+                    {{voucher.voucher?.description}}
                 </p>
             </div>
         </div>

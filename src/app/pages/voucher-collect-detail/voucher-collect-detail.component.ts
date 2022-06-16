@@ -31,7 +31,7 @@ export class VoucherCollectDetailComponent implements OnInit {
 
   fetchVoucherDetail() {
     this.loadingService.show();
-    this.mapService.fetchVoucherDetail(this.voucherId)
+    this.mapService.fetchVoucherDetail(this.markerId)
       .subscribe((response: RestResponse) => {
         this.loadingService.hide();
         if (!response.status) {

@@ -169,7 +169,6 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
   }
 
   collect(marker: any) {
-    console.log(marker);
     this.collectEvent.emit(marker);
   }
 
