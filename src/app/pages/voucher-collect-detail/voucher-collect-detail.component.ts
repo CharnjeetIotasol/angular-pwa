@@ -51,6 +51,7 @@ export class VoucherCollectDetailComponent implements OnInit {
   collect() {
     const input = {} as any;
     input.id = this.markerId;
+    this.loadingService.show();
     this.mapService.collectVoucher(input)
       .then((response: RestResponse) => {
         this.loadingService.hide();

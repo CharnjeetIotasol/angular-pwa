@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { AgmOverlays } from "agm-overlays";
 import { FileUploadModule } from 'ng2-file-upload';
+import { NgxBarcodeModule } from 'ngx-barcode';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { HttpLoaderFactory } from 'src/app/app.module';
@@ -60,7 +61,8 @@ import { LAYOUTROUTING } from './layout.routing';
 		}),
 		GooglePlaceModule,
 		FileUploadModule,
-		ImageCropperModule
+		ImageCropperModule,
+		NgxBarcodeModule
 	],
 	providers: [
 	]

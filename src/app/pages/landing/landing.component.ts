@@ -60,7 +60,6 @@ export class LandingComponent implements OnInit {
 
 
   onCompleteEvent($event: any) {
-    console.log($event);
     if ($event.status === "COMPLETED") {
       this.tabView = "PROFILE_VIEW";
       return;

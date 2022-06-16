@@ -1,0 +1,11 @@
+<div class="redeem-confirmation-container">
+    <h2>Confirmation</h2>
+    <p>
+        are you at the store? or in online platform? are you sure you want to redeem it right now? if yes, voucher is
+        marked as redeemed
+    </p>
+    <div class="text-right">
+        <button mat-raised-button [mat-dialog-close]="false" class="margin-right-10">No</button>
+        <button mat-raised-button color="primary" (click)="yes()" cdkFocusInitial>Yes</button>
+    </div>
+</div>

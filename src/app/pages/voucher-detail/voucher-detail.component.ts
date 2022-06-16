@@ -5,6 +5,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 import { MapService } from 'src/app/services/map.service';
 import { RestResponse } from 'src/app/shared/auth.model';
 import { ToastService } from 'src/app/shared/toast.service';
+import { RedeemConfirmationDialogComponent } from '../common/redeem-confirmation-dialog/redeem-confirmation-dialog.component';
 
 @Component({
   selector: 'app-voucher-detail',
@@ -18,6 +19,7 @@ export class VoucherDetailComponent implements OnInit {
   completeEvent = new EventEmitter<any>();
   voucher: any;
   isDetailPage: boolean;
+  showBarCode: boolean;
   constructor(private loadingService: LoadingService,
     private toastService: ToastService,
     private mapService: MapService,
@@ -60,5 +62,34 @@ export class VoucherDetailComponent implements OnInit {
     } else {
       this.completeEvent.emit({ "status": "MY_VOUCHER_REQUESTED", "messgae": "" });
     }
+  }
+
+  requestRedeemed() {
+    const dialogRef = this.dialog.open(RedeemConfirmationDialogComponent, {
+      width: "90%",
+      panelClass: "custom-confirmation-popup"
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.redeemVoucher()
+
+      }
+    });
+  }
+
+  redeemVoucher() {
+    const input = {} as any;
+    input.id = this.voucherId;
+    this.loadingService.show();
+    this.mapService.redeemVoucher(input)
+      .then((response: RestResponse) => {
+        this.loadingService.hide();
+        if (!response.status) {
+          return;
+        }
+        this.showBarCode = true;
+      }, (error) => {
+        this.loadingService.hide();
+      });
   }
 }

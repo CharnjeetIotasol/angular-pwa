@@ -15,14 +15,21 @@
             </div>
             <div class="voucher-info-detail">
                 <div>
-                    <div class="voucher-info-title">{{voucher.name}}</div>
+                    <div class="voucher-info-title">{{voucher.voucher.name}}</div>
                     <div class="voucher-info-category">{{voucher.categoryDetail?.name}}</div>
                 </div>
                 <img src="/assets/images/icons/redeemed.svg" class="redeemed-image" *ngIf="voucher.status==='REDEEMED'">
             </div>
             <p class="voucher-description">
-                {{voucher.description}}
+                {{voucher.voucher.description}}
             </p>
+            <button mat-raised-button class="site-button large-button full-width site-second-color margin-top-30"
+                (click)="requestRedeemed()" *ngIf="!showBarCode && voucher.status!=='REDEEMED'">
+                Redeem
+            </button>
+            <div class="margin-top-20" *ngIf="showBarCode && voucher.status!=='REDEEMED'">
+                <ngx-barcode [bc-width]="1.56" [bc-value]="voucher.code" [bc-display-value]="true"></ngx-barcode>
+            </div>
         </div>
     </div>
 </div>

@@ -59,7 +59,7 @@ export class MyVouchersComponent implements OnInit {
     if (navigator.canShare()) {
       const path = location.origin;
       navigator.share({
-        url: `${path}/voucher/${voucher.voucher.id}`,
+        url: `${path}/voucher/${voucher.id}`,
         title: voucher.voucher.name,
         text: voucher.voucher.name,
       })
@@ -69,6 +69,6 @@ export class MyVouchersComponent implements OnInit {
   }
 
   redeem(voucher: any) {
-    this.completeEvent.emit({ "status": "VOUCHER_DETAIL_REQUESTED", "messgae": voucher.voucherId });
+    this.completeEvent.emit({ "status": "VOUCHER_DETAIL_REQUESTED", "messgae": voucher.id });
   }
 }
