@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { LoadingService } from 'src/app/services/loading.service';
 import { MapService } from 'src/app/services/map.service';
 import { ToastService } from 'src/app/shared/toast.service';
@@ -37,6 +37,11 @@ export class LandingComponent implements OnInit {
     this.selectedTabIndex = 0;
     this.currentTab = "VOCUHER_VIEW";
     this.tabView = "FIND_VOUCHER_VIEW";
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: any) {
+    this.toastService.success('Back button pressed');
   }
 
   onTabChanged($event: any) {
