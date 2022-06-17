@@ -51,18 +51,19 @@ export class LeaderBoardComponent implements OnInit {
           return;
         }
 
-        if (response.data.length > 3) {
-          this.topUsers.push(response.data[1]);
-          this.topUsers.push(response.data[0]);
-          this.topUsers.push(response.data[2]);
+        const records: Array<any> = response.data;
+        if (records.length === 3) {
+          this.topUsers.push(records.find(x => x.rank === 2));
+          this.topUsers.push(records.find(x => x.rank === 1));
+          this.topUsers.push(records.find(x => x.rank === 3));
         } if (response.data.length === 2) {
-          this.topUsers.push(response.data[1]);
-          this.topUsers.push(response.data[0]);
+          this.topUsers.push(records.find(x => x.rank === 2));
+          this.topUsers.push(records.find(x => x.rank === 1));
         } else {
-          this.topUsers = response.data.slice(0, response.data.length);
+          this.topUsers = records.slice(0, response.data.length);
         }
-        if (response.data.length > 3) {
-          this.records = response.data.slice(3);
+        if (records.length > 3) {
+          this.records = records.slice(3);
         }
       }, (error: any) => {
         this.loadingService.hide();

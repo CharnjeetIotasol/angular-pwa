@@ -13,6 +13,12 @@ export class ToastService {
     duration: 10000
   };
 
+  private infoSuccess: MatSnackBarConfig = {
+    horizontalPosition: "center",
+    verticalPosition: "bottom",
+    duration: 10000
+  };
+
   private errorSuccess: MatSnackBarConfig = {
     panelClass: ['style-error'],
     horizontalPosition: "center",
@@ -29,5 +35,9 @@ export class ToastService {
 
   success(text: string): void {
     this._snackBar.open(text, 'OK', this.configSuccess);
+  }
+
+  info(text: string): void {
+    this._snackBar.open(text, 'OK', this.infoSuccess);
   }
 }

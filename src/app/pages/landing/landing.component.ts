@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { LoadingService } from 'src/app/services/loading.service';
 import { MapService } from 'src/app/services/map.service';
 import { ToastService } from 'src/app/shared/toast.service';
@@ -28,17 +29,20 @@ export class LandingComponent implements OnInit {
   selectedTabIndex: number;
   tabView: string;
   history: Array<string>;
+  shownExitMessage: boolean;
 
   constructor(private loadingService: LoadingService,
     private toastService: ToastService,
-    private mapService: MapService) { }
+    private mapService: MapService,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.shownExitMessage = false;
     this.history = new Array<string>();
     this.selectedTabIndex = 0;
     this.tabView = "FIND_VOUCHER_VIEW";
     this.addToHistory(this.tabView);
-    this.toastService.success(this.getPWADisplayMode());
+
   }
 
   getPWADisplayMode() {
@@ -55,6 +59,14 @@ export class LandingComponent implements OnInit {
   onPopState(event: any) {
     if (this.history.length <= 1) {
       console.log("Skipping back button due to no history is available");
+      if (this.getPWADisplayMode() === "standalone") {
+        if (this.shownExitMessage) {
+          window.close();
+          return;
+        }
+        this.toastService.info("Press back again to exit");
+        this.shownExitMessage = true;
+      }
       return;
     }
     this.history.pop();
