@@ -73,9 +73,7 @@ export class VoucherCollectDetailComponent implements OnInit {
       data: { icon: "/assets/images/icons/success.svg", title: "Congratulations!", subTitle: "You have won the vouhcer! Please redeemed your voucher from my vouhcer." }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.completeEvent.emit({ "status": "FIND_VOUCHER_REQUESTED", "messgae": "" });
-      }
+      this.completeEvent.emit({ "status": "FIND_VOUCHER_REQUESTED", "messgae": "" });
     });
   }
 

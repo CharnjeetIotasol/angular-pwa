@@ -9,15 +9,15 @@
             </div>
         </div>
     </div>
-    <div class="leaderboard-winners" [ngClass]="{'center-winner':topUsers.length<3}">
+    <div class="leaderboard-winners"
+        [ngClass]="{'center-winner':topUsers.length===1,'start-winner':topUsers.length===2}">
         <div class="winner-user" *ngFor="let user of topUsers;let i=index"
-            [ngClass]="{'second':i===0 && topUsers.length>1, 'first':(i===1 && topUsers.length>1 || i===0 && topUsers.length<=1), 'third':i===2}">
+            [ngClass]="{'second':user.rank===2, 'first':user.rank===1, 'third':user.rank===3}">
             <div class="winner-image">
                 <img [src]="user.profilePic || '/assets/images/icons/user-profile.png'">
-                <div class="winner-badge" *ngIf="i===1 && topUsers.length>1">1st</div>
-                <div class="winner-badge" *ngIf="i===0 && topUsers.length<=1">1st</div>
-                <div class="winner-badge" *ngIf="i===0 && topUsers.length>1">2nd</div>
-                <div class="winner-badge" *ngIf="i===2">3rd</div>
+                <div class="winner-badge" *ngIf="user.rank===1">1st</div>
+                <div class="winner-badge" *ngIf="user.rank===2">2nd</div>
+                <div class="winner-badge" *ngIf="user.rank===3">3rd</div>
             </div>
             <div class="winner-name">
                 <span *ngIf="myDetail.id===user.id">You</span>

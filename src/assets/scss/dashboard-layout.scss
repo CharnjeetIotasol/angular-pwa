@@ -332,8 +332,11 @@ agm-map {
     .leaderboard-winners {
         display: flex;
         justify-content: space-between;
-        &.center-winner{
+        &.center-winner {
             justify-content: center;
+        }
+        &.start-winner {
+            justify-content: flex-start;
         }
         .winner-user {
             .winner-name {
@@ -554,7 +557,7 @@ agm-map {
                     font-size: 12px;
                     margin-top: 7px;
                 }
-                .redeemed-image{
+                .redeemed-image {
                     max-width: 60px;
                 }
             }

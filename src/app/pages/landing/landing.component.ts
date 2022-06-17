@@ -70,6 +70,8 @@ export class LandingComponent implements OnInit {
       this.tabView = "INTEREST_VIEW";
       return;
     } else if ($event.status === "FIND_VOUCHER_REQUESTED") {
+      this.currentTab = "VOCUHER_VIEW";
+      this.selectedTabIndex = 0;
       this.tabView = "FIND_VOUCHER_VIEW";
       return;
     } else if ($event.status === "FIND_VOUCHER_REQUESTED_FROM_MY_VOUCHER") {

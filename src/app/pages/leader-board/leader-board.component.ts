@@ -55,6 +55,9 @@ export class LeaderBoardComponent implements OnInit {
           this.topUsers.push(response.data[1]);
           this.topUsers.push(response.data[0]);
           this.topUsers.push(response.data[2]);
+        } if (response.data.length === 2) {
+          this.topUsers.push(response.data[1]);
+          this.topUsers.push(response.data[0]);
         } else {
           this.topUsers = response.data.slice(0, response.data.length);
         }
