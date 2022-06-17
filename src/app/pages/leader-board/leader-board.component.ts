@@ -59,7 +59,7 @@ export class LeaderBoardComponent implements OnInit {
         } if (response.data.length === 2) {
           this.topUsers.push(records.find(x => x.rank === 2));
           this.topUsers.push(records.find(x => x.rank === 1));
-        } else {
+        } else if (response.data.length === 1) {
           this.topUsers = records.slice(0, response.data.length);
         }
         if (records.length > 3) {
@@ -79,5 +79,6 @@ export class LeaderBoardComponent implements OnInit {
     } else {
       this.setCurrentMonthFilter();
     }
+    this.fetchLeaderboards();
   }
 }

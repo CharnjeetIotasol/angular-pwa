@@ -61,6 +61,8 @@ export class LandingComponent implements OnInit {
       console.log("Skipping back button due to no history is available");
       if (this.getPWADisplayMode() === "standalone") {
         if (this.shownExitMessage) {
+          event.preventDefault();
+          self.close();
           window.close();
           return;
         }
