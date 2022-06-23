@@ -33,6 +33,10 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
       maximumAge: 0,
       enableHighAccuracy: true
     };
+    if (this.isIOS()) {
+      this.fetchMyCurrentLocation();
+      return;
+    }
     this.requestPermissions();
   }
 
@@ -54,6 +58,12 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
         this.noLocationFound()
       });
   }
+
+  isIOS() {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    this.toastService.info(userAgent);
+    return /iphone|ipad|ipod/.test(userAgent);
+  };
 
   noLocationFound() {
     this.toastService.error("Sorry, We are not able to fetch location. Please enable location services");
