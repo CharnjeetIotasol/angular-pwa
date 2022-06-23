@@ -16,4 +16,8 @@ export class MessageDialogComponent implements OnInit {
   close() {
     this.dialogRef.close(false);
   }
+
+  yes() {
+    this.dialogRef.close(true);
+  }
 }

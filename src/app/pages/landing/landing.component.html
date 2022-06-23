@@ -9,10 +9,14 @@
             <div>HOME</div>
         </ng-template>
         <div class="tab-page-container mat-elevation-z4">
-            <app-find-voucher *ngIf="tabView==='FIND_VOUCHER_VIEW'" (collectEvent)="onCollectEvent($event)">
+            <app-find-voucher *ngIf="tabView==='FIND_VOUCHER_VIEW'" (collectEvent)="onCollectEvent($event)"
+                (completeEvent)="onCompleteEvent($event)">
             </app-find-voucher>
             <app-voucher-collect-detail *ngIf="tabView==='VOUCHER_COLLECT_VIEW'" [voucherId]="selectedVoucherId"
                 [markerId]="selectedMarkerId" (completeEvent)="onCompleteEvent($event)"></app-voucher-collect-detail>
+            <app-trivia *ngIf="tabView==='PLAY_TRIVIA'" [triviaId]="selectedMarkerId"
+                (completeEvent)="onCompleteEvent($event)">
+            </app-trivia>
         </div>
     </mat-tab>
     <mat-tab>

@@ -70,7 +70,11 @@ export class VoucherCollectDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(MessageDialogComponent, {
       width: "90%",
       panelClass: "custom-message-popup",
-      data: { icon: "/assets/images/icons/success.svg", title: "Congratulations!", subTitle: "You have won the vouhcer! Please redeemed your voucher from my vouhcer." }
+      data: {
+        icon: "/assets/images/icons/success.svg",
+        title: "Congratulations!",
+        subTitle: "You have won the vouhcer! Please redeemed your voucher from my vouhcer."
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       this.completeEvent.emit({ "status": "FIND_VOUCHER_REQUESTED", "messgae": "" });
@@ -81,7 +85,11 @@ export class VoucherCollectDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(MessageDialogComponent, {
       width: "90%",
       panelClass: "custom-message-popup",
-      data: { icon: "/assets/images/icons/failure.svg", title: "Oops", subTitle: message }
+      data: {
+        icon: "/assets/images/icons/failure.svg",
+        title: "Oops",
+        subTitle: message
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
     });

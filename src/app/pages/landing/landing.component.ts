@@ -132,6 +132,9 @@ export class LandingComponent implements OnInit {
       this.tabView = "VOUCHER_DETAIL_VIEW";
     } else if ($event.status === "MY_VOUCHER_REQUESTED") {
       this.tabView = "MY_VOUCHER_VIEW";
+    } else if ($event.status === "START_TRIVIA_REQUESTED") {
+      this.selectedMarkerId = $event.messgae;
+      this.tabView = "PLAY_TRIVIA";
     }
     this.addToHistory(this.tabView);
   }

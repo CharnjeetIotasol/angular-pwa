@@ -32,4 +32,16 @@ export class MapService extends HttpServiceRequests<IResourceWithId> {
     redeemVoucher(input: any): Promise<RestResponse> {
         return this.saveRecord(`/app/customer/voucher/redeem`, input);
     }
+
+    startHunt(input: any): Promise<RestResponse> {
+        return this.saveRecord(`/app/customer/huntParticipate/start`, input);
+    }
+
+    startTrivia(input: any): Promise<RestResponse> {
+        return this.saveRecord(`/app/customer/triviaParticipate/start`, input);
+    }
+
+    fetchTriviaDetail(triviaId: string): Observable<RestResponse> {
+        return this.getRecord(`/app/customer/triviaQuestions/${triviaId}`);
+    }
 }

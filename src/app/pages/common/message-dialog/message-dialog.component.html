@@ -3,4 +3,9 @@
     <img class="icon-image" [src]="data.icon" *ngIf="data.icon">
     <h3 class="message-title" *ngIf="data.title">{{data.title}}</h3>
     <p class="message-sub-title" *ngIf="data.subTitle">{{data.subTitle}}</p>
+    <div class="message-button text-center" *ngIf="data.actions">
+        <button mat-raised-button class="site-button large-button site-second-color" (click)="yes()"
+            cdkFocusInitial>Yes</button>
+        <button mat-raised-button [mat-dialog-close]="false" class="site-button large-button margin-left-10">No</button>
+    </div>
 </div>
