@@ -45,7 +45,6 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
     this.minFrequency = 2000;
     navigator.permissions.query({ name: 'geolocation' })
       .then((result) => {
-        this.toastService.success(result.state);
         console.log('geolocation permission state is ', result.state);
         if (result.state === 'granted') {
           this.fetchMyCurrentLocation();
@@ -61,7 +60,6 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
 
   isIOS() {
     const userAgent = window.navigator.userAgent.toLowerCase();
-    this.toastService.info(userAgent);
     return /iphone|ipad|ipod/.test(userAgent);
   };
 
