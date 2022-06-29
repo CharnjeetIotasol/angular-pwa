@@ -167,15 +167,13 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
       this.loadingService.show();
     }
     const input = {} as any;
-    //30.861999,75.834420
     input.latitude = coords.latitude;
     input.longitude = coords.longitude;
+    input.requestDistance = 200;
 
-    // input.latitude = 30.861999;
+    //input.latitude = 30.861999;
     //input.longitude = 75.834420;
     //this.lastCoords = input;
-
-    input.requestDistance = 200;
     this.mapService.fetchVocuherNearMe(input)
       .then((response: RestResponse) => {
         this.loadingService.hide();
