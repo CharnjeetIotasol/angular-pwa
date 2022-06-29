@@ -44,4 +44,8 @@ export class MapService extends HttpServiceRequests<IResourceWithId> {
     fetchTriviaDetail(triviaId: string): Observable<RestResponse> {
         return this.getRecord(`/app/customer/triviaQuestions/${triviaId}`);
     }
+
+    completeTrivia(input: any): Promise<RestResponse> {
+        return this.saveRecord(`/app/customer/triviaparticipate/finish`, input);
+    }
 }

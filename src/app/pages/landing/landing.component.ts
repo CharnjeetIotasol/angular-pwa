@@ -26,6 +26,7 @@ import { ToastService } from 'src/app/shared/toast.service';
 export class LandingComponent implements OnInit {
   selectedVoucherId: string;
   selectedMarkerId: string;
+  selectedTriviaId: string;
   selectedTabIndex: number;
   tabView: string;
   history: Array<string>;
@@ -42,7 +43,6 @@ export class LandingComponent implements OnInit {
     this.selectedTabIndex = 0;
     this.tabView = "FIND_VOUCHER_VIEW";
     this.addToHistory(this.tabView);
-
   }
 
   getPWADisplayMode() {
@@ -134,6 +134,7 @@ export class LandingComponent implements OnInit {
       this.tabView = "MY_VOUCHER_VIEW";
     } else if ($event.status === "START_TRIVIA_REQUESTED") {
       this.selectedMarkerId = $event.messgae;
+      this.selectedTriviaId = $event.triviaId;
       this.tabView = "PLAY_TRIVIA";
     }
     this.addToHistory(this.tabView);

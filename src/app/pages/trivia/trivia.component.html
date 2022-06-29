@@ -1,1 +1,27 @@
-<p>trivia works!</p>
+<div class="trivia-container">
+    <div class="trivia-detail-section" *ngIf="selectTrivia">
+        <div class="trivia-heading">
+            {{selectTrivia.name}}
+        </div>
+        <div class="question-slider-container">
+            <div class="slider-number">
+                <span class="current-number">0{{currentQuestion}}</span>
+                <span class="current-number" *ngIf="currentQuestion>9">{{currentQuestion}}</span>
+                <span>/{{selectTrivia.questions?.length}}</span>
+            </div>
+            <mat-slider color="primary" min="1" [max]="selectTrivia.questions?.length" step="1"
+                [value]="currentQuestion"></mat-slider>
+        </div>
+        <div class="question-container">
+            <div class="question-item" *ngFor="let question of selectTrivia.questions;let i=index"
+                [hidden]="(i+1)!==currentQuestion">
+                <div class="question-title">{{question.question}}</div>
+                <div class="question-options">
+                    <div class="question-option" *ngFor="let option of question.options" (click)="markSelect(option)">
+                        {{option.title}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

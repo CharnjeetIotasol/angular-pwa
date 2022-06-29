@@ -31,7 +31,7 @@
             <mat-icon>share</mat-icon> Share
         </button>
         <button mat-raised-button class="site-button medium-button site-second-color" (click)="redeem(voucher)">
-            Redeem
+            {{voucher.status==='REDEEMED'?'Redeemed':'Redeem'}}
         </button>
     </div>
 </div>

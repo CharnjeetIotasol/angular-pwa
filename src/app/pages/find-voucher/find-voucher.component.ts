@@ -163,7 +163,6 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
 
   fetchMarkers(coords: any, hasLoading: boolean) {
     console.log("Fetching available vouchers from source...");
-    this.markers = new Array<any>();
     if (hasLoading) {
       this.loadingService.show();
     }
@@ -171,10 +170,12 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
     //30.861999,75.834420
     input.latitude = coords.latitude;
     input.longitude = coords.longitude;
-    //input.latitude = 30.861999;
+
+    // input.latitude = 30.861999;
     //input.longitude = 75.834420;
     //this.lastCoords = input;
-    input.requestDistance = 100;
+
+    input.requestDistance = 1000;
     this.mapService.fetchVocuherNearMe(input)
       .then((response: RestResponse) => {
         this.loadingService.hide();
@@ -187,12 +188,6 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
           marker.latitude = Number(marker.latitude);
           marker.longitude = Number(marker.longitude);
         });
-        if (this.markers.length <= 0) {
-          const marker = {} as any;
-          marker.latitude = coords.latitude;
-          marker.longitude = coords.longitude;
-          this.markers.push(marker);
-        }
       }, (error: any) => {
         this.loadingService.hide();
         this.toastService.error(error.message);
@@ -219,7 +214,7 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
   }
 
   collect(marker: any) {
-    if (marker.type === "VOUCHER") {
+    if (marker.type === "DISCOUNT" || marker.type === "VOUCHER" || marker.type === "HUNT VOUCHER") {
       this.collectEvent.emit(marker);
       return;
     }
@@ -291,7 +286,7 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
           this.toastService.error(response.message);
           return;
         }
-        this.completeEvent.emit({ "status": "START_TRIVIA_REQUESTED", "messgae": marker.id });
+        this.completeEvent.emit({ "status": "START_TRIVIA_REQUESTED", "messgae": marker.id, "triviaId": response.data });
       }, (error: any) => {
         this.loadingService.hide();
         this.toastService.error(error.message);

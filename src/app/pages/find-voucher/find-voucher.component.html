@@ -5,14 +5,14 @@
     <agm-overlay [latitude]="marker.latitude" [longitude]="marker.longitude" *ngFor="let marker of markers;let i=index">
         <div class="marker-main-info" (click)="collect(marker)">
             <img class="placeholder-image" src="/assets/images/icons/map-pin-default-small.png"
-                *ngIf="marker.type === 'DISCOUNT' || marker.type === 'VOUCHER'">
+                *ngIf="marker.type === 'DISCOUNT' || marker.type === 'VOUCHER' || marker.type === 'HUNT VOUCHER'">
             <img class="placeholder-image" src="/assets/images/icons/map-pin-hunt-primary-small.png"
                 *ngIf="marker.type === 'HUNT'">
             <img class="placeholder-image" src="/assets/images/icons/map-pin-trivia-primary-small.png"
                 *ngIf="marker.type === 'TRIVIA'">
             <img class="client-logo"
                 [src]="marker.logo.length>0?marker.logo[0].path:'/assets/images/icons/map-pin-default-small.png'"
-                *ngIf="marker.type === 'DISCOUNT' || marker.type === 'VOUCHER'">
+                *ngIf="marker.type === 'DISCOUNT' || marker.type === 'VOUCHER' || marker.type === 'HUNT VOUCHER'">
         </div>
     </agm-overlay>
     <agm-marker [latitude]="marker.latitude" [longitude]="marker.longitude" [openInfoWindow]="true"
