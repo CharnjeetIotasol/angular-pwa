@@ -3,6 +3,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoadingService } from 'src/app/services/loading.service';
 import { MapService } from 'src/app/services/map.service';
+import { AuthService } from 'src/app/shared/auth.services';
 import { ToastService } from 'src/app/shared/toast.service';
 
 @Component({
@@ -31,13 +32,16 @@ export class LandingComponent implements OnInit {
   tabView: string;
   history: Array<string>;
   shownExitMessage: boolean;
+  isPartnerUser: boolean;
 
   constructor(private loadingService: LoadingService,
     private toastService: ToastService,
     private mapService: MapService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.isPartnerUser = this.authService.isPartnerUser();
     this.shownExitMessage = false;
     this.history = new Array<string>();
     this.selectedTabIndex = 0;

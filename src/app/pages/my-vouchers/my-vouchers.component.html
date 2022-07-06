@@ -25,6 +25,8 @@
                 *Terms and Conditions Applied
             </div>
         </div>
+        <div class="game-winner-message" *ngIf="voucher.voucherType==='TRIVIA'"><img src="/assets/images/icons/success.svg" width="18"> Won in <span>trivia!</span></div>
+        <div class="game-winner-message" *ngIf="voucher.voucherType==='HUNT'"><img src="/assets/images/icons/success.svg" width="18"> Won in <span>Hunt!</span></div>
     </div>
     <div class="my-voucher-footer">
         <button mat-stroked-button class="site-button medium-button share-button" (click)="share(voucher, $event)">

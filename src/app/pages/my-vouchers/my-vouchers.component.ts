@@ -58,12 +58,12 @@ export class MyVouchersComponent implements OnInit {
   async share(voucher: any, $event: any) {
     const path = location.origin;
     navigator.share({
-      url: `${path}/voucher/${voucher.id}`,
+      url: `${path}/dashboard/voucher/${voucher.id}`,
       title: voucher.voucher.name,
       text: voucher.voucher.name,
     })
-      .then(() => this.toastService.success('Successful share'))
-      .catch((error) => this.toastService.error('Error sharing'));
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing'));
   }
 
   redeem(voucher: any) {
