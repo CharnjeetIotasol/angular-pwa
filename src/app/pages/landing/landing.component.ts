@@ -33,6 +33,7 @@ export class LandingComponent implements OnInit {
   history: Array<string>;
   shownExitMessage: boolean;
   isPartnerUser: boolean;
+  selectedMarker: any;
 
   constructor(private loadingService: LoadingService,
     private toastService: ToastService,
@@ -140,6 +141,9 @@ export class LandingComponent implements OnInit {
       this.selectedMarkerId = $event.messgae;
       this.selectedTriviaId = $event.triviaId;
       this.tabView = "PLAY_TRIVIA";
+    } else if ($event.status === "START_FIND_VOUCHER_AR") {
+      this.tabView = "FIND_VOUCHER_AR_VIEW";
+      this.selectedMarker = $event.messgae;
     }
     this.addToHistory(this.tabView);
   }

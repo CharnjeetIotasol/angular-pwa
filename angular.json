@@ -37,7 +37,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js"
+              "./node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/aframe-ar-nft.js"
             ],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
