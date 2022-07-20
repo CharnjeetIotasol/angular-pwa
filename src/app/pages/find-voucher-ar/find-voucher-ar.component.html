@@ -1,7 +1,7 @@
 <!-- using gpsMinDistance: 5 => update GPS only if user moves by 5 meters or more => avoid shaking for near objects
 using accelerationToMove: 1.0 => 'smooth' inertial sensors precision precision in order to avoid distant places shaking -->
 <!-- <a-scene vr-mode-ui="enabled: false" arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' *ngIf="marker">
-  <a-image src="/assets/images/icons/map-pin-default-large.png" clicker></a-image>
+  <a-image src="/assets/images/icons/map-pin-default-large.png" (click)="collectMarker()"></a-image>
   <a-camera rotation-reader gps-entity-place="latitude: {{marker.latitude}}; longitude: {{marker.longitude}};" gps-camera="gpsMinDistance: 5;">
   </a-camera>
 </a-scene> -->

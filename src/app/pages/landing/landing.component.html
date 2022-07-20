@@ -9,8 +9,7 @@
       <div>HOME</div>
     </ng-template>
     <div class="tab-page-container mat-elevation-z4">
-      <app-find-voucher *ngIf="tabView==='FIND_VOUCHER_VIEW'" (collectEvent)="onCollectEvent($event)"
-        (completeEvent)="onCompleteEvent($event)">
+      <app-find-voucher *ngIf="tabView==='FIND_VOUCHER_VIEW'" (completeEvent)="onCompleteEvent($event)">
       </app-find-voucher>
       <app-find-voucher-ar *ngIf="tabView==='FIND_VOUCHER_AR_VIEW'" [marker]="selectedMarker"
         (collectEvent)="onCollectEvent($event)">

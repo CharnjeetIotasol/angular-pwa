@@ -19,8 +19,6 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
   minFrequency: number;
   lastCoords: any;
   @Output()
-  collectEvent = new EventEmitter<any>();
-  @Output()
   completeEvent = new EventEmitter<any>();
   constructor(private loadingService: LoadingService,
     private toastService: ToastService,
