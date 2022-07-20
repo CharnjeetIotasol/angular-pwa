@@ -19,9 +19,11 @@ export class FindVoucherArComponent implements OnInit {
   }
 
   collectMarker() {
+    alert("Click");
     if (this.hasMarkerDetailOpen) {
       return;
     }
+    alert("Here");
     this.hasMarkerDetailOpen = true;
     setTimeout(() => {
       this.collectEvent.emit(this.marker);
