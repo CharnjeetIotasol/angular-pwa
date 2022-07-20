@@ -31,4 +31,8 @@ export class FindVoucherArComponent implements OnInit, AfterViewInit {
       });
     }, 2000);
   }
+
+  collectMarker() {
+    alert("Yes, Click work");
+  }
 }
