@@ -16,24 +16,31 @@ export class FindVoucherArComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.hasMarkerDetailOpen = false;
-  }
-
-  ngAfterViewInit(): void {
     AFRAME.registerComponent('clicker', {
       init: function () {
-        alert("clicker init called");
         this.el.addEventListener('click', (e: any) => {
           alert('Marker clicked!');
-          if (this.hasMarkerDetailOpen) {
-            return;
-          }
-          alert("Here");
-          this.hasMarkerDetailOpen = true;
-          setTimeout(() => {
-            this.collectEvent.emit(this.marker);
-          })
         });
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+    // AFRAME.registerComponent('clicker', {
+    //   init: function () {
+    //     alert("clicker init called");
+    //     this.el.addEventListener('click', (e: any) => {
+    //       alert('Marker clicked!');
+    //       if (this.hasMarkerDetailOpen) {
+    //         return;
+    //       }
+    //       alert("Here");
+    //       this.hasMarkerDetailOpen = true;
+    //       setTimeout(() => {
+    //         this.collectEvent.emit(this.marker);
+    //       })
+    //     });
+    //   }
+    // });
   }
 }
