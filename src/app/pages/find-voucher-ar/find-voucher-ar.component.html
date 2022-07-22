@@ -1,4 +1,4 @@
-<a-scene vr-mode-ui="enabled: false" cursor='rayOrigin: mouse' raycaster='near: 0; far: 50000'
+<a-scene vr-mode-ui="enabled: false" cursor='rayOrigin: mouse'
   arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' renderer='antialias: true; alpha: true'
   *ngIf="marker">
   <a-image gps-entity-place="latitude: {{marker.latitude}}; longitude: {{marker.longitude}};"
