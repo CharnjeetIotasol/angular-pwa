@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 declare const AFRAME: any;
 @Component({
   selector: 'app-find-voucher-ar',
   templateUrl: './find-voucher-ar.component.html',
   styleUrls: ['./find-voucher-ar.component.scss']
 })
-export class FindVoucherArComponent implements OnInit {
+export class FindVoucherArComponent implements OnInit, AfterViewInit {
 
   @Input()
   marker: any;
@@ -16,6 +16,16 @@ export class FindVoucherArComponent implements OnInit {
 
   ngOnInit(): void {
     this.hasMarkerDetailOpen = false;
+  }
+
+  ngAfterViewInit(): void {
+    AFRAME.registerComponent("markerhandler", {
+      init: function () {
+        const animatedModel = this.el;
+        let isMarkerVisible = false;
+        alert("here 1");
+      }
+    })
   }
 
   collectMarker() {
