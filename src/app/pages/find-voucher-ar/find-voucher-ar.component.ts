@@ -16,22 +16,6 @@ export class FindVoucherArComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.hasMarkerDetailOpen = false;
-    AFRAME.registerComponent('clicker', {
-      init: function () {
-        const animatedModel = this.el;
-        animatedModel.addEventListener('click', (ev: any, target: any) => {
-          alert("Got Click Event");
-          alert(JSON.stringify(ev));
-          alert(JSON.stringify(ev.detail));
-          alert(JSON.stringify(ev.detail.intersectedEl));
-          const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
-          if (animatedModel && intersectedElement === animatedModel) {
-            const objectId = animatedModel.id;
-            alert('Marker clicked yoooooooooo! ');
-          }
-        });
-      }
-    });
   }
 
   ngAfterViewInit(): void {
@@ -51,5 +35,21 @@ export class FindVoucherArComponent implements OnInit, AfterViewInit {
     //     });
     //   }
     // });
+    AFRAME.registerComponent('clicker', {
+      init: function () {
+        const animatedModel = this.el;
+        animatedModel.addEventListener('click', (ev: any, target: any) => {
+          alert("Got Click Event");
+          alert(JSON.stringify(ev));
+          alert(JSON.stringify(ev.detail));
+          alert(JSON.stringify(ev.detail.intersectedEl));
+          const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
+          if (animatedModel && intersectedElement === animatedModel) {
+            const objectId = animatedModel.id;
+            alert('Marker clicked yoooooooooo! ');
+          }
+        });
+      }
+    });
   }
 }
