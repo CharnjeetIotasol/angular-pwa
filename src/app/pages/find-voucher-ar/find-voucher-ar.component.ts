@@ -18,8 +18,14 @@ export class FindVoucherArComponent implements OnInit, AfterViewInit {
     this.hasMarkerDetailOpen = false;
     AFRAME.registerComponent('clicker', {
       init: function () {
-        this.el.addEventListener('click', (e: any) => {
-          alert('Marker clicked!');
+        const animatedModel = this.el;
+        animatedModel.addEventListener('click', (ev: any, target: any) => {
+          alert("Got Click Event");
+          const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
+          if (animatedModel && intersectedElement === animatedModel) {
+            const objectId = animatedModel.id;
+            alert('Marker clicked yoooooooooo! ');
+          }
         });
       }
     });
