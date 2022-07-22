@@ -1,7 +1,7 @@
 <a-scene vr-mode-ui="enabled: false" cursor='rayOrigin: mouse' raycaster='near: 0; far: 50000'
   arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' renderer='antialias: true; alpha: true'
   *ngIf="marker">
-  <a-image markerhandler gps-entity-place="latitude: {{marker.latitude}}; longitude: {{marker.longitude}};"
+  <a-image gps-entity-place="latitude: {{marker.latitude}}; longitude: {{marker.longitude}};"
     src="/assets/images/icons/map-pin-default-large.png" (click)="collectMarker()"></a-image>
   <!-- using gpsMinDistance: 5 => update GPS only if user moves by 5 meters or more => avoid shaking for near objects -->
   <!-- using accelerationToMove: 1.0 => 'smooth' inertial sensors precision precision in order to avoid distant places shaking -->

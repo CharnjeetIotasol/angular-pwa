@@ -19,13 +19,6 @@ export class FindVoucherArComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    AFRAME.registerComponent("markerhandler", {
-      init: function () {
-        const animatedModel = this.el;
-        let isMarkerVisible = false;
-        alert("here 1");
-      }
-    })
   }
 
   collectMarker() {
