@@ -38,22 +38,23 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
     this.requestPermissions();
   }
 
-  requestPermissions(): void {
+  async requestPermissions(): Promise<any> {
     this.lastUpdateTime = undefined;
     this.minFrequency = 2000;
-    navigator.permissions.query({ name: 'geolocation' })
-      .then((result) => {
-        console.log('geolocation permission state is ', result.state);
-        if (result.state === 'granted') {
-          this.fetchMyCurrentLocation();
-        } else {
-          console.log('Browser location services disabled', navigator);
-          this.noLocationFound();
-        }
-      }, (error) => {
-        console.log('Browser permissions services unavailable', navigator);
-        this.noLocationFound()
-      });
+    try {
+      const result: any = await navigator.permissions.query({ name: 'geolocation' });
+      console.log('geolocation permission state is ', result.state);
+      if (result.state === 'granted') {
+        this.fetchMyCurrentLocation();
+      } else {
+        console.log('Browser location services disabled', navigator);
+        this.noLocationFound();
+      }
+    } catch (error) {
+      console.log(error);
+      console.log('Browser permissions services unavailable', navigator);
+      this.noLocationFound()
+    }
   }
 
   isIOS() {

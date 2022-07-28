@@ -52,7 +52,7 @@ export class LeaderBoardComponent implements OnInit {
         }
 
         const records: Array<any> = response.data;
-        if (records.length === 3) {
+        if (records.length >= 3) {
           this.topUsers.push(records.find(x => x.rank === 2));
           this.topUsers.push(records.find(x => x.rank === 1));
           this.topUsers.push(records.find(x => x.rank === 3));
