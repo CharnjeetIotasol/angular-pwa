@@ -35,7 +35,7 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
       this.fetchMyCurrentLocation();
       return;
     }
-    this.requestPermissions();
+    this.fetchMyCurrentLocation();
   }
 
   async requestPermissions(): Promise<any> {
