@@ -6,10 +6,9 @@
   <a-camera rotation-reader gps-camera="gpsMinDistance: 5;"></a-camera>
 </a-scene> -->
 <a-scene vr-mode-ui="enabled: false" cursor='rayOrigin: mouse' raycaster='near: 0; far: 50000'
-  arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' renderer='antialias: true; alpha: true'
-  *ngIf="marker">
-  <a-image [src]="marker.logo.length>0?marker.logo[0].path:'/assets/images/icons/map-pin-default-large.png'"
-    gps-entity-place="latitude: {{marker.latitude}}; longitude: {{marker.longitude}};" clicker></a-image>
-  <a-camera rotation-reader gps-camera="simulateLatitude: {{marker.latitude}}; simulateLongitude: {{marker.longitude}}; gpsMinDistance: 3;">
+  arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' renderer='antialias: true; alpha: true'>
+  <a-image src="/assets/images/icons/map-pin-default-large.png"
+    gps-entity-place="latitude: 44.504348; longitude: 11.301027;" clicker></a-image>
+  <a-camera rotation-reader gps-camera="simulateLatitude: 44.50437; simulateLongitude: 11.30106; gpsMinDistance: 2;">
   </a-camera>
 </a-scene>
