@@ -1,7 +1,7 @@
 <div class="find-voucher-header-title text-center">
 </div>
-<agm-map [zoom]="19" [disableDefaultUI]="false" [latitude]="lastCoords.latitude" [longitude]="lastCoords.longitude"
-    (mapReady)="onMapReady($event)" *ngIf="lastCoords">
+<agm-map [zoom]="20" [disableDefaultUI]="false" [latitude]="lastCoords.latitude" [longitude]="lastCoords.longitude"
+    (mapReady)="onMapReady($event)" *ngIf="lastCoords" [fullscreenControl]='true'>
     <agm-overlay [latitude]="marker.latitude" [longitude]="marker.longitude" *ngFor="let marker of markers;let i=index">
         <div class="marker-main-info" (click)="collect(marker)">
             <img class="placeholder-image" src="/assets/images/icons/map-pin-default-small.png"

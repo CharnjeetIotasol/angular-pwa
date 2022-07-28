@@ -71,7 +71,7 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
       return;
     }
     map.setOptions({
-      streetViewControl: false,
+      streetViewControl: true,
       fullscreenControl: false
     });
   }
@@ -168,10 +168,10 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
     const input = {} as any;
     input.latitude = coords.latitude;
     input.longitude = coords.longitude;
-    input.requestDistance = 80;
+    input.requestDistance = 1000;
     //30.857435,75.832438
-    // input.latitude = 30.857435;
-    // input.longitude = 75.832438;
+    input.latitude = 30.857435;
+    input.longitude = 75.832438;
     this.lastCoords = input;
     this.mapService.fetchVocuherNearMe(input)
       .then((response: RestResponse) => {

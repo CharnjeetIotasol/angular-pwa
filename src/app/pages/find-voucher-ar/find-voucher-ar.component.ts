@@ -24,14 +24,11 @@ export class FindVoucherArComponent implements OnInit, AfterViewInit {
       init: function () {
         const animatedModel = this.el;
         animatedModel.addEventListener('click', (ev: any, target: any) => {
-          alert('Marker clicked yoooooooooo! ');
           if (parent.hasMarkerDetailOpen) {
             return;
           }
-          alert("Here");
           parent.hasMarkerDetailOpen = true;
           setTimeout(() => {
-            alert("Sending Notification");
             parent.collectEvent.emit(parent.marker);
           })
         });
