@@ -211,6 +211,10 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
   }
 
   collect(marker: any) {
+    if (marker.distanceInMeters > 80) {
+      this.toastService.error("Please walk closer to the location of the voucher to interact with it");
+      return;
+    }
     if (marker.type === "DISCOUNT" || marker.type === "VOUCHER" || marker.type === "HUNT VOUCHER") {
       this.completeEvent.emit({ "status": "START_FIND_VOUCHER_AR", "messgae": marker });
       return;
