@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { LoadingService } from 'src/app/services/loading.service';
 import { MapService } from 'src/app/services/map.service';
@@ -39,7 +39,8 @@ export class LandingComponent implements OnInit {
     private toastService: ToastService,
     private mapService: MapService,
     private dialog: MatDialog,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.isPartnerUser = this.authService.isPartnerUser();
@@ -152,6 +153,8 @@ export class LandingComponent implements OnInit {
     alert("In Landing Page");
     this.selectedVoucherId = $event.voucherId;
     this.selectedMarkerId = $event.id;
+    console.log($event);
     this.tabView = "VOUCHER_COLLECT_VIEW";
+    this.changeDetectorRef.markForCheck();
   }
 }
