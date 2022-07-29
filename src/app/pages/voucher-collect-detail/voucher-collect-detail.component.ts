@@ -26,13 +26,11 @@ export class VoucherCollectDetailComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    alert("In Voucher Collect Detail");
     this.fetchVoucherDetail();
   }
 
   fetchVoucherDetail() {
     this.loadingService.show();
-    alert("Sending Request");
     this.mapService.fetchVoucherDetail(this.markerId)
       .subscribe((response: RestResponse) => {
         this.loadingService.hide();
@@ -40,7 +38,6 @@ export class VoucherCollectDetailComponent implements OnInit {
           this.toastService.error(response.message);
           return;
         }
-        alert("Got Response");;
         this.voucher = response.data;
         if (this.voucher.categoryDetail && this.voucher.categoryDetail.icon && this.voucher.categoryDetail.icon.length > 0) {
           this.voucher.categoryDetail.selectedIcon = this.voucher.categoryDetail.icon[0];

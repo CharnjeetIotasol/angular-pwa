@@ -18,8 +18,8 @@
   *ngIf="marker && !hasMarkerDetailOpen">
 
   <a-camera gps-camera='simulateLatitude: 51.049; simulateLongitude: -0.723' rotation-reader>
-    <a-image [src]="marker.logo.length>0?marker.logo[0].path:'/assets/images/icons/map-pin-default-small.png'"
-      look-at="[gps-camera]" gps-entity-place="latitude: 51.0491; longitude: -0.723;" (click)="abc()">
+    <a-image src="{{iconPath}}" look-at="[gps-camera]" gps-entity-place="latitude: 51.0491; longitude: -0.723;"
+      (click)="collect()">
     </a-image>
   </a-camera>
 </a-scene>

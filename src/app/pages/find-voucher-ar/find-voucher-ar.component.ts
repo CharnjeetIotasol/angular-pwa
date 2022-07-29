@@ -12,36 +12,24 @@ export class FindVoucherArComponent implements OnInit, AfterViewInit {
   @Output()
   collectEvent = new EventEmitter<any>();
   hasMarkerDetailOpen: boolean;
+  iconPath: string;
   constructor() { }
 
   ngOnInit(): void {
+    this.iconPath = this.marker.logo.length > 0 ? this.marker.logo[0].path : '/assets/images/icons/map-pin-default-small.png';
+    alert(this.iconPath);
     this.hasMarkerDetailOpen = false;
   }
 
   ngAfterViewInit(): void {
-    AFRAME.registerComponent('clicker', {
-      init: () => {
-        const animatedModel: any = document.querySelector('a-image');
-        animatedModel.addEventListener('click', (ev: any, target: any) => {
-          if (this.hasMarkerDetailOpen) {
-            return;
-          }
-          this.hasMarkerDetailOpen = true;
-          alert("Got Click");
-          setTimeout(() => {
-            this.collectEvent.emit(this.marker);
-          });
-        });
-      }
-    });
+
   }
 
-  abc() {
+  collect() {
     if (this.hasMarkerDetailOpen) {
       return;
     }
     this.hasMarkerDetailOpen = true;
-    alert("Got Click");
     setTimeout(() => {
       this.collectEvent.emit(this.marker);
     });
