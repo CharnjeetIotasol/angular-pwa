@@ -170,8 +170,8 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
     input.longitude = coords.longitude;
     input.requestDistance = 1000;
     //30.857435,75.832438
-    input.latitude = 30.857435;
-    input.longitude = 75.832438;
+    // input.latitude = 30.857435;
+    // input.longitude = 75.832438;
     this.lastCoords = input;
     this.mapService.fetchVocuherNearMe(input)
       .then((response: RestResponse) => {
@@ -213,7 +213,6 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
   collect(marker: any) {
     if (marker.type === "DISCOUNT" || marker.type === "VOUCHER" || marker.type === "HUNT VOUCHER") {
       this.completeEvent.emit({ "status": "START_FIND_VOUCHER_AR", "messgae": marker });
-      //this.collectEvent.emit(marker);
       return;
     }
     if (marker.type === "HUNT") {

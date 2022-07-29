@@ -149,6 +149,7 @@ export class LandingComponent implements OnInit {
   }
 
   onCollectEvent($event: any) {
+    alert("In Landing Page");
     this.selectedVoucherId = $event.voucherId;
     this.selectedMarkerId = $event.id;
     this.tabView = "VOUCHER_COLLECT_VIEW";
