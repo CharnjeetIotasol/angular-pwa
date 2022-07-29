@@ -22,7 +22,12 @@ export class FindVoucherArComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-
+    AFRAME.registerComponent('clicker', {
+      init: () => {
+        const animatedModel: any = document.querySelector('a-image');
+        animatedModel.setAttribute('src', this.iconPath)
+      }
+    });
   }
 
   collect() {

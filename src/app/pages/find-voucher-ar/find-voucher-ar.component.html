@@ -18,8 +18,8 @@
   *ngIf="marker && !hasMarkerDetailOpen">
 
   <a-camera gps-camera='simulateLatitude: 51.049; simulateLongitude: -0.723' rotation-reader>
-    <a-image src="https://redvoucherblobstorage.blob.core.windows.net/images/rIqX3A1200px-KFC_logo.svg.png"
-      look-at="[gps-camera]" gps-entity-place="latitude: 51.0491; longitude: -0.723;" (click)="collect()">
+    <a-image look-at="[gps-camera]" gps-entity-place="latitude: 51.0491; longitude: -0.723;" clicker
+      (click)="collect()">
     </a-image>
   </a-camera>
 </a-scene>
