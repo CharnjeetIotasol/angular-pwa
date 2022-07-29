@@ -12,7 +12,7 @@
       <app-find-voucher *ngIf="tabView==='FIND_VOUCHER_VIEW'" (completeEvent)="onCompleteEvent($event)">
       </app-find-voucher>
       <app-find-voucher-ar *ngIf="tabView==='FIND_VOUCHER_AR_VIEW'" [marker]="selectedMarker"
-        (collectEvent)="onCollectEvent($event)">
+        (completeEvent)="onCompleteEvent($event)" (collectEvent)="onCollectEvent($event)">
       </app-find-voucher-ar>
       <app-voucher-collect-detail *ngIf="tabView==='VOUCHER_COLLECT_VIEW'" [voucherId]="selectedVoucherId"
         [markerId]="selectedMarkerId" (completeEvent)="onCompleteEvent($event)"></app-voucher-collect-detail>

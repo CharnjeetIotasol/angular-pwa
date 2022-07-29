@@ -12,14 +12,16 @@
   <a-camera rotation-reader gps-camera="simulateLatitude: 44.50437; simulateLongitude: 11.30106; gpsMinDistance: 10;">
   </a-camera>
 </a-scene> -->
-
+<button mat-icon-button aria-label="Back" (click)="back()" class="back-button">
+  <mat-icon>arrow_back</mat-icon>
+</button>
 <a-scene vr-mode-ui="enabled: false" cursor='rayOrigin: mouse' raycaster='near: 0; far: 50000'
   arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' renderer='antialias: true; alpha: true'
   *ngIf="marker && !hasMarkerDetailOpen">
 
   <a-camera gps-camera='simulateLatitude: 51.049; simulateLongitude: -0.723' rotation-reader>
-    <a-image look-at="[gps-camera]" gps-entity-place="latitude: 51.0491; longitude: -0.723;" clicker
-      (click)="collect()">
+    <a-image look-at="[gps-camera]" gps-entity-place="latitude: 51.0491; longitude: -0.723;" (click)="collect()"
+      width="1.5" height="1.5">
     </a-image>
   </a-camera>
 </a-scene>
