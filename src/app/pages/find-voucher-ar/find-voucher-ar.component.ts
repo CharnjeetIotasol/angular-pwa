@@ -28,6 +28,7 @@ export class FindVoucherArComponent implements OnInit, AfterViewInit {
             return;
           }
           parent.hasMarkerDetailOpen = true;
+          alert("Got Click");
           setTimeout(() => {
             parent.collectEvent.emit(parent.marker);
           })

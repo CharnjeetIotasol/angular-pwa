@@ -14,10 +14,11 @@
 </a-scene> -->
 
 <a-scene vr-mode-ui="enabled: false" cursor='rayOrigin: mouse' raycaster='near: 0; far: 50000'
-  arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' renderer='antialias: true; alpha: true'>
+  arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;' renderer='antialias: true; alpha: true'
+  *ngIf="marker">
   <a-camera gps-camera='simulateLatitude: 51.049; simulateLongitude: -0.723' rotation-reader>
-    <a-image src="/assets/images/icons/map-pin-default-large.png" look-at="[gps-camera]"
-      gps-entity-place="latitude: 51.0491; longitude: -0.723;" clicker>
+    <a-image [src]="marker.logo.length>0?marker.logo[0].path:'/assets/images/icons/map-pin-default-small.png'"
+      look-at="[gps-camera]" gps-entity-place="latitude: 51.0491; longitude: -0.723;" clicker>
     </a-image>
   </a-camera>
 </a-scene>
