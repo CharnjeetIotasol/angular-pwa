@@ -16,7 +16,6 @@ export class FindVoucherArComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.hasMarkerDetailOpen = false;
-    console.log(this.marker.logo[0].path);
   }
 
   ngAfterViewInit(): void {
@@ -34,6 +33,17 @@ export class FindVoucherArComponent implements OnInit, AfterViewInit {
           });
         });
       }
+    });
+  }
+
+  abc() {
+    if (this.hasMarkerDetailOpen) {
+      return;
+    }
+    this.hasMarkerDetailOpen = true;
+    alert("Got Click");
+    setTimeout(() => {
+      this.collectEvent.emit(this.marker);
     });
   }
 }
