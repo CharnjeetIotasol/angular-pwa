@@ -1,23 +1,23 @@
 <div class="find-voucher-header-title text-center">
 </div>
-<agm-map [zoom]="20" [disableDefaultUI]="false" [latitude]="lastCoords.latitude" [longitude]="lastCoords.longitude"
-    (mapReady)="onMapReady($event)" *ngIf="lastCoords" [fullscreenControl]='true'>
-    <agm-overlay [latitude]="marker.latitude" [longitude]="marker.longitude" *ngFor="let marker of markers;let i=index">
-        <div class="marker-main-info" (click)="collect(marker)">
-            <img class="placeholder-image" src="/assets/images/icons/map-pin-default-small.png"
-                *ngIf="marker.type === 'DISCOUNT' || marker.type === 'VOUCHER' || marker.type === 'HUNT VOUCHER'">
-            <img class="placeholder-image" src="/assets/images/icons/map-pin-hunt-primary-small.png"
-                *ngIf="marker.type === 'HUNT'">
-            <img class="placeholder-image" src="/assets/images/icons/map-pin-trivia-primary-small.png"
-                *ngIf="marker.type === 'TRIVIA'">
-            <img class="client-logo"
-                [src]="marker.logo.length>0?marker.logo[0].path:'/assets/images/icons/map-pin-default-small.png'"
-                *ngIf="marker.type === 'DISCOUNT' || marker.type === 'VOUCHER' || marker.type === 'HUNT VOUCHER'">
-        </div>
-    </agm-overlay>
-    <agm-marker [latitude]="marker.latitude" [longitude]="marker.longitude" [openInfoWindow]="true"
-        [iconUrl]="marker.finalIcon" *ngFor="let marker of markers;let i=index" [label]="'3'" [visible]="false">
-    </agm-marker>
-    <agm-marker [latitude]="lastCoords.latitude" [longitude]="lastCoords.longitude" [animation]="'DROP'"
-        [iconUrl]="'/assets/images/icons/current-location.png'"></agm-marker>
+<agm-map [zoom]="20" [maxZoom]="20" [minZoom]="15" [disableDefaultUI]="true" [latitude]="lastCoords.latitude"
+  [longitude]="lastCoords.longitude" (mapReady)="onMapReady($event)" *ngIf="lastCoords" [fullscreenControl]='true'>
+  <agm-overlay [latitude]="marker.latitude" [longitude]="marker.longitude" *ngFor="let marker of markers;let i=index">
+    <div class="marker-main-info" (click)="collect(marker)">
+      <img class="placeholder-image" src="/assets/images/icons/map-pin-default-small.png"
+        *ngIf="marker.type === 'DISCOUNT' || marker.type === 'VOUCHER' || marker.type === 'HUNT VOUCHER'">
+      <img class="placeholder-image" src="/assets/images/icons/map-pin-hunt-primary-small.png"
+        *ngIf="marker.type === 'HUNT'">
+      <img class="placeholder-image" src="/assets/images/icons/map-pin-trivia-primary-small.png"
+        *ngIf="marker.type === 'TRIVIA'">
+      <img class="client-logo"
+        [src]="marker.logo.length>0?marker.logo[0].path:'/assets/images/icons/map-pin-default-small.png'"
+        *ngIf="marker.type === 'DISCOUNT' || marker.type === 'VOUCHER' || marker.type === 'HUNT VOUCHER'">
+    </div>
+  </agm-overlay>
+  <agm-marker [latitude]="marker.latitude" [longitude]="marker.longitude" [openInfoWindow]="true"
+    [iconUrl]="marker.finalIcon" *ngFor="let marker of markers;let i=index" [label]="'3'" [visible]="false">
+  </agm-marker>
+  <agm-marker [latitude]="lastCoords.latitude" [longitude]="lastCoords.longitude" [animation]="'DROP'"
+    [iconUrl]="'/assets/images/icons/current-location.png'"></agm-marker>
 </agm-map>
