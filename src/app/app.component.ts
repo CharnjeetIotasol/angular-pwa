@@ -1,6 +1,7 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { AppUpdateService } from 'src/services/app-update.service';
+import { AuthService } from './shared/auth.services';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,8 +11,22 @@ export class AppComponent implements OnInit {
   title = 'angular-pwa';
   deferredPrompt: any;
   showButton = false;
-  constructor(private translate: TranslateService, private appUpdateService: AppUpdateService) {
+  logoPath: string;
+  constructor(private translate: TranslateService,
+    private appUpdateService: AppUpdateService,
+    public authService: AuthService) {
     translate.setDefaultLang('en');
+
+    if (this.authService.isPartnerUser()) {
+      const partnerDetail = this.authService.getPartnerDetail();
+      if (partnerDetail) {
+        document.documentElement.style.setProperty('--theme-custom-primary', partnerDetail.primaryColor);
+        document.documentElement.style.setProperty('--theme-site-primary', partnerDetail.primaryColor);
+      }
+    } else {
+      document.documentElement.style.setProperty('--theme-custom-primary', '#1e006d');
+      document.documentElement.style.setProperty('--theme-site-primary', '#ee8264');
+    }
   }
 
   ngOnInit(): void {

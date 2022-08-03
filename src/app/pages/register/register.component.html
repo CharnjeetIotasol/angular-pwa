@@ -1,89 +1,107 @@
 <!-- <a [routerLink]="['/account/login']">Login</a> -->
-<div class="register-container">
-    <div class="register-inner-container">
-        <div class="register-header-container">
-            <h2>Create Account</h2>
-            <p>There are many variation have suffered</p>
-        </div>
-        <div class="register-body-container">
-            <form class="site-form" novalidate="novalidate" #registerForm="ngForm">
-                <mat-form-field class="site-form-field" appearance="fill" appearance="outline"
-                    [ngClass]="{'mat-form-field-invalid':!userName.valid && onClickValidation}">
-                    <mat-label>Name</mat-label>
-                    <input matInput placeholder="Name" required="required" name="userName" #userName="ngModel"
-                        [(ngModel)]="data.name">
-                    <mat-hint class="error-text" *ngIf="onClickValidation && userName?.errors?.required">
-                        {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
-                    </mat-hint>
-                </mat-form-field>
-                <mat-form-field class="site-form-field" appearance="fill" appearance="outline"
-                    [ngClass]="{'mat-form-field-invalid':!userEmail.valid && onClickValidation}">
-                    <mat-label>Email Address</mat-label>
-                    <input matInput placeholder="Email Address" required="required" name="userEmail"
-                        #userEmail="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="data.email">
-                    <mat-hint class="error-text" *ngIf="onClickValidation && userEmail?.errors?.required">
-                        {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
-                    </mat-hint>
-                    <mat-hint class="error-text" *ngIf="onClickValidation && userEmail?.errors?.pattern">
-                        {{"COMMON.REQUIRED_PATTERN_VALIDATION_MESSAGE" | translate}}
-                    </mat-hint>
-                </mat-form-field>
-                <mat-form-field class="site-form-field" appearance="fill" appearance="outline"
-                    [ngClass]="{'mat-form-field-invalid':!userAddress.valid && onClickValidation}">
-                    <mat-label>Address</mat-label>
-                    <input matInput ngx-google-places-autocomplete [options]="options" placeholder="Address"
-                        required="required" name="userAddress" #userAddress="ngModel" [(ngModel)]="data.uiAddress"
-                        (onAddressChange)="onAddressChange($event)">
-                    <mat-hint class="error-text" *ngIf="onClickValidation && userAddress?.errors?.required">
-                        {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
-                    </mat-hint>
-                </mat-form-field>
-                <mat-form-field class="site-form-field" appearance="fill" appearance="outline"
-                    [ngClass]="{'mat-form-field-invalid':userPassword.invalid && onClickValidation}">
-                    <mat-label>Password</mat-label>
-                    <input matInput [type]="fieldPasswordType" placeholder="Password" name="userPassword"
-                        #userPassword="ngModel" [(ngModel)]="data.password" required="required">
-                    <mat-icon matSuffix (click)="togglePasswordField()">visibility</mat-icon>
-                    <mat-hint class="error-text" *ngIf="onClickValidation && userPassword?.errors?.required">
-                        {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
-                    </mat-hint>
-                </mat-form-field>
-                <mat-form-field class="site-form-field" appearance="fill" appearance="outline"
-                    [ngClass]="{'mat-form-field-invalid':userConfirmPassword.invalid && onClickValidation}">
-                    <mat-label>Confirm Password</mat-label>
-                    <input matInput [type]="fieldConfirmPasswordType" placeholder="Confirm Password"
-                        name="userConfirmPassword" #userConfirmPassword="ngModel" [(ngModel)]="data.confirmPassword"
-                        required="required">
-                    <mat-icon matSuffix (click)="toggleConfirmPasswordField()">visibility</mat-icon>
-                    <mat-hint class="error-text" *ngIf="onClickValidation && userConfirmPassword?.errors?.required">
-                        {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
-                    </mat-hint>
-                    <mat-hint class="error-text"
-                        *ngIf="onClickValidation && !userConfirmPassword.errors?.required && data.password!==data.confirmPassword">
-                        {{"COMMON.PASSWORD_NOT_MATCH_VALIDATION_MESSAGE" | translate}}
-                    </mat-hint>
-                </mat-form-field>
-                <mat-checkbox [color]="'primary'" name="termAndConditionInput" [(ngModel)]="agreeTermAndCondition">I
-                    agree to RV Terms & Conditions
-                </mat-checkbox>
-                <br>
-                <mat-hint class="error-text" *ngIf="onClickValidation && !agreeTermAndCondition">
-                    {{"COMMON.REQUIRED_TC_VALIDATION_MESSAGE" | translate}}
-                </mat-hint>
-                <button mat-raised-button class="site-button large-button full-width margin-top-20 site-second-color"
-                    (click)="createAccount(registerForm.form)">
-                    Create Account
-                </button>
-                <div class="text-center margin-top-30">
-                    <div class="create-account-label">
-                        Have a account? <a class="color-primary" [routerLink]="['/account/login']">Login</a>
-                    </div>
-                    <p class="privacy-policy-label">
-                        By signing in, creating an account, you are agreeing to our <a href="#">Terms</a> of Use and our
-                        <a href="#">Privacy Policy</a>
-                    </p>
-                </div>
-            </form>
-        </div>
+<div class="register-container register-page">
+  <div class="register-inner-container">
+    <div class="register-header-container">
+      <div class="left-side-info-section">
+        <h2>Hello,</h2>
+        <p>Create your account</p>
+      </div>
+      <img src="/assets/images/app-logo.svg" class="app-logo" />
     </div>
+    <div class="register-body-container">
+      <form class="site-form" novalidate="novalidate" #registerForm="ngForm">
+        <mat-form-field class="site-form-field" appearance="fill" appearance="outline"
+          [ngClass]="{'mat-form-field-invalid':!userName.valid && onClickValidation}">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" required="required" name="userName" #userName="ngModel"
+            [(ngModel)]="data.name">
+          <mat-hint class="error-text" *ngIf="onClickValidation && userName?.errors?.required">
+            {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="site-form-field" appearance="fill" appearance="outline"
+          [ngClass]="{'mat-form-field-invalid':!userEmail.valid && onClickValidation}">
+          <mat-label>Email Address</mat-label>
+          <input matInput placeholder="Email Address" required="required" name="userEmail" #userEmail="ngModel"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="data.email">
+          <mat-hint class="error-text" *ngIf="onClickValidation && userEmail?.errors?.required">
+            {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
+          </mat-hint>
+          <mat-hint class="error-text" *ngIf="onClickValidation && userEmail?.errors?.pattern">
+            {{"COMMON.REQUIRED_PATTERN_VALIDATION_MESSAGE" | translate}}
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="site-form-field" appearance="fill" appearance="outline"
+          [ngClass]="{'mat-form-field-invalid':!userAddress.valid && onClickValidation}">
+          <mat-label>Address</mat-label>
+          <input matInput ngx-google-places-autocomplete [options]="options" placeholder="Address" required="required"
+            name="userAddress" #userAddress="ngModel" [(ngModel)]="data.uiAddress"
+            (onAddressChange)="onAddressChange($event)">
+          <mat-hint class="error-text" *ngIf="onClickValidation && userAddress?.errors?.required">
+            {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="site-form-field" appearance="fill" appearance="outline"
+          [ngClass]="{'mat-form-field-invalid':userPassword.invalid && onClickValidation}">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="fieldPasswordType" placeholder="Password" name="userPassword" #userPassword="ngModel"
+            [(ngModel)]="data.password" required="required">
+          <mat-icon matSuffix (click)="togglePasswordField()">visibility</mat-icon>
+          <mat-hint class="error-text" *ngIf="onClickValidation && userPassword?.errors?.required">
+            {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
+          </mat-hint>
+        </mat-form-field>
+        <mat-form-field class="site-form-field" appearance="fill" appearance="outline"
+          [ngClass]="{'mat-form-field-invalid':userConfirmPassword.invalid && onClickValidation}">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput [type]="fieldConfirmPasswordType" placeholder="Confirm Password" name="userConfirmPassword"
+            #userConfirmPassword="ngModel" [(ngModel)]="data.confirmPassword" required="required">
+          <mat-icon matSuffix (click)="toggleConfirmPasswordField()">visibility</mat-icon>
+          <mat-hint class="error-text" *ngIf="onClickValidation && userConfirmPassword?.errors?.required">
+            {{"COMMON.REQUIRED_INPUT_VALIDATION_MESSAGE" | translate}}
+          </mat-hint>
+          <mat-hint class="error-text"
+            *ngIf="onClickValidation && !userConfirmPassword.errors?.required && data.password!==data.confirmPassword">
+            {{"COMMON.PASSWORD_NOT_MATCH_VALIDATION_MESSAGE" | translate}}
+          </mat-hint>
+        </mat-form-field>
+        <mat-checkbox [color]="'primary'" name="termAndConditionInput" [(ngModel)]="agreeTermAndCondition">I
+          agree to RV Terms & Conditions
+        </mat-checkbox>
+        <br>
+        <mat-hint class="error-text" *ngIf="onClickValidation && !agreeTermAndCondition">
+          {{"COMMON.REQUIRED_TC_VALIDATION_MESSAGE" | translate}}
+        </mat-hint>
+        <button mat-raised-button class="site-button large-button full-width margin-top-20 site-second-color"
+          (click)="createAccount(registerForm.form)">
+          Create Account
+        </button>
+        <div class="or-label">
+          <span>OR</span>
+        </div>
+        <div class="social-button-container">
+          <button mat-stroked-button class="social-login-button" aria-label="Google Login" (click)="loginWithGoogle()"
+            type="button">
+            <img src="/assets/images/icons/google.svg" />
+          </button>
+          <button mat-stroked-button class="social-login-button" aria-label="Facebook Login"
+            (click)="loginWithFacebook()" type="button">
+            <img src="/assets/images/icons/facebook.svg" />
+          </button>
+          <!-- <button mat-stroked-button class="social-login-button" aria-label="Apple Login" type="button">
+              <img src="/assets/images/icons/apple.svg" />
+          </button> -->
+        </div>
+        <div class="text-center margin-top-30">
+          <div class="create-account-label">
+            Have a account? <a class="color-primary" [routerLink]="['/account/login']">Login</a>
+          </div>
+          <p class="privacy-policy-label">
+            By signing in, creating an account, you are agreeing to our <a href="#">Terms</a> of Use and our
+            <a href="#">Privacy Policy</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

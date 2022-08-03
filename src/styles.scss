@@ -1,43 +1,44 @@
-$primary: #1e006d;
+$primary: var(--theme-custom-primary);
+$site-primary: var(--theme-site-primary);
 $secondary: #f2f1f6;
 @import "~@angular/material/theming";
 $custom-typography: mat-typography-config(
-    $font-family: "Montserrat",
+  $font-family: "Montserrat",
 );
 @include angular-material-typography($custom-typography);
 
 // below defines your custom color to build a theme palette from
 $my-blue: (
-    50: #1e006d,
-    100: #1e006d,
-    200: #1e006d,
-    300: #1e006d,
-    400: #1e006d,
-    500: #1e006d,
-    600: #1e006d,
-    700: #1e006d,
-    800: #1e006d,
-    900: #1e006d,
-    A100: #1e006d,
-    A200: #1e006d,
-    A400: #1e006d,
-    A700: #1e006d,
-    contrast: (
-        50: white,
-        100: white,
-        200: white,
-        300: white,
-        400: white,
-        500: white,
-        600: white,
-        700: white,
-        800: white,
-        900: white,
-        A100: white,
-        A200: white,
-        A400: white,
-        A700: white,
-    ),
+  50: var(--theme-custom-primary),
+  100: var(--theme-custom-primary),
+  200: var(--theme-custom-primary),
+  300: var(--theme-custom-primary),
+  400: var(--theme-custom-primary),
+  500: var(--theme-custom-primary),
+  600: var(--theme-custom-primary),
+  700: var(--theme-custom-primary),
+  800: var(--theme-custom-primary),
+  900: var(--theme-custom-primary),
+  A100: var(--theme-custom-primary),
+  A200: var(--theme-custom-primary),
+  A400: var(--theme-custom-primary),
+  A700: var(--theme-custom-primary),
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
 );
 
 // below creates a primary palette with three shades of blue
@@ -52,16 +53,16 @@ $my-app-theme: mat-light-theme($my-primary, $my-app-accent, $my-app-warn);
 @import "assets/scss/dashboard-layout";
 
 .style-success {
-    color: #000;
-    background-color: #69f0ae;
+  color: #000;
+  background-color: #69f0ae;
 }
 .style-success .mat-simple-snackbar-action {
-    color: #000;
+  color: #000;
 }
 .style-error {
-    color: #fff;
-    background-color: #ff5722;
+  color: #fff;
+  background-color: #ff5722;
 }
 .style-error .mat-simple-snackbar-action {
-    color: #fff;
+  color: #fff;
 }

@@ -21,7 +21,7 @@ export class AuthService extends HttpServiceRequests<IResourceWithId> {
     this.localStorageService.remove('user');
     this.localStorageService.remove('temp-token');
     this.localStorageService.remove('temp-user');
-    this.router.navigate(['login']);
+    this.router.navigate(['/account/login']);
   }
 
   getToken(): any {
@@ -45,11 +45,15 @@ export class AuthService extends HttpServiceRequests<IResourceWithId> {
   }
 
   isPartnerUser(): boolean {
-    const user = this.localStorageService.get('isPartnerUser') as any;
+    const user = this.localStorageService.get('is-partner-user') as any;
     if (CommonUtil.isNullOrUndefined(user)) {
       return false;
     }
     return true;
+  }
+
+  getPartnerDetail(): any {
+    return this.localStorageService.get('partner-detail') as any;
   }
 
   hasRole(roles: any[]): boolean {

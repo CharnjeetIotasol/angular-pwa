@@ -1,7 +1,8 @@
 <router-outlet></router-outlet>
 <div class="loading-container" id="loading" style="display: none;">
   <div class="loader">
-    <img src="/assets/icons/icon-96x96.png">
+    <img id="loaderLogo"
+      [src]="authService.isPartnerUser()?authService.getPartnerDetail()?.logo[0]?.path:'/assets/icons/icon-96x96.png'"
+      width="96">
   </div>
 </div>
-

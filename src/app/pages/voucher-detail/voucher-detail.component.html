@@ -1,35 +1,38 @@
 <div class="voucher-main-detail-container" [ngClass]="{'full-detail-page':isDetailPage}" *ngIf="voucher">
-    <mat-icon class="back-button" (click)="back()">arrow_back</mat-icon>
-    <div class="voucher-detail-header" [style.background-color]="voucher.backgroundColor">
-        <img [src]="voucher.categoryDetail?.selectedIcon?.path">
-    </div>
-    <div class="voucher-detail-body">
-        <div class="voucher-detail-page-inner-container">
-            <div class="voucher-detail-inner-header">
-                <div class="voucher-logo">
-                    <img [src]="voucher.categoryDetail?.selectedIcon?.path">
-                </div>
-                <div class="voucher-expire-date">
-                    Expire On: 28-Oct-2021
-                </div>
-            </div>
-            <div class="voucher-info-detail">
-                <div>
-                    <div class="voucher-info-title">{{voucher.voucher.name}}</div>
-                    <div class="voucher-info-category">{{voucher.categoryDetail?.name}}</div>
-                </div>
-                <img src="/assets/images/icons/redeemed.svg" class="redeemed-image" *ngIf="voucher.status==='REDEEMED'">
-            </div>
-            <p class="voucher-description">
-                {{voucher.voucher.description}}
-            </p>
-            <button mat-raised-button class="site-button large-button full-width site-second-color margin-top-30"
-                (click)="requestRedeemed()" *ngIf="!showBarCode && voucher.status!=='REDEEMED'">
-                Redeem
-            </button>
-            <div class="margin-top-20" *ngIf="showBarCode && voucher.status!=='REDEEMED'">
-                <ngx-barcode [bc-width]="1.56" [bc-value]="voucher.code" [bc-display-value]="true"></ngx-barcode>
-            </div>
+  <mat-icon class="back-button" (click)="back()">arrow_back</mat-icon>
+  <div class="voucher-detail-header" [style.background-color]="voucher.backgroundColor">
+    <img [src]="voucher.categoryDetail?.selectedIcon?.path">
+  </div>
+  <div class="voucher-detail-body">
+    <div class="voucher-detail-page-inner-container">
+      <div class="voucher-detail-inner-header">
+        <div class="voucher-logo">
+          <img [src]="voucher.voucher?.logo[0]?.path">
         </div>
+        <div class="voucher-expire-date" *ngIf="voucher.status!=='REDEEMED'">
+          Expire On: {{voucher.voucher.expiryDate|date:'dd-MMM-yyyy'}}
+        </div>
+        <div class="voucher-expire-date" *ngIf="voucher.status==='REDEEMED'">
+          Redeemed On: {{voucher.redeemedDate|date:'dd-MMM-yyyy'}}
+        </div>
+      </div>
+      <div class="voucher-info-detail">
+        <div>
+          <div class="voucher-info-title">{{voucher.voucher.name}}</div>
+          <div class="voucher-info-category">{{voucher.categoryDetail?.name}}</div>
+        </div>
+        <img src="/assets/images/icons/redeemed.svg" class="redeemed-image" *ngIf="voucher.status==='REDEEMED'">
+      </div>
+      <p class="voucher-description">
+        {{voucher.voucher.description}}
+      </p>
+      <button mat-raised-button class="site-button large-button full-width site-second-color margin-top-30"
+        (click)="requestRedeemed()" *ngIf="!showBarCode && voucher.status!=='REDEEMED'">
+        Redeem
+      </button>
+      <div class="margin-top-20" *ngIf="showBarCode && voucher.status!=='REDEEMED'">
+        <ngx-barcode [bc-width]="1.56" [bc-value]="voucher.code" [bc-display-value]="true"></ngx-barcode>
+      </div>
     </div>
+  </div>
 </div>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { DataService } from 'src/app/services/data.service';
-import { LoadingService } from 'src/app/services/loading.service';
 import { RestResponse } from 'src/app/shared/auth.model';
 import { ToastService } from 'src/app/shared/toast.service';
 
@@ -20,7 +19,6 @@ export class PartnerLoginComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private dataService: DataService,
     private toastService: ToastService,
-    private loadingService: LoadingService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -37,6 +35,8 @@ export class PartnerLoginComponent implements OnInit {
           return;
         }
         this.partnerDetail = response.data;
+        document.documentElement.style.setProperty('--theme-custom-primary', this.partnerDetail.primaryColor);
+        document.documentElement.style.setProperty('--theme-site-primary', this.partnerDetail.primaryColor);
         this.processLogin();
       }, (error) => {
         this.toastService.error(error.message);
@@ -48,17 +48,16 @@ export class PartnerLoginComponent implements OnInit {
   }
 
   processLogin() {
-    this.loadingService.show();
     this.dataService.procesPartnerUserLogin(this.partnerId, this.userId)
       .subscribe((data: RestResponse) => {
-        this.loadingService.hide();
         if (!data.status) {
           this.toastService.error(data.message);
           return;
         }
         const response = data.data;
         response.token.expires_at = new Date(response.token.expires).getTime();
-        this.localStorageService.set('isPartnerUser', true);
+        this.localStorageService.set('is-partner-user', true);
+        this.localStorageService.set('partner-detail', this.partnerDetail);
         if (response.user.isOnboardingCompleted) {
           this.localStorageService.set('token', response.token);
           this.localStorageService.set('user', response.user);
@@ -74,7 +73,6 @@ export class PartnerLoginComponent implements OnInit {
           }
         }, 500);
       }, (error) => {
-        this.loadingService.hide();
         this.toastService.error(error.message);
       })
   }

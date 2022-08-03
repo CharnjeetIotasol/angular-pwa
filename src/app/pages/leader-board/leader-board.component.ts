@@ -17,12 +17,16 @@ export class LeaderBoardComponent implements OnInit {
   topUsers: Array<any>;
   filterParam: any;
   myDetail: any;
+  partnerDetail: any;
   constructor(private dataService: DataService,
     private loadingService: LoadingService,
     private toastService: ToastService,
     public authService: AuthService) { }
 
   ngOnInit(): void {
+    if (this.authService.isPartnerUser()) {
+      this.partnerDetail = this.authService.getPartnerDetail();
+    }
     this.myDetail = this.authService.getUser();
     this.state = "CURRENT_MONTH";
     this.records = new Array<any>();
@@ -43,6 +47,9 @@ export class LeaderBoardComponent implements OnInit {
     this.loadingService.show();
     this.records = new Array<any>();
     this.topUsers = new Array<any>();
+    if (this.authService.isPartnerUser()) {
+      this.filterParam.partner = this.partnerDetail.id;
+    }
     this.dataService.fetchLeaderboards(this.filterParam)
       .then((response: RestResponse) => {
         this.loadingService.hide();

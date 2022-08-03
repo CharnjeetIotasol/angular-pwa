@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoadingService } from 'src/app/services/loading.service';
 import { MapService } from 'src/app/services/map.service';
 import { RestResponse } from 'src/app/shared/auth.model';
+import { AuthService } from 'src/app/shared/auth.services';
 import { ToastService } from 'src/app/shared/toast.service';
 import { MessageDialogComponent } from '../common/message-dialog/message-dialog.component';
 
@@ -20,12 +21,17 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
   lastCoords: any;
   @Output()
   completeEvent = new EventEmitter<any>();
+  partnerDetail: any;
   constructor(private loadingService: LoadingService,
     private toastService: ToastService,
     private mapService: MapService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
+    if (this.authService.isPartnerUser()) {
+      this.partnerDetail = this.authService.getPartnerDetail();
+    }
     this.options = {
       timeout: 10000,
       maximumAge: 0,
@@ -169,11 +175,14 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
     input.longitude = coords.longitude;
     input.requestDistance = 1000;
     //30.857435,75.832438
-    //input.latitude = 30.857435;
-    //input.longitude = 75.832438;
+    input.latitude = 30.857435;
+    input.longitude = 75.832438;
     //input.latitude = -37.524201473103915;
     //input.longitude = 144.95764188476684;
     this.lastCoords = input;
+    if (this.authService.isPartnerUser()) {
+      input.partner = this.partnerDetail.id;
+    }
     this.mapService.fetchVocuherNearMe(input)
       .then((response: RestResponse) => {
         this.loadingService.hide();

@@ -1,5 +1,5 @@
 <mat-tab-group dynamicHeight headerPosition="below" [(selectedIndex)]="selectedTabIndex"
-  (selectedTabChange)="onTabChanged($event);" [ngClass]="{'is-partner-tab':isPartnerUser}">
+  (selectedTabChange)="onTabChanged($event);">
   <mat-tab>
     <ng-template mat-tab-label>
       <div class="icon-container">
@@ -62,6 +62,18 @@
       <app-change-password *ngIf="tabView==='CHANGE_PASSWORD_VIEW'" (completeEvent)="onCompleteEvent($event)">
       </app-change-password>
       <app-interest *ngIf="tabView==='INTEREST_VIEW'" (completeEvent)="onCompleteEvent($event)"></app-interest>
+    </div>
+  </mat-tab>
+  <mat-tab *ngIf="isPartnerUser">
+    <ng-template mat-tab-label>
+      <div class="icon-container">
+        <img src="/assets/images/icons/setting-icon.svg" class="active-icon" />
+        <img src="/assets/images/icons/setting-icon-dark.svg" class="non-active-icon" />
+      </div>
+      <div>SETTINGS</div>
+    </ng-template>
+    <div class="tab-page-container">
+      <app-interest (completeEvent)="onCompleteEvent($event)"></app-interest>
     </div>
   </mat-tab>
 </mat-tab-group>
