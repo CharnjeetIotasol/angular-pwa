@@ -1,0 +1,120 @@
+<div class="partner-login-page" [style.background-color]="primaryColor" [style.color]="textColor" *ngIf="isPartnerView">
+  <div class="branding-name">
+    {{brandingName}}
+  </div>
+  <img [src]="logoPath" class="partner-logo">
+  <div class="power-by-name">Powered by <a>Redeemable Vouchers</a></div>
+</div>
+<div class="tab-page-container" style="padding: 20px;background-color: #f5f5f5;min-height: 100vh;"
+  *ngIf="isVoucherView">
+  <div class="my-voucher-item">
+    <div class="my-voucher-header">
+      <div class="my-voucher-logo">
+        <img [src]="logoPath">
+      </div>
+      <div class="my-voucher-info-detail">
+        <div class="my-voucher-info-title">Preview Voucher</div>
+        <div class="my-voucher-info-category">Preview Category</div>
+      </div>
+      <div class="left-circle"></div>
+      <div class="right-circle"></div>
+    </div>
+    <hr class="divider" />
+    <div class="my-voucher-body">
+      <div class="my-voucher-body-inner">
+        <div class="my-voucher-offer-detail">
+          <img src="/assets/images/icons/discount-icon.svg">
+          <div class="offer-amount">$50 off*</div>
+        </div>
+        <div class="term-condition-label">
+          *Terms and Conditions Applied
+        </div>
+      </div>
+    </div>
+    <div class="my-voucher-footer">
+      <button mat-stroked-button class="site-button medium-button share-button">
+        <mat-icon>share</mat-icon> Share
+      </button>
+      <button mat-raised-button class="site-button medium-button" [style.background-color]="primaryColor"
+        [style.color]="'#fff'">
+        Redeem
+      </button>
+    </div>
+  </div>
+  <div class="my-voucher-item">
+    <div class="my-voucher-header">
+      <div class="my-voucher-logo">
+        <img [src]="logoPath">
+      </div>
+      <div class="my-voucher-info-detail">
+        <div class="my-voucher-info-title">Preview Voucher</div>
+        <div class="my-voucher-info-category">Preview Category</div>
+      </div>
+      <div class="left-circle"></div>
+      <div class="right-circle"></div>
+    </div>
+    <hr class="divider" />
+    <div class="my-voucher-body">
+      <div class="my-voucher-body-inner">
+        <div class="my-voucher-offer-detail">
+          <img src="/assets/images/icons/discount-icon.svg">
+          <div class="offer-amount">$50 off*</div>
+        </div>
+        <div class="term-condition-label">
+          *Terms and Conditions Applied
+        </div>
+      </div>
+      <div class="game-winner-message" [style.color]="primaryColor">
+        <img src="/assets/images/icons/success.svg" width="18">
+        Won in <span>Hunt!</span>
+      </div>
+    </div>
+    <div class="my-voucher-footer">
+      <button mat-stroked-button class="site-button medium-button share-button">
+        <mat-icon>share</mat-icon> Share
+      </button>
+      <button mat-raised-button class="site-button medium-button" [style.background-color]="primaryColor"
+        [style.color]="'#fff'">
+        Redeem
+      </button>
+    </div>
+  </div>
+  <div class="my-voucher-item">
+    <div class="my-voucher-header">
+      <div class="my-voucher-logo">
+        <img [src]="logoPath">
+      </div>
+      <div class="my-voucher-info-detail">
+        <div class="my-voucher-info-title">Preview Voucher</div>
+        <div class="my-voucher-info-category">Preview Category</div>
+      </div>
+      <div class="left-circle"></div>
+      <div class="right-circle"></div>
+    </div>
+    <hr class="divider" />
+    <div class="my-voucher-body">
+      <div class="my-voucher-body-inner">
+        <div class="my-voucher-offer-detail">
+          <img src="/assets/images/icons/discount-icon.svg">
+          <div class="offer-amount">$50 off*</div>
+        </div>
+        <div class="term-condition-label">
+          *Terms and Conditions Applied
+        </div>
+      </div>
+      <div class="game-winner-message" [style.color]="primaryColor">
+        <img src="/assets/images/icons/success.svg" width="18"> Won in
+        <span>trivia!</span>
+      </div>
+    </div>
+    <div class="my-voucher-footer">
+      <button mat-stroked-button class="site-button medium-button share-button">
+        <mat-icon>share</mat-icon> Share
+      </button>
+      <button mat-raised-button class="site-button medium-button" [style.background-color]="primaryColor"
+        [style.color]="'#fff'">
+        Redeem
+      </button>
+    </div>
+  </div>
+</div>

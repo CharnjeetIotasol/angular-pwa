@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 import { PartnerLoginComponent } from './pages/partner-login/partner-login.component';
+import { PreviewComponent } from './pages/preview/preview.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { AuthGuard } from './shared/auth.guard';
@@ -48,6 +49,18 @@ export const ROUTES: Routes = [
   {
     path: 'app/partner/:partnerId/oauth/login/:userId',
     component: PartnerLoginComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ROLE_ANONYMOUS'] }
+  },
+  {
+    path: 'app/partner/preview',
+    component: PreviewComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['ROLE_ANONYMOUS'] }
+  },
+  {
+    path: 'app/voucher/preview',
+    component: PreviewComponent,
     canActivate: [AuthGuard],
     data: { roles: ['ROLE_ANONYMOUS'] }
   },

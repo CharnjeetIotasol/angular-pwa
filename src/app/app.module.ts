@@ -22,6 +22,8 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { OnboardingComponent } from './pages/onboarding/onboarding.component';
+import { PartnerLoginComponent } from './pages/partner-login/partner-login.component';
+import { PreviewComponent } from './pages/preview/preview.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { HttpAuthInterceptor } from './shared/http.interceptor';
@@ -39,6 +41,8 @@ import { SharedModuleModule } from './shared/shared-module.module';
     ForbiddenComponent,
     OnboardingComponent,
     NotFoundComponent,
+    PartnerLoginComponent,
+    PreviewComponent,
     RedeemConfirmationDialogComponent
   ],
   imports: [
