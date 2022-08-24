@@ -99,7 +99,6 @@ export class LoginComponent implements OnInit {
   }
 
   async processSocialLogin(user: any) {
-    alert("processSocialLogin");
     const input = new Login();
     input.firstName = user.firstName;
     input.lastName = user.lastName;
@@ -111,17 +110,13 @@ export class LoginComponent implements OnInit {
     } else if (user.provider === "APPLE") {
       input.appleId = user.id;
     }
-    alert(JSON.stringify(input));
     if (!this.isValidSocialRegisterRequest(input)) {
       return;
     }
-    alert("Sending Call to API");
     this.loadingService.show();
     try {
       const data: RestResponse = await this.loginService.socialLogin(input);
       this.loadingService.hide();
-      alert("Got Response from API");
-      alert(JSON.stringify(data));
       if (!data.status) {
         this.toastService.error(data.message);
         return;
@@ -164,7 +159,6 @@ export class LoginComponent implements OnInit {
   async loginWithApple() {
     try {
       const data = await AppleID.auth.signIn();
-      alert("Got Response From Apple");
       if (!data.authorization || !data.authorization.id_token) {
         this.toastService.error("Sorry, Somethings went wrong while Sign With Apple. Please try after some time.")
         return;
@@ -189,7 +183,6 @@ export class LoginComponent implements OnInit {
       user.provider = "APPLE";
       this.processSocialLogin(user);
     } catch (error) {
-      alert(JSON.stringify(error));
       this.toastService.error("Sorry, Somethings went wrong while Sign With Apple. Please try after some time.")
     }
   }

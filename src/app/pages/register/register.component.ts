@@ -1,6 +1,7 @@
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { Login } from 'src/app/models/login';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -132,7 +133,7 @@ export class RegisterComponent implements OnInit {
     } else if (user.provider === "FACEBOOK") {
       input.facebookId = user.id;
     } else if (user.provider === "APPLE") {
-      input.linkedinId = user.email;
+      input.appleId = user.id;
     }
     if (!this.isValidSocialRegisterRequest(input)) {
       return;
@@ -183,7 +184,27 @@ export class RegisterComponent implements OnInit {
   async loginWithApple() {
     try {
       const data = await AppleID.auth.signIn();
-      const user = data.user;
+      if (!data.authorization || !data.authorization.id_token) {
+        this.toastService.error("Sorry, Somethings went wrong while Sign With Apple. Please try after some time.")
+        return;
+      }
+      const helper = new JwtHelperService();
+      const decodedToken = helper.decodeToken(data.authorization.id_token);
+      if (data.user) {
+        const user = {} as any;
+        user.email = data.user.email;
+        user.firstName = data.user.name ? data.user.name.firstName : "Guest";
+        user.lastName = data.user.name ? data.user.name.lastName : "";
+        user.id = decodedToken.sub;
+        user.provider = "APPLE";
+        this.processSocialLogin(user);
+        return;
+      }
+      const user = {} as any;
+      user.email = decodedToken.email;
+      user.id = decodedToken.sub;
+      user.firstName = "Guest";
+      user.lastName = "User";
       user.provider = "APPLE";
       this.processSocialLogin(user);
     } catch (error) {
