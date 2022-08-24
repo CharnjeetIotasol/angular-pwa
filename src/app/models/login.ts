@@ -9,6 +9,7 @@ export class Login {
   googleId: string;
   facebookId: string;
   linkedinId: string;
+  appleId: string;
   password: string;
   confirmPassword: string;
   address: string;
