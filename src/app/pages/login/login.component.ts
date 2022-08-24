@@ -163,11 +163,16 @@ export class LoginComponent implements OnInit {
   async loginWithApple() {
     try {
       const data = await AppleID.auth.signIn();
+      alert("Got Response From Apple");
+      alert(data);
+      alert(JSON.stringify(data));
+      alert(JSON.stringify(data.user));
       const user = data.user;
       user.provider = "APPLE";
       alert(JSON.stringify(user));
       this.processSocialLogin(user);
     } catch (error) {
+      alert(JSON.stringify(error));
       this.toastService.error("Sorry, Somethings went wrong while Sign With Apple. Please try after some time.")
     }
   }
