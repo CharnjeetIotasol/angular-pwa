@@ -184,7 +184,7 @@ export class RegisterComponent implements OnInit {
     try {
       const data = await AppleID.auth.signIn();
       const user = data.user;
-      user.provider === "APPLE";
+      user.provider = "APPLE";
       this.processSocialLogin(user);
     } catch (error) {
       this.toastService.error("Sorry, Somethings went wrong while Sign With Apple. Please try after some time.")
