@@ -166,22 +166,22 @@ export class LoginComponent implements OnInit {
       const data = await AppleID.auth.signIn();
       alert("Got Response From Apple");
       alert(JSON.stringify(data));
-      if (data.user) {
-        const user = data.user;
-        user.provider = "APPLE";
-        this.processSocialLogin(user);
-        return;
-      }
-      if (!data.authorization || !data.authorization.id_token) {
-        this.toastService.error("Sorry, Somethings went wrong while Sign With Apple. Please try after some time.")
-        return;
-      }
-      const helper = new JwtHelperService();
-      const decodedToken = helper.decodeToken(data.authorization.id_token);
-      const user = {} as any;
-      user.email = decodedToken.email;
-      user.provider = "APPLE";
-      this.processSocialLogin(user);
+      // if (data.user) {
+      //   const user = data.user;
+      //   user.provider = "APPLE";
+      //   this.processSocialLogin(user);
+      //   return;
+      // }
+      // if (!data.authorization || !data.authorization.id_token) {
+      //   this.toastService.error("Sorry, Somethings went wrong while Sign With Apple. Please try after some time.")
+      //   return;
+      // }
+      // const helper = new JwtHelperService();
+      // const decodedToken = helper.decodeToken(data.authorization.id_token);
+      // const user = {} as any;
+      // user.email = decodedToken.email;
+      // user.provider = "APPLE";
+      // this.processSocialLogin(user);
     } catch (error) {
       alert(JSON.stringify(error));
       this.toastService.error("Sorry, Somethings went wrong while Sign With Apple. Please try after some time.")
