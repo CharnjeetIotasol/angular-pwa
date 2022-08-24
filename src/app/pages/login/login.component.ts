@@ -98,6 +98,7 @@ export class LoginComponent implements OnInit {
   }
 
   async processSocialLogin(user: any) {
+    alert("processSocialLogin");
     const input = new Login();
     input.firstName = user.firstName;
     input.lastName = user.lastName;
@@ -109,13 +110,17 @@ export class LoginComponent implements OnInit {
     } else if (user.provider === "APPLE") {
       input.linkedinId = user.email;
     }
+    alert(JSON.stringify(input));
     if (!this.isValidSocialRegisterRequest(input)) {
       return;
     }
+    alert("Sending Call to API");
     this.loadingService.show();
     try {
       const data: RestResponse = await this.loginService.socialLogin(input);
       this.loadingService.hide();
+      alert("Got Response from API");
+      alert(JSON.stringify(data));
       if (!data.status) {
         this.toastService.error(data.message);
         return;
@@ -160,6 +165,7 @@ export class LoginComponent implements OnInit {
       const data = await AppleID.auth.signIn();
       const user = data.user;
       user.provider = "APPLE";
+      alert(JSON.stringify(user));
       this.processSocialLogin(user);
     } catch (error) {
       this.toastService.error("Sorry, Somethings went wrong while Sign With Apple. Please try after some time.")
