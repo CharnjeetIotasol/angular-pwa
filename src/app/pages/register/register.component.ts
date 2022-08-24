@@ -8,6 +8,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { RestResponse } from 'src/app/shared/auth.model';
 import { CommonUtil } from 'src/app/shared/common.util';
 import { ToastService } from 'src/app/shared/toast.service';
+declare const AppleID: any;
 
 @Component({
   selector: 'app-register',
@@ -42,6 +43,13 @@ export class RegisterComponent implements OnInit {
         return;
       }
       this.processSocialLogin(user);
+    });
+    AppleID.auth.init({
+      clientId: 'com.rv.signin',
+      scope: "name email",
+      redirectURI: `https://dreamy-tanuki-7f8d5b.netlify.app/apple/callback`,
+      state: "what ever string to be remembered",
+      usePopup: true
     });
   }
 
@@ -123,6 +131,8 @@ export class RegisterComponent implements OnInit {
       input.googleId = user.id;
     } else if (user.provider === "FACEBOOK") {
       input.facebookId = user.id;
+    } else if (user.provider === "APPLE") {
+      input.linkedinId = user.email;
     }
     if (!this.isValidSocialRegisterRequest(input)) {
       return;
@@ -168,5 +178,16 @@ export class RegisterComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  async loginWithApple() {
+    try {
+      const data = await AppleID.auth.signIn();
+      const user = data.user;
+      user.provider === "APPLE";
+      this.processSocialLogin(user);
+    } catch (error) {
+      this.toastService.error("Sorry, Somethings went wrong while Sign With Apple. Please try after some time.")
+    }
   }
 }

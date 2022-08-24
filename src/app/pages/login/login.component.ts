@@ -106,6 +106,8 @@ export class LoginComponent implements OnInit {
       input.googleId = user.id;
     } else if (user.provider === "FACEBOOK") {
       input.facebookId = user.id;
+    } else if (user.provider === "APPLE") {
+      input.linkedinId = user.email;
     }
     if (!this.isValidSocialRegisterRequest(input)) {
       return;
@@ -156,8 +158,9 @@ export class LoginComponent implements OnInit {
   async loginWithApple() {
     try {
       const data = await AppleID.auth.signIn();
-      alert("Here 2");
-      alert(JSON.stringify(data));
+      const user = data.user;
+      user.provider === "APPLE";
+      this.processSocialLogin(user);
     } catch (error) {
       this.toastService.error("Sorry, Somethings went wrong while Sign With Apple. Please try after some time.")
     }
