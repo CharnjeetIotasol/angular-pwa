@@ -9,6 +9,8 @@ import { RestResponse } from 'src/app/shared/auth.model';
 import { CommonUtil } from 'src/app/shared/common.util';
 import { ToastService } from 'src/app/shared/toast.service';
 
+declare const AppleID: any;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -36,6 +38,20 @@ export class LoginComponent implements OnInit {
       }
       this.processSocialLogin(user);
     });
+    AppleID.auth.init({
+      clientId: 'com.iotasol.redeemablevouchers1',
+      scope: "name email",
+      redirectURI: `https://dreamy-tanuki-7f8d5b.netlify.app/apple/callback`,
+      state: "what ever string to be remembered",
+      usePopup: true
+    });
+    // Listen for authorization success.
+    document.addEventListener('AppleIDSignInOnSuccess', (event: any) => {
+      // Handle successful response.
+      alert("here");
+      console.log(event.detail.data);
+    });
+
   }
 
   togglePasswordField() {
@@ -142,5 +158,16 @@ export class LoginComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  async loginWithApple() {
+    try {
+      const data = await AppleID.auth.signIn();
+      alert("Here 2");
+      console.log(data);
+      // Handle successful response.
+    } catch (error) {
+      // Handle error.
+    }
   }
 }
