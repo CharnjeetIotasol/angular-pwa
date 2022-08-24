@@ -184,6 +184,8 @@ export class LoginComponent implements OnInit {
       const user = {} as any;
       user.email = decodedToken.email;
       user.id = decodedToken.sub;
+      user.firstName = "Guest";
+      user.lastName = "User";
       user.provider = "APPLE";
       this.processSocialLogin(user);
     } catch (error) {
