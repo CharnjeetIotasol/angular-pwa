@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     });
     AppleID.auth.init({
       clientId: 'com.rv.signin',
-      scope: "name email",
+      scope: "name%20email",
       redirectURI: `https://dreamy-tanuki-7f8d5b.netlify.app/apple/callback`,
       state: "what ever string to be remembered",
       usePopup: true
