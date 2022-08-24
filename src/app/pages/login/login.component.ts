@@ -39,19 +39,12 @@ export class LoginComponent implements OnInit {
       this.processSocialLogin(user);
     });
     AppleID.auth.init({
-      clientId: 'com.iotasol.redeemablevouchers1',
+      clientId: 'com.rv.signin',
       scope: "name email",
       redirectURI: `https://dreamy-tanuki-7f8d5b.netlify.app/apple/callback`,
       state: "what ever string to be remembered",
       usePopup: true
     });
-    // Listen for authorization success.
-    document.addEventListener('AppleIDSignInOnSuccess', (event: any) => {
-      // Handle successful response.
-      alert("here");
-      console.log(event.detail.data);
-    });
-
   }
 
   togglePasswordField() {
@@ -164,10 +157,9 @@ export class LoginComponent implements OnInit {
     try {
       const data = await AppleID.auth.signIn();
       alert("Here 2");
-      console.log(data);
-      // Handle successful response.
+      alert(JSON.stringify(data));
     } catch (error) {
-      // Handle error.
+      this.toastService.error("Sorry, Somethings went wrong while Sign With Apple. Please try after some time.")
     }
   }
 }
