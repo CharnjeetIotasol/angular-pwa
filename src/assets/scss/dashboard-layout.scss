@@ -157,9 +157,14 @@ agm-map {
     }
     .my-voucher-info-detail {
       margin-left: 10px;
+      width: 100%;
       .my-voucher-info-title {
-        font-size: 18px;
+        font-size: 15px;
         font-weight: 600;
+        max-width: calc(100% - 1px);
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
       .my-voucher-info-category {
         font-size: 11px;
@@ -257,7 +262,19 @@ agm-map {
         letter-spacing: -0.09px;
       }
     }
-
+    .my-voucher-body-hunt-inner {
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      color: #fff;
+      .colection-label {
+        font-size: 15px;
+        font-weight: 500;
+        color: #000;
+        margin-bottom: 10px;
+      }
+    }
     .voucher-background {
       width: 100%;
     }

@@ -12,7 +12,9 @@ import { ToastService } from 'src/app/shared/toast.service';
 })
 export class MyVouchersComponent implements OnInit {
 
+  allRecords: Array<any>;
   myVouchers: Array<any>;
+  myHunts: Array<any>;
   loading: boolean;
   @Output()
   completeEvent = new EventEmitter<any>();
@@ -37,12 +39,29 @@ export class MyVouchersComponent implements OnInit {
           this.toastService.error(response.message);
           return;
         }
-        this.myVouchers = response.data;
+        const data = response.data;
+        this.allRecords = new Array<any>();
+        this.myVouchers = data.voucherDetails;
+        this.myHunts = data.hunts;
         this.myVouchers.forEach((record) => {
           if (record.categoryDetail && record.categoryDetail.icon && record.categoryDetail.icon.length > 0) {
             record.categoryDetail.selectedIcon = record.categoryDetail.icon[0];
           }
-        })
+          if (record.status === "REDEEMED") {
+            record.processingDate = record.redeemedDate;
+          }
+          if (record.status === "COLLECTED") {
+            record.processingDate = record.collectedOn;
+          }
+          record.processingType = "VOUCHER";
+        });
+        this.myHunts.forEach((hunt) => {
+          hunt.processingDate = hunt.createdOn;
+          hunt.processingType = "HUNT";
+        });
+        this.allRecords.push(...this.myVouchers);
+        this.allRecords.push(...this.myHunts);
+        this.allRecords.sort(function (a, b) { return new Date(a.processingDate).getTime() - new Date(b.processingDate).getTime() });
         this.loading = false;
       }, (error) => {
         this.loading = false;
@@ -67,6 +86,9 @@ export class MyVouchersComponent implements OnInit {
   }
 
   redeem(voucher: any) {
+    if (voucher.processingType === "HUNT") {
+      return;
+    }
     this.completeEvent.emit({ "status": "VOUCHER_DETAIL_REQUESTED", "messgae": voucher.id });
   }
 }

@@ -2,20 +2,25 @@
   Still haven't grabbed any vouchers? Let's search voucher around you <a (click)="loadFindVoucher()">Click
     Here</a>
 </div>
-<div class="my-voucher-item" *ngFor="let voucher of myVouchers">
+<div class="my-voucher-item" *ngFor="let voucher of allRecords">
   <div class="my-voucher-header" (click)="redeem(voucher)">
-    <div class="my-voucher-logo">
+    <div class="my-voucher-logo" *ngIf="voucher.processingType === 'VOUCHER'">
       <img [src]="voucher.voucher?.logo[0]?.path">
     </div>
+    <div class="my-voucher-logo" *ngIf="voucher.processingType === 'HUNT'">
+      <img [src]="'/assets/images/icons/hunt-icon.svg'">
+    </div>
+
     <div class="my-voucher-info-detail">
-      <div class="my-voucher-info-title">{{voucher.voucher?.name}}</div>
-      <div class="my-voucher-info-category">{{voucher.categoryDetail?.name}}</div>
+      <div class="my-voucher-info-title">{{voucher.voucher?voucher.voucher.name:voucher.name}}</div>
+      <div class="my-voucher-info-category" *ngIf="voucher.processingType === 'VOUCHER'">{{voucher.categoryDetail?.name}}</div>
+      <div class="my-voucher-info-category" *ngIf="voucher.processingType === 'HUNT'">Hunt</div>
     </div>
     <div class="left-circle"></div>
     <div class="right-circle"></div>
   </div>
   <hr class="divider" />
-  <div class="my-voucher-body" (click)="redeem(voucher)">
+  <div class="my-voucher-body" (click)="redeem(voucher)" *ngIf="voucher.processingType === 'VOUCHER'">
     <div class="my-voucher-body-inner">
       <div class="my-voucher-offer-detail">
         <img src="/assets/images/icons/discount-icon.svg">
@@ -30,7 +35,13 @@
     <div class="game-winner-message" *ngIf="voucher.voucherType==='HUNT'"><img src="/assets/images/icons/success.svg"
         width="18"> Won in <span>Hunt!</span></div>
   </div>
-  <div class="my-voucher-footer">
+  <div class="my-voucher-body" *ngIf="voucher.processingType === 'HUNT'">
+    <div class="my-voucher-body-hunt-inner">
+      <div class="colection-label">Collected {{voucher.collectedVouchers}} out of {{voucher.totalVouchers}}.</div>
+      <div class="colection-label">Expire at: {{voucher.expireOn | date:'EEEE dd MMMM YYYY'}}</div>
+    </div>
+  </div>
+  <div class="my-voucher-footer" *ngIf="voucher.processingType === 'VOUCHER'">
     <button mat-stroked-button class="site-button medium-button share-button" (click)="share(voucher, $event)">
       <mat-icon>share</mat-icon> Share
     </button>
