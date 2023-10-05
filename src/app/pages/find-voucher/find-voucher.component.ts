@@ -175,8 +175,8 @@ export class FindVoucherComponent implements OnInit, OnDestroy {
     input.longitude = coords.longitude;
     input.requestDistance = 1000;
     //30.857435,75.832438
-    // input.latitude = 30.857435;
-    // input.longitude = 75.832438;
+    input.latitude = 30.857435;
+    input.longitude = 75.832438;
     //input.latitude = -37.524201473103915;
     //input.longitude = 144.95764188476684;
     this.lastCoords = input;
